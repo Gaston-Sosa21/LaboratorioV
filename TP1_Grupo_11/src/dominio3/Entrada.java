@@ -35,7 +35,7 @@ public class Entrada{
 
 	@Override
 	public String toString() {
-		return "Entrada [nombreShow=" + nombreShow + ", evento=" + evento.toString() + "]";
+		return "Esta entrada corresponde al show "+ nombreShow+ "." +evento.toString();
 	}
 	
 	

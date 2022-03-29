@@ -1,7 +1,7 @@
 package dominio3;
 
 
-public abstract class Evento {
+public abstract class Evento{
 
 	private String NombreShow ;
 	private float Precio; 

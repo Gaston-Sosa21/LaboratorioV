@@ -1,9 +1,11 @@
 package dominio3;
 
-public class Deporte extends Evento{
+public class Deporte extends Evento  implements IPrecioEntrada{
 	
 	private TiposEntradaDeporte tipoEntrada;
 	private Boolean esInternacional;
+	public static final float recargoInternacional = (float)1.3;
+	
 	
 	public TiposEntradaDeporte getTipoEntrada() {
 		return tipoEntrada;
@@ -24,13 +26,47 @@ public class Deporte extends Evento{
 	}
 	@Override
 	public String toString() {
-		return "Deporte [tipoEntrada=" + tipoEntrada + ", esInternacional=" + esInternacional + "]";
+		
+		String tipoEvento;
+		if(esInternacional) {
+			tipoEvento = "internacional";
+		}
+		else {
+			tipoEvento = "nacional";
+		}
+		
+		return " Es un evento " + tipoEvento + " de "+ tipoEntrada + "y su precio es de"
+				+ " $" + calcularPrecio();
 	}
 	
 	@Override
 	public float calcularPrecio() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		float precio = 0;
+		
+		if(tipoEntrada == TiposEntradaDeporte.Futbol) {
+			
+			precio = 300;
+					
+		}
+		else if (tipoEntrada == TiposEntradaDeporte.Hockey) {
+			
+			precio = 380;
+			
+		}
+		else if(tipoEntrada == TiposEntradaDeporte.Rugby) {
+			
+			precio = 450;
+		}
+		
+		if(esInternacional) {
+			
+			precio = precio * recargoInternacional;
+			
+		}
+		
+		return precio;
+	
 	}
 	
 	

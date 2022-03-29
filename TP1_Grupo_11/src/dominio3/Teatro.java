@@ -1,6 +1,6 @@
 package dominio3;
 
-public class Teatro extends Evento{
+public class Teatro extends Evento  implements IPrecioEntrada{
 
 	private String tipoEntrada;
 	private GenerosTeatro genero;
@@ -85,15 +85,16 @@ public class Teatro extends Evento{
 
 	@Override
 	public String toString() {
-		return "Teatro [tipoEntrada=" + tipoEntrada + ", genero=" + genero + ", actor1=" + actor1 + ", actor2=" + actor2
-				+ ", actor3=" + actor3 + "]";
+		return " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+				" y los actores principales son: " + actor1 + ", " + actor2 + ", " + actor3;
 	}
 
 
 	@Override
 	public float calcularPrecio() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return (float)1350.50;
+		
 	}
 	
 }

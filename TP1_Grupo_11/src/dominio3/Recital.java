@@ -2,13 +2,16 @@ package dominio3;
 
 
 
-public class Recital extends Evento {
+public class Recital extends Evento implements IPrecioEntrada {
 	
 	private TipoEntradaRecital tipoEntrada;
 	private GeneroRecital genero;
 	private String bandaPrinc;
 	private String bandaSoporte1;
 	private String bandaSoporte2;
+	
+	private static final float precioVip = 1500;
+	private static final float precioGeneral = 800;
 	
 	public TipoEntradaRecital getTipoEntrada() {
 		return tipoEntrada;
@@ -62,14 +65,29 @@ public class Recital extends Evento {
 
 	@Override
 	public String toString() {
-		return "Recital [tipoEntrada=" + tipoEntrada + ", genero=" + genero + ", bandaPrinc=" + bandaPrinc
-				+ ", bandaSoporte1=" + bandaSoporte1 + ", bandaSoporte2=" + bandaSoporte2 + "]";
+		
+		return " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+		+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " +
+				bandaSoporte1 + ", "+ bandaSoporte2;
 	}
-	
+
 	@Override
 	public float calcularPrecio() {
 		
-		return 1;
+		float precio = 0;
+		
+		if(tipoEntrada == TipoEntradaRecital.VIP) {
+			
+			precio = 1500;
+			
+		}
+		else if (tipoEntrada == TipoEntradaRecital.General) {
+			
+			precio=800;
+		}
+		
+		return precio;
+		
 	}
 	
 }
