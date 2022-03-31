@@ -7,8 +7,9 @@ public class Recital extends Evento implements IPrecioEntrada {
 	private TipoEntradaRecital tipoEntrada;
 	private GeneroRecital genero;
 	private String bandaPrinc;
-	private String bandaSoporte1;
-	private String bandaSoporte2;
+	private String bandaSoporte1="";
+	private String bandaSoporte2="";
+	private String mensaje;
 	
 	private static final float precioVip = 1500;
 	private static final float precioGeneral = 800;
@@ -44,6 +45,13 @@ public class Recital extends Evento implements IPrecioEntrada {
 		this.bandaSoporte2 = bandaSoporte2;
 	}
 	
+	public Recital(TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc) {
+		super();
+		this.tipoEntrada = tipoEntrada;
+		this.genero = genero;
+		this.bandaPrinc = bandaPrinc;
+	}
+	
 	public Recital(TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, String bandaSoporte1) {
 		super();
 		this.tipoEntrada = tipoEntrada;
@@ -66,9 +74,33 @@ public class Recital extends Evento implements IPrecioEntrada {
 	@Override
 	public String toString() {
 		
-		return " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
-		+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " +
-				bandaSoporte1 + ", "+ bandaSoporte2;
+		if(bandaSoporte2.isEmpty())
+		{
+			if(bandaSoporte1.isEmpty())
+			{
+				mensaje = " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+				+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc;
+			}
+			else
+			{
+				mensaje = " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+				+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte1;
+			}
+		}
+		else
+		{
+			if(bandaSoporte1.isEmpty())
+			{
+				mensaje = " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+				+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte2;
+			}
+			else
+			{
+				mensaje = " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+				+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte1 + ", "+ bandaSoporte2;
+			}
+		}
+		return mensaje;
 	}
 
 	@Override
