@@ -3,49 +3,33 @@ package dominio3;
 public class Principal {
 
 	public static void main(String[] args) {
-		
-		Evento recital1 =  new Recital("Recital1", TipoEntradaRecital.General, GeneroRecital.Heavy_metal,"Metallica","Pantera", 120);
-		Evento recital2 =  new Recital("Recital2", TipoEntradaRecital.VIP, GeneroRecital.Reggaeton,"Lgante", "Cazzu", "Duki", 180);
-		
-		Evento infantil1 =  new Infantil("Infantil1", TiposEntradaInfantil.Mayor8 , true, 120);
-		Evento infantil2 =  new Infantil("Infantil2",TiposEntradaInfantil.Menor8 , false, 90);
-		
-		
-		Evento deporte1 =  new Deporte("Deporte1",TiposEntradaDeporte.Futbol, true, 90);
-		Evento deporte2 =  new Deporte("Deporte2",TiposEntradaDeporte.Hockey, false, 60);
-		Evento deporte3 =  new Deporte("Deporte3",TiposEntradaDeporte.Rugby, true, 70);
-		
-		Evento teatro =  new Teatro("Teatro", "General",GenerosTeatro.Comedia, "Di Caprio", "Will Smith", 120);
-		
-		Entrada entrada1 = new Entrada("22/03/2022", recital1);
-		System.out.println(entrada1.toString());
-		
-		Entrada entrada2 = new Entrada("22/04/2022", recital2);
-		System.out.println(entrada2.toString());
-		
-		Entrada entrada3 = new Entrada( "22/05/2022", infantil1);
-		System.out.println(entrada3.toString());
-		
-		Entrada entrada4 = new Entrada( "22/06/2022",infantil2);
-		System.out.println(entrada4.toString());
-		
-		Entrada entrada5 = new Entrada("22/07/2022", deporte1);
-		System.out.println(entrada5.toString());
-		
-		Entrada entrada6 = new Entrada("22/08/2022",deporte2);
-		System.out.println(entrada6.toString());
-		
-		Entrada entrada7 = new Entrada("22/09/2022",deporte3);
-		System.out.println(entrada7.toString());
-		
-		Entrada entrada8 = new Entrada("22/10/2022", teatro);
-		System.out.println(entrada8.toString());
-		
 
-
+		Evento[] TipoEvento = new Evento[8];
+		TipoEvento[0]=new Recital("Recital1", TipoEntradaRecital.General, GeneroRecital.Heavy_metal,"Metallica","Pantera", 120);
+		TipoEvento[1]=new Recital("Recital2", TipoEntradaRecital.VIP, GeneroRecital.Reggaeton,"Lgante", "Cazzu", "Duki", 180);
+		TipoEvento[2]=new Infantil("Infantil1", TiposEntradaInfantil.Mayor8 , true, 120);
+		TipoEvento[3]=new Infantil("Infantil2",TiposEntradaInfantil.Menor8 , false, 90);
+		TipoEvento[4]=new Deporte("Deporte1",TiposEntradaDeporte.Futbol, true, 90);
+		TipoEvento[5]=new Deporte("Deporte2",TiposEntradaDeporte.Hockey, false, 60);
+		TipoEvento[6]=new Deporte("Deporte3",TiposEntradaDeporte.Rugby, true, 70);
+		TipoEvento[7]=new Teatro("Teatro", "General",GenerosTeatro.Comedia, "Chris Rock", "Will Smith", 120);
 		
+		String[] Fechas = new String[8];
+		Fechas[0]="22/03/2022";
+		Fechas[1]="16/04/2022";
+		Fechas[2]="20/05/2022";
+		Fechas[3]="02/06/2022";
+		Fechas[4]="22/06/2022";
+		Fechas[5]="13/07/2022";
+		Fechas[6]="14/07/2022";
+		Fechas[7]="06/08/2022";
 		
+		Entrada[] Ticket = new Entrada[8];
 		
+		for(int i=0;i<8;i++) {
+			Ticket[i] = new Entrada(Fechas[i].toString(),TipoEvento[i]);
+			System.out.println(Ticket[i].toString());
+		}
 		
 	}
 }
