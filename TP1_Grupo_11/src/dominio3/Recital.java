@@ -9,7 +9,6 @@ public class Recital extends Evento implements IPrecioEntrada {
 	private String bandaPrinc;
 	private String bandaSoporte1="";
 	private String bandaSoporte2="";
-	private String mensaje;
 	
 	private static final float precioVip = 1500;
 	private static final float precioGeneral = 800;
@@ -45,24 +44,29 @@ public class Recital extends Evento implements IPrecioEntrada {
 		this.bandaSoporte2 = bandaSoporte2;
 	}
 	
-	public Recital(TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc) {
+	public Recital(String nombreShow,TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, int duracionAproximadaMinutos) {
 		super();
+		this.setNombreShow(nombreShow);
+		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.genero = genero;
 		this.bandaPrinc = bandaPrinc;
 	}
 	
-	public Recital(TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, String bandaSoporte1) {
+	public Recital(String nombreShow,TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, String bandaSoporte1, int duracionAproximadaMinutos) {
 		super();
+		this.setNombreShow(nombreShow);
+		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.genero = genero;
 		this.bandaPrinc = bandaPrinc;
 		this.bandaSoporte1 = bandaSoporte1;
 	}
 	
-	public Recital(TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, String bandaSoporte1,
-			String bandaSoporte2) {
+	public Recital(String nombreShow,TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, String bandaSoporte1, String bandaSoporte2, int duracionAproximadaMinutos) {
 		super();
+		this.setNombreShow(nombreShow);
+		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.genero = genero;
 		this.bandaPrinc = bandaPrinc;
@@ -74,30 +78,32 @@ public class Recital extends Evento implements IPrecioEntrada {
 	@Override
 	public String toString() {
 		
+		String mensaje = getNombreShow() + " el cual dura " + getDuracionAproximadaMinutos() + " minutos." ;
+		
 		if(bandaSoporte2.isEmpty())
 		{
 			if(bandaSoporte1.isEmpty())
 			{
-				mensaje = " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
-				+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc;
+				mensaje += " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+				+", el concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc;
 			}
 			else
 			{
-				mensaje = " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
-				+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte1;
+				mensaje += " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+				+", el concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte1;
 			}
 		}
 		else
 		{
 			if(bandaSoporte1.isEmpty())
 			{
-				mensaje = " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
-				+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte2;
+				mensaje += " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+				+", el concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte2;
 			}
 			else
 			{
-				mensaje = " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
-				+". El concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte1 + ", "+ bandaSoporte2;
+				mensaje += " Es de tipo " + tipoEntrada + " y su precio es de $" + calcularPrecio() 
+				+", el concierto es del género " + genero + " y las bandas que tocarán son: " + bandaPrinc + ", " + bandaSoporte1 + ", "+ bandaSoporte2;
 			}
 		}
 		return mensaje;
@@ -110,12 +116,12 @@ public class Recital extends Evento implements IPrecioEntrada {
 		
 		if(tipoEntrada == TipoEntradaRecital.VIP) {
 			
-			precio = 1500;
+			precio = precioVip;
 			
 		}
 		else if (tipoEntrada == TipoEntradaRecital.General) {
 			
-			precio=800;
+			precio=precioGeneral;
 		}
 		
 		return precio;

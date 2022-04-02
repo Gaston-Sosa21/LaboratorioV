@@ -13,8 +13,10 @@ public class Infantil extends Evento  implements IPrecioEntrada{
 		this.incluyeSouvenir = incluyeSouvenir;
 	}
 		
-	public Infantil(TiposEntradaInfantil tipoEntrada, Boolean incluyeSouvenir) {
+	public Infantil(String nombreShow, TiposEntradaInfantil tipoEntrada, Boolean incluyeSouvenir, int duracionAproximadaMinutos) {
 		super();
+		this.setNombreShow(nombreShow);
+		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.incluyeSouvenir = incluyeSouvenir;
 	}
@@ -25,10 +27,10 @@ public class Infantil extends Evento  implements IPrecioEntrada{
 		String souvenir, rangoEdad="";
 		
 		if(incluyeSouvenir) {
-			souvenir = "incluye souvenir";
+			souvenir = " e incluye souvenir";
 		}
 		else {
-			souvenir = "no incluye souvenir";
+			souvenir = " y no incluye souvenir";
 		}
 		
 		if(tipoEntrada == TiposEntradaInfantil.Menor8) {
@@ -40,7 +42,7 @@ public class Infantil extends Evento  implements IPrecioEntrada{
 			rangoEdad = "mayores de 8 años";
 		}
 		
-		return " Es para "+ rangoEdad + ", tiene un precio de $" + calcularPrecio() + " y " + souvenir;
+		return getNombreShow() + " el cual dura " + getDuracionAproximadaMinutos() + " minutos. Es para "+ rangoEdad + ", tiene un precio de $" + calcularPrecio() + souvenir;
 	}
 	
 	@Override

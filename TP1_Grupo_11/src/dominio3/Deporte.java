@@ -19,8 +19,10 @@ public class Deporte extends Evento  implements IPrecioEntrada{
 	public void setEsInternacional(Boolean esInternacional) {
 		this.esInternacional = esInternacional;
 	}
-	public Deporte(TiposEntradaDeporte tipoEntrada, Boolean esInternacional) {
+	public Deporte(String nombreShow,TiposEntradaDeporte tipoEntrada, Boolean esInternacional, int duracionAproximadaMinutos) {
 		super();
+		this.setNombreShow(nombreShow);
+		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.esInternacional = esInternacional;
 	}
@@ -35,7 +37,7 @@ public class Deporte extends Evento  implements IPrecioEntrada{
 			tipoEvento = "nacional";
 		}
 		
-		return " Es un evento " + tipoEvento + " de "+ tipoEntrada + "y su precio es de"
+		return getNombreShow() + " el cual dura " + getDuracionAproximadaMinutos() + " minutos. Es un evento " + tipoEvento + " de "+ tipoEntrada + " y su precio es de"
 				+ " $" + calcularPrecio();
 	}
 	

@@ -1,20 +1,30 @@
 package dominio3;
 
+
+
 public class Entrada{
 	
 
 	private static int numEntrada=0;
-	private String nombreShow;
+	private String fechaHoraShow;
 	private Evento evento;
-	
 
-	public Entrada(String nombreShow, Evento evento) {
+
+	public Entrada(String fechaHoraShow, Evento evento) {
 		super();
 		numEntrada++;
-		this.nombreShow = nombreShow;
+		this.fechaHoraShow = fechaHoraShow;
 		this.evento = evento;
 	}
 	
+	public String getFechaHoraShow() {
+		return fechaHoraShow;
+	}
+
+	public void setFechaHoraShow(String fechaHoraShow) {
+		this.fechaHoraShow = fechaHoraShow;
+	}
+
 	public Evento getEvento() {
 		return evento;
 	}
@@ -26,16 +36,10 @@ public class Entrada{
 		return numEntrada;
 	}
 
-	public String getNombreShow() {
-		return nombreShow;
-	}
-	public void setNombreShow(String nombreShow) {
-		this.nombreShow = nombreShow;
-	}
 
 	@Override
 	public String toString() {
-		return "Esta entrada corresponde al show "+ nombreShow+ "." +evento.toString();
+		return "Esta es la entrada N°" + getNumEntrada() +", es válida para ingresar el dia " + getFechaHoraShow() +" y corresponde al show " +evento.toString();
 	}
 	
 	

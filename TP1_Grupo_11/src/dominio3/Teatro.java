@@ -7,7 +7,7 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 	private String actor1="";
 	private String actor2="";
 	private String actor3="";
-	private String mensaje="";
+	
 	
 	public String getTipoEntrada() {
 		return tipoEntrada;
@@ -49,23 +49,29 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 		this.actor3 = actor3;
 	}
 
-	public Teatro(String tipoEntrada, GenerosTeatro genero, String actor1) {
+	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, int duracionAproximadaMinutos) {
 		super();
+		this.setNombreShow(nombreShow);
+		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.genero = genero;
 		this.actor1 = actor1;
 	}
 	
-	public Teatro(String tipoEntrada, GenerosTeatro genero, String actor1, String actor2) {
+	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, int duracionAproximadaMinutos) {
 		super();
+		this.setNombreShow(nombreShow);
+		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.genero = genero;
 		this.actor1 = actor1;
 		this.actor2 = actor2;
 	}
 		
-	public Teatro(String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, String actor3) {
+	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, String actor3, int duracionAproximadaMinutos) {
 		super();
+		this.setNombreShow(nombreShow);
+		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.genero = genero;
 		this.actor1 = actor1;
@@ -76,18 +82,20 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 	@Override
 	public String toString() 
 	{
+		
+		String mensaje = getNombreShow() + " el cual dura " + getDuracionAproximadaMinutos() + " minutos.";
 		if(actor1 != "")
 		{
 			if(actor2 != "")
 			{
 				if(actor3 != "")
 				{
-					mensaje = " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+					mensaje += " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
 					" y los actores principales son: " + actor1 + ", " + actor2 + ", " + actor3;
 				}
 				else
 				{
-					mensaje = " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+					mensaje += " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
 					" y los actores principales son: " + actor1 + ", " + actor2;
 				}
 			}
@@ -95,12 +103,12 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 			{
 				if(actor3 != "")
 				{
-					mensaje = " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+					mensaje += " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
 					" y los actores principales son: " + actor1 + ", " + actor3;
 				}
 				else
 				{
-					mensaje = " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+					mensaje += " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
 					" y los actores principales son: " + actor1;
 				}
 			}
@@ -111,12 +119,12 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 			{
 				if(actor3 != "")
 				{
-					mensaje = " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+					mensaje += " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
 					" y los actores principales son: " + actor2 + ", " + actor3;
 				}
 				else
 				{
-					mensaje = " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+					mensaje += " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
 					" y los actores principales son: " + actor2;
 				}
 			}
@@ -124,12 +132,12 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 			{
 				if(actor3 != "")
 				{
-					mensaje = " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+					mensaje += " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
 					" y los actores principales son: " + actor3;
 				}
 				else
 				{	
-					mensaje = " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
+					mensaje += " Tiene un precio de $"+ calcularPrecio() + ", la obra es del género "+ genero +
 					" y los actores principales son: ";
 				}
 			}
