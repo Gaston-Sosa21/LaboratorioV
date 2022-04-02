@@ -50,7 +50,10 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 	}
 
 	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, int duracionAproximadaMinutos) {
-		super();
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		
 		this.setNombreShow(nombreShow);
 		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
@@ -59,7 +62,10 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 	}
 	
 	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, int duracionAproximadaMinutos) {
-		super();
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		
 		this.setNombreShow(nombreShow);
 		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
@@ -69,7 +75,10 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 	}
 		
 	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, String actor3, int duracionAproximadaMinutos) {
-		super();
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		
 		this.setNombreShow(nombreShow);
 		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;

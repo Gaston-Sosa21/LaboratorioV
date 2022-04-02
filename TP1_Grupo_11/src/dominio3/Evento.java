@@ -5,7 +5,14 @@ public abstract class Evento{
 
 	private String NombreShow ;
 	private float Precio; 
-	private int DuracionAproximadaMinutos;
+	private int DuracionAproximadaMinutos;	
+	
+	public Evento(String nombreShow, float precio, int duracionAproximadaMinutos) {
+		super();
+		NombreShow = nombreShow;
+		Precio = precio;
+		DuracionAproximadaMinutos = duracionAproximadaMinutos;
+	}
 	
 	public String getNombreShow() {
 		return NombreShow;
@@ -28,9 +35,6 @@ public abstract class Evento{
 	}
 	
 	@Override
-	public abstract String toString();
-	public abstract float calcularPrecio();
-	
-	
+	public abstract String toString();	
 	
 }

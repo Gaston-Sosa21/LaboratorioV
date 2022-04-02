@@ -45,16 +45,22 @@ public class Recital extends Evento implements IPrecioEntrada {
 	}
 	
 	public Recital(String nombreShow,TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, int duracionAproximadaMinutos) {
-		super();
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		
 		this.setNombreShow(nombreShow);
 		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
 		this.genero = genero;
 		this.bandaPrinc = bandaPrinc;
-	}
+	}	
 	
 	public Recital(String nombreShow,TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, String bandaSoporte1, int duracionAproximadaMinutos) {
-		super();
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		
 		this.setNombreShow(nombreShow);
 		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;
@@ -64,7 +70,10 @@ public class Recital extends Evento implements IPrecioEntrada {
 	}
 	
 	public Recital(String nombreShow,TipoEntradaRecital tipoEntrada, GeneroRecital genero, String bandaPrinc, String bandaSoporte1, String bandaSoporte2, int duracionAproximadaMinutos) {
-		super();
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		
 		this.setNombreShow(nombreShow);
 		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;

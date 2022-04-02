@@ -14,7 +14,10 @@ public class Infantil extends Evento  implements IPrecioEntrada{
 	}
 		
 	public Infantil(String nombreShow, TiposEntradaInfantil tipoEntrada, Boolean incluyeSouvenir, int duracionAproximadaMinutos) {
-		super();
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		
 		this.setNombreShow(nombreShow);
 		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
 		this.tipoEntrada = tipoEntrada;

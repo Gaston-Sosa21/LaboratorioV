@@ -6,26 +6,30 @@ public class Deporte extends Evento  implements IPrecioEntrada{
 	private Boolean esInternacional;
 	public static final float recargoInternacional = (float)1.3;
 	
+	public Deporte(String nombreShow,TiposEntradaDeporte tipoEntrada, Boolean esInternacional, int duracionAproximadaMinutos) {
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);		
+
+		this.tipoEntrada = tipoEntrada;
+		this.esInternacional = esInternacional;
+	}
 	
 	public TiposEntradaDeporte getTipoEntrada() {
 		return tipoEntrada;
 	}
+	
 	public void setTipoEntrada(TiposEntradaDeporte tipoEntrada) {
 		this.tipoEntrada = tipoEntrada;
 	}
+	
 	public Boolean getEsInternacional() {
 		return esInternacional;
 	}
+	
 	public void setEsInternacional(Boolean esInternacional) {
 		this.esInternacional = esInternacional;
 	}
-	public Deporte(String nombreShow,TiposEntradaDeporte tipoEntrada, Boolean esInternacional, int duracionAproximadaMinutos) {
-		super();
-		this.setNombreShow(nombreShow);
-		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
-		this.tipoEntrada = tipoEntrada;
-		this.esInternacional = esInternacional;
-	}
+	
 	@Override
 	public String toString() {
 		
