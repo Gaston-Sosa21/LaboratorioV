@@ -53,13 +53,12 @@ public class Infantil extends Evento  implements IPrecioEntrada{
 		
 		float precio=0;
 		
-		if(tipoEntrada == TiposEntradaInfantil.Menor8) {
-			precio = 250;
-		}
+		switch (tipoEntrada) {			
+	        case Menor8:     precio = 250;  break;
+	        case Mayor8:     precio = 500;  break;  
+			default: break;
+		}	
 		
-		else if(tipoEntrada == TiposEntradaInfantil.Mayor8) {			
-			precio = 500;			
-		}		
 		return precio;
 	}
 	

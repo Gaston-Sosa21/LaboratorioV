@@ -45,24 +45,22 @@ public class Deporte extends Evento  implements IPrecioEntrada{
 	}
 	
 	@Override
-	public float calcularPrecio() {
-		
+	public float calcularPrecio() {	
+
 		float precio = 0;
 		
-		if(tipoEntrada == TiposEntradaDeporte.Futbol) {			
-			precio = 300;					
-		}
-		else if (tipoEntrada == TiposEntradaDeporte.Hockey) {			
-			precio = 380;			
-		}
-		else if(tipoEntrada == TiposEntradaDeporte.Rugby) {			
-			precio = 450;
+		switch (tipoEntrada) {			
+	        case Futbol: precio = 300;  break;
+	        case Hockey: precio = 380;  break;        
+	        case Rugby:  precio = 450;  break;            
+			default:
+				break;
 		}
 		
 		if(esInternacional) {			
 			precio = precio * recargoInternacional;			
-		}		
-		return precio;
-	
+		}
+		
+		return precio;	
 	}	
 }

@@ -118,14 +118,12 @@ public class Recital extends Evento implements IPrecioEntrada {
 		
 		float precio = 0;
 		
-		if(tipoEntrada == TipoEntradaRecital.VIP) {			
-			precio = precioVip;			
+		switch (tipoEntrada) {			
+	        case VIP:     precio = precioVip;     break;
+	        case General: precio = precioGeneral; break;  
+			default: break;
 		}
-		else if (tipoEntrada == TipoEntradaRecital.General) {			
-			precio=precioGeneral;
-		}		
-		return precio;
 		
-	}
-	
+		return precio;		
+	}	
 }

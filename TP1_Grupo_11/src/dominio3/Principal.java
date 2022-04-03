@@ -29,7 +29,7 @@ public class Principal {
 		for(int i=0;i<8;i++) {
 			Ticket[i] = new Entrada(Fechas[i].toString(),TipoEvento[i]);
 			System.out.println(Ticket[i].toString());
-		}
+		}	
 		
 	}
 }
