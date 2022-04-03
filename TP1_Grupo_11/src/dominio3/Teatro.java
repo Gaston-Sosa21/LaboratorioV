@@ -8,6 +8,40 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 	private String actor2="";
 	private String actor3="";
 	
+	//Construvtores
+	
+	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, int duracionAproximadaMinutos) {
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		ConstructorBase(tipoEntrada,genero,actor1);
+	}
+	
+	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, int duracionAproximadaMinutos) {
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		ConstructorBase(tipoEntrada,genero,actor1);
+		this.actor2 = actor2;
+	}
+		
+	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, String actor3, int duracionAproximadaMinutos) {
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		ConstructorBase(tipoEntrada,genero,actor1);
+		this.actor2 = actor2;
+		this.actor3 = actor3;
+	}
+	
+	private void ConstructorBase(String tipoEntrada, GenerosTeatro genero,String actor1)
+	{
+		this.tipoEntrada = tipoEntrada;
+		this.genero = genero;
+		this.actor1 = actor1;
+	}
+	
+	//Gettes y setters	
 	
 	public String getTipoEntrada() {
 		return tipoEntrada;
@@ -47,46 +81,7 @@ public class Teatro extends Evento  implements IPrecioEntrada{
 
 	public void setActor3(String actor3) {
 		this.actor3 = actor3;
-	}
-
-	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, int duracionAproximadaMinutos) {
-		
-		//invocacion al constructor del padre
-		super(nombreShow,0,duracionAproximadaMinutos);
-		
-		this.setNombreShow(nombreShow);
-		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
-		this.tipoEntrada = tipoEntrada;
-		this.genero = genero;
-		this.actor1 = actor1;
-	}
-	
-	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, int duracionAproximadaMinutos) {
-		
-		//invocacion al constructor del padre
-		super(nombreShow,0,duracionAproximadaMinutos);
-		
-		this.setNombreShow(nombreShow);
-		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
-		this.tipoEntrada = tipoEntrada;
-		this.genero = genero;
-		this.actor1 = actor1;
-		this.actor2 = actor2;
-	}
-		
-	public Teatro(String nombreShow,String tipoEntrada, GenerosTeatro genero, String actor1, String actor2, String actor3, int duracionAproximadaMinutos) {
-		
-		//invocacion al constructor del padre
-		super(nombreShow,0,duracionAproximadaMinutos);
-		
-		this.setNombreShow(nombreShow);
-		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
-		this.tipoEntrada = tipoEntrada;
-		this.genero = genero;
-		this.actor1 = actor1;
-		this.actor2 = actor2;
-		this.actor3 = actor3;
-	}
+	}	
 
 	@Override
 	public String toString() 

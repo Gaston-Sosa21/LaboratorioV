@@ -9,7 +9,6 @@ public class Deporte extends Evento  implements IPrecioEntrada{
 	public Deporte(String nombreShow,TiposEntradaDeporte tipoEntrada, Boolean esInternacional, int duracionAproximadaMinutos) {
 		//invocacion al constructor del padre
 		super(nombreShow,0,duracionAproximadaMinutos);		
-
 		this.tipoEntrada = tipoEntrada;
 		this.esInternacional = esInternacional;
 	}
@@ -50,31 +49,20 @@ public class Deporte extends Evento  implements IPrecioEntrada{
 		
 		float precio = 0;
 		
-		if(tipoEntrada == TiposEntradaDeporte.Futbol) {
-			
-			precio = 300;
-					
+		if(tipoEntrada == TiposEntradaDeporte.Futbol) {			
+			precio = 300;					
 		}
-		else if (tipoEntrada == TiposEntradaDeporte.Hockey) {
-			
-			precio = 380;
-			
+		else if (tipoEntrada == TiposEntradaDeporte.Hockey) {			
+			precio = 380;			
 		}
-		else if(tipoEntrada == TiposEntradaDeporte.Rugby) {
-			
+		else if(tipoEntrada == TiposEntradaDeporte.Rugby) {			
 			precio = 450;
 		}
 		
-		if(esInternacional) {
-			
-			precio = precio * recargoInternacional;
-			
-		}
-		
+		if(esInternacional) {			
+			precio = precio * recargoInternacional;			
+		}		
 		return precio;
 	
-	}
-	
-	
-	
+	}	
 }

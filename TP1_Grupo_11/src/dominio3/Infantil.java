@@ -5,24 +5,24 @@ public class Infantil extends Evento  implements IPrecioEntrada{
 	private TiposEntradaInfantil tipoEntrada;
 	private Boolean incluyeSouvenir;
 	
+	//Constructores
+	
+	public Infantil(String nombreShow, TiposEntradaInfantil tipoEntrada, Boolean incluyeSouvenir, int duracionAproximadaMinutos) {
+		
+		//invocacion al constructor del padre
+		super(nombreShow,0,duracionAproximadaMinutos);
+		this.tipoEntrada = tipoEntrada;
+		this.incluyeSouvenir = incluyeSouvenir;
+	}
+	
+	//gettes y setters
 	
 	public Boolean getIncluyeSouvenir() {
 		return incluyeSouvenir;
 	}
 	public void setIncluyeSouvenir(Boolean incluyeSouvenir) {
 		this.incluyeSouvenir = incluyeSouvenir;
-	}
-		
-	public Infantil(String nombreShow, TiposEntradaInfantil tipoEntrada, Boolean incluyeSouvenir, int duracionAproximadaMinutos) {
-		
-		//invocacion al constructor del padre
-		super(nombreShow,0,duracionAproximadaMinutos);
-		
-		this.setNombreShow(nombreShow);
-		this.setDuracionAproximadaMinutos(duracionAproximadaMinutos);
-		this.tipoEntrada = tipoEntrada;
-		this.incluyeSouvenir = incluyeSouvenir;
-	}
+	}	
 	
 	@Override
 	public String toString() {
@@ -57,12 +57,9 @@ public class Infantil extends Evento  implements IPrecioEntrada{
 			precio = 250;
 		}
 		
-		else if(tipoEntrada == TiposEntradaInfantil.Mayor8) {
-			
-			precio = 500;
-			
-		}
-		
+		else if(tipoEntrada == TiposEntradaInfantil.Mayor8) {			
+			precio = 500;			
+		}		
 		return precio;
 	}
 	

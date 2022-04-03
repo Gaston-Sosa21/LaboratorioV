@@ -17,9 +17,11 @@ public abstract class Evento{
 	public String getNombreShow() {
 		return NombreShow;
 	}
+	
 	public void setNombreShow(String nombreShow) {
 		NombreShow = nombreShow;
 	}
+	
 	public float getPrecio() {
 		return Precio;
 	}
@@ -27,9 +29,11 @@ public abstract class Evento{
 	public void setPrecio(float precio) {
 		Precio = precio;
 	}
+	
 	public int getDuracionAproximadaMinutos() {
 		return DuracionAproximadaMinutos;
 	}
+	
 	public void setDuracionAproximadaMinutos(int duracionAproximadaMinutos) {
 		DuracionAproximadaMinutos = duracionAproximadaMinutos;
 	}
