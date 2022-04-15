@@ -1,4 +1,4 @@
-package frgp.utn.edu.ar.test;
+package packageTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,4 +34,34 @@ class MatrizAdyacenciaTest {
 		assertEquals(true, res);
 	}
 
+	@Test
+	public void eliminarElementoTest()
+	{
+		boolean res;
+		
+		matriz.eliminarElemento(1, 3);
+		
+		res = matriz.existeElemento(1, 3);
+		
+		assertFalse(res);
+	}
+	
+	@Test
+	public void eliminarElementoSimetricoTest()
+	{
+		boolean res;
+		
+		matriz.eliminarElemento(1, 3);
+		
+		if (matriz.existeElemento(1, 3)==matriz.existeElemento(3, 1)) 
+		{
+			res=false;
+		}
+		else 
+		{
+			res=true;
+		}
+		
+		assertFalse(res);
+	}
 }
