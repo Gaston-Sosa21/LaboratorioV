@@ -16,120 +16,76 @@ class MatrizAdyacenciaTest {
 
 		matriz.agregarElemento(1, 3);
 		boolean res = matriz.existeElemento(1, 3);
-		assertEquals(true, res);
+		assertEquals(true, res,"agregarElementoTest: Elemento agregado.");
 	}
 
 	@Test // 3.b.
 	public void agregarElementoSimetriaTest() {
 		boolean res;
 		matriz.agregarElemento(1, 3);
-
-		if (matriz.existeElemento(3, 1) == matriz.existeElemento(1, 3)) {
-			res = true;
-		} else {
-			res = false;
-		}
-
-		assertEquals(true, res);
+		res = matriz.existeElemento(3, 1) == matriz.existeElemento(1, 3) ? res = true : false;
+		assertEquals(true, res,"agregarElementoSimetriaTest: agregado en su posicion simetrica.");
 	}
 
 	@Test // 3.c
 	public void eliminarElementoTest() {
 		boolean res;
-
 		matriz.eliminarElemento(1, 3);
-
 		res = matriz.existeElemento(1, 3);
-
-		assertFalse(res);
+		assertFalse(res,"eliminarElementoTest: elemento eliminado.");
 	}
 
 	@Test // 3.d
 	public void eliminarElementoSimetricoTest() {
 		boolean res;
-
 		matriz.eliminarElemento(1, 3);
-
-		if (matriz.existeElemento(1, 3) == matriz.existeElemento(3, 1)) {
-			res = false;
-		} else {
-			res = true;
-		}
-
-		assertFalse(res);
+		res= (matriz.existeElemento(1, 3) == matriz.existeElemento(3, 1)) ? false : true;
+		assertFalse(res,"eliminarElementoSimetricoTest: elemento simetrico eliminado.");
 	}
 
 	@Test // 3.e
 	public void contarRelacionesTest() {
 
-		boolean res = true;
-
-		int cantRel = matriz.getCantidadRelaciones();
-
-		if (cantRel < 0) {
-			res = false;
-		}
-
-		assertTrue(res);
+		boolean res = matriz.getCantidadRelaciones() < 0 ? false : true;
+		assertTrue(res,"contarRelacionesTest: cantidad de relaciones correctas.");
 	}
 
 	@Test // 3.f.
 	public void existenTodosLosElementoTest() {
 
-		boolean res = true;
-
 		int cantRel = matriz.getCantidadRelaciones();
 		int cantElem = matriz.CantSimetricos();
-
-		if (cantRel * 2 != cantElem) {
-			res = false;
-		}
-		assertTrue(res);
-	}
-
-	@Test // 3.g
-	public void agregarElementoFilaNegativaTest() {
-
-		boolean res = true;
-		int valorA = -1;
-		int valorB = -5;
-
-		if (valorA < 0 || valorB < 0) {
-			res = false;
-		} else {
-			matriz.agregarElemento(valorA, valorB);
-		}
-
-		assertFalse(res);
+	    boolean res = cantRel * 2 != cantElem ? false : true;		
+		assertTrue(res,"existenTodosLosElementoTest: elementos y relaciones agregados correctamente.");
 	}
 
 	@Test // 3.g.
-	public void agregarElementoFilaNegativaTest2() {
+	public void agregarElementoFilaNegativaTest() {
 
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, 0));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, cantElementos - 1));
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, 0),"agregarElementoFilaNegativaTest: excepcion de agregado en fila negativa correcto.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, cantElementos - 1),"agregarElementoFilaNegativaTest: excepcion de agregado en fila negativa correcto.");
 
 	}
 
 	@Test // 3.h.
 	public void agregarElementoColumnaNegativaTest() {
 
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(0, -1));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(cantElementos - 1, -1));
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(0, -1),"agregarElementoFilaNegativaTest: excepcion de agregado en columna negativa correcto.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(cantElementos - 1, -1),"agregarElementoFilaNegativaTest: excepcion de agregado en columna negativa correcto.");
 
 	}
 
 	@Test // 3.i.
 	public void agregarElementoFueraRangoTest() {
 
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(cantElementos, cantElementos));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(cantElementos, 0));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(0, cantElementos));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(cantElementos, -1));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, cantElementos));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(0, -1));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, 0));
-		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, -1));
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(cantElementos, cantElementos),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(cantElementos, 0),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(0, cantElementos),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(cantElementos, -1),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, cantElementos),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(0, -1),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, 0),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
+		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, -1),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
 
 	}
 }
