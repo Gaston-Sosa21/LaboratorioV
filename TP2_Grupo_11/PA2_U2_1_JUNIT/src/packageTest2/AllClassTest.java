@@ -7,7 +7,7 @@ import org.junit.runners.Suite;
 
 import frgp.utn.edu.ar.main.MatrizAdyacencia;
 
-//Configurar desde Run As -> Run configuration -> Test Runner "JUnit4" aply y Ok.
+//Configurar desde Run As -> Run configuration -> Test Runner "JUnit4" apply y Ok.
 @RunWith(JUnitPlatform.class)
 
 @SelectClasses({ MatrizAdyacencia.class })

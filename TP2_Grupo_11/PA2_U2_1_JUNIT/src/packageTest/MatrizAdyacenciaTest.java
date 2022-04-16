@@ -23,7 +23,7 @@ class MatrizAdyacenciaTest {
 	public void agregarElementoSimetriaTest() {
 		boolean res;
 		matriz.agregarElemento(1, 3);
-		res = matriz.existeElemento(3, 1) == matriz.existeElemento(1, 3) ? res = true : false;
+		res = matriz.existeElemento(3, 1) == matriz.existeElemento(1, 3) ? true : false;
 		assertEquals(true, res,"agregarElementoSimetriaTest: agregado en su posicion simetrica.");
 	}
 
@@ -87,5 +87,6 @@ class MatrizAdyacenciaTest {
 		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, 0),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
 		assertThrows(ArrayIndexOutOfBoundsException.class, () -> matriz.agregarElemento(-1, -1),"agregarElementoFueraRangoTest: elemento fuera de rango no agregado.");
 
-	}
+	}	
+
 }
