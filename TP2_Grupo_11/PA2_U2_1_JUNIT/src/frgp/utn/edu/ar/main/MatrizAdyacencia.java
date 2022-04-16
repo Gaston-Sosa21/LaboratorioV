@@ -28,7 +28,7 @@ public class MatrizAdyacencia {
 		return _ady[i][j];
 	}
 	
-	public int getCantidadElementos()
+	public int getCantidadRelaciones()
 	{
 		int cont=0;
 		for(int i=0; i<=cantElementos-1; i++)
@@ -40,4 +40,16 @@ public class MatrizAdyacencia {
 		cont = cont/2;
 		return cont;
 	}
+	
+	public int CantSimetricos() {
+		int cont=0;
+		for(int i=0; i<=cantElementos-1; i++)
+		{
+		   for(int j=0; j<=cantElementos-1; j++)
+			   if(_ady[i][j]==true)
+				   cont++;
+		}
+		return cont;
+	}
+	
 }

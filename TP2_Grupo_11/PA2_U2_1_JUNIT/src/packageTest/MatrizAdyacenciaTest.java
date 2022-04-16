@@ -64,4 +64,52 @@ class MatrizAdyacenciaTest {
 		
 		assertFalse(res);
 	}
+	
+	@Test
+	public void contarRelacionesTest() {
+		
+		boolean res=true;
+		
+		int cantRel = matriz.getCantidadRelaciones();
+		
+		if(cantRel < 0) {
+			res=false;
+		}
+		
+		assertTrue(res);
+	}
+	
+	@Test
+	public void existenTodosLosElementoTest() {
+		
+		boolean res=true;
+		
+		int cantRel = matriz.getCantidadRelaciones();
+		int cantElem= matriz.CantSimetricos();
+		
+		if(cantRel*2 != cantElem) {
+			res=false;
+		}
+		assertTrue(res);
+	}
+	
+	@Test
+	public void agregarElementoFilaNegativaTest() {
+		
+		boolean res=true;
+	    int valorA= -1;
+	    int valorB= -5;
+		
+	    if(valorA < 0 || valorB<0) {
+	    	res=false;
+	    }else {
+			matriz.agregarElemento(valorA, valorB);
+	    }
+	
+	    assertFalse(res);
+	}
+	
 }
+
+
+
