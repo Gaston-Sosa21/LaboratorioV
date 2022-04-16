@@ -11,7 +11,7 @@ class MatrizAdyacenciaTest {
 	private int cantElementos = 5;
 	private MatrizAdyacencia matriz = new MatrizAdyacencia(cantElementos);
 
-	@Test //3.a.
+	@Test // 3.a.
 	public void agregarElementoTest() {
 
 		matriz.agregarElemento(1, 3);
@@ -19,7 +19,7 @@ class MatrizAdyacenciaTest {
 		assertEquals(true, res);
 	}
 
-	@Test //3.b.
+	@Test // 3.b.
 	public void agregarElementoSimetriaTest() {
 		boolean res;
 		matriz.agregarElemento(1, 3);
@@ -33,7 +33,7 @@ class MatrizAdyacenciaTest {
 		assertEquals(true, res);
 	}
 
-	@Test //3.c
+	@Test // 3.c
 	public void eliminarElementoTest() {
 		boolean res;
 
@@ -44,7 +44,7 @@ class MatrizAdyacenciaTest {
 		assertFalse(res);
 	}
 
-	@Test //3.d
+	@Test // 3.d
 	public void eliminarElementoSimetricoTest() {
 		boolean res;
 
@@ -58,54 +58,50 @@ class MatrizAdyacenciaTest {
 
 		assertFalse(res);
 	}
-//3.e
-	@Test
+
+	@Test // 3.e
 	public void contarRelacionesTest() {
-		
-		boolean res=true;
-		
+
+		boolean res = true;
+
 		int cantRel = matriz.getCantidadRelaciones();
-		
-		if(cantRel < 0) {
-			res=false;
+
+		if (cantRel < 0) {
+			res = false;
 		}
-		
+
 		assertTrue(res);
 	}
-	
-	@Test
+
+	@Test // 3.f.
 	public void existenTodosLosElementoTest() {
-		
-		boolean res=true;
-		
+
+		boolean res = true;
+
 		int cantRel = matriz.getCantidadRelaciones();
-		int cantElem= matriz.CantSimetricos();
-		
-		if(cantRel*2 != cantElem) {
-			res=false;
+		int cantElem = matriz.CantSimetricos();
+
+		if (cantRel * 2 != cantElem) {
+			res = false;
 		}
 		assertTrue(res);
 	}
-	
-	@Test
+
+	@Test // 3.g
 	public void agregarElementoFilaNegativaTest() {
-		
-		boolean res=true;
-	    int valorA= -1;
-	    int valorB= -5;
-		
-	    if(valorA < 0 || valorB<0) {
-	    	res=false;
-	    }else {
+
+		boolean res = true;
+		int valorA = -1;
+		int valorB = -5;
+
+		if (valorA < 0 || valorB < 0) {
+			res = false;
+		} else {
 			matriz.agregarElemento(valorA, valorB);
-	    }
-	
-	    assertFalse(res);
+		}
+
+		assertFalse(res);
 	}
-	
-	//Justo estaba subiendo las cosas y parece que alguien más también xd
-	// TODO 3.e
-	// TODO 3.f
 
 	@Test // 3.g.
 	public void agregarElementoFilaNegativaTest2() {
@@ -137,6 +133,3 @@ class MatrizAdyacenciaTest {
 
 	}
 }
-
-
-
