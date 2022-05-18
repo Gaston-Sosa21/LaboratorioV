@@ -1,13 +1,20 @@
 package biblioteca.entidad;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,11 +29,12 @@ public class Biblioteca implements Serializable{
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
 		
-		@Column(name ="libro")
-		private String libro;
+		@OneToMany(cascade = {CascadeType.ALL})
+		@JoinColumn(name= "ISBN_Libro")
+		private List<Libro> libro = new ArrayList<Libro>();
 		
 		@Column(name ="fecha_alta")
-		private Date  fecha_alta;
+		private LocalDate  fecha_alta;
 		
 		@Column(name ="estado")
 		private boolean estado;
@@ -41,19 +49,19 @@ public class Biblioteca implements Serializable{
 			this.id = id;
 		}
 
-		public String getLibro() {
+		public List<Libro> getLibro() {
 			return libro;
 		}
 
-		public void setLibro(String libro) {
+		public void setLibro(List<Libro> libro) {
 			this.libro = libro;
 		}
 
-		public Date getFecha_alta() {
+		public LocalDate getFecha_alta() {
 			return fecha_alta;
 		}
 
-		public void setFecha_alta(Date fecha_alta) {
+		public void setFecha_alta(LocalDate fecha_alta) {
 			this.fecha_alta = fecha_alta;
 		}
 

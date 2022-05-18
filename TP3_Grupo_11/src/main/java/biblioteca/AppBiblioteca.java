@@ -8,6 +8,8 @@ import biblioteca.entidad.Nacionalidad;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,9 +33,11 @@ public class AppBiblioteca
  
     	session.beginTransaction();
     	
-    	//1ro se crea la ancionalidad del autor para luego relacionarlo
+    	//1ro se crea la nacionalidad del autor para luego relacionarlo
     	Nacionalidad nacionalidad = new Nacionalidad();
     	nacionalidad.setDescripcion("Argentina");
+    	
+    	
     	//luego los datos del autor
     	Autor autor = new Autor();
     	autor.setNombre("Diego");
@@ -41,25 +45,44 @@ public class AppBiblioteca
     	autor.setNacionalidad(nacionalidad);
     	autor.setEmail("diego.maradona@hotmail.com");    
     	
-    	Genero genero = new Genero();
-    	genero.setDescripcion("Drama");
+    	//se crean generos
+    	Genero genero1 = new Genero();
+    	genero1.setDescripcion("Drama");
+    	
+    	Genero genero2 = new Genero();
+    	genero2.setDescripcion("Suspenso");
       	
     	//luego los libros
-    	Libro libro = new Libro();  
+    	Libro libro = new Libro();
+    	libro.setISBN("TIT");
+    	libro.setTitulo("Titanic");
+    	libro.setFecha_lanzamiento(LocalDate.now());
+    	libro.setIdioma("Español");
+    	libro.setCantidad_paginas(500);
     	libro.setAutor(autor);
-    	//FALTA ASOCIAR LOS GENEROS
+    	libro.setDescripcion("Se hunde");
     	
-    	//y por ultimo se asocian en una lista los libros creados a una biblioteca
+    	ArrayList<Libro> listaLibros = new ArrayList<Libro>();
+    	listaLibros.add(libro);
+    	
+    	HashSet<Genero> listaGeneros = new HashSet<Genero>();
+    	listaGeneros.add(genero1);
+    	listaGeneros.add(genero2);
+    	
+    	libro.setListaGeneros(listaGeneros);
+
     	Biblioteca biblioteca = new Biblioteca();
-    	biblioteca.setLibro("La naranja mecanica");
-    	//biblioteca.setFecha_alta();
-    	biblioteca.setEstado(true);    	 	
+    	biblioteca.setLibro(listaLibros);
+    	biblioteca.setFecha_alta(LocalDate.now());
+    	biblioteca.setEstado(true);  
+    	
+    	
     	
     	//orden en los que se debe generar la instancia
-    	session.save(nacionalidad);
+    	/*session.save(nacionalidad);
     	session.save(autor); 
     	session.save(genero); 
-    	session.save(libro); 
+    	session.save(libro); */
     	session.save(biblioteca);
     	
     	session.getTransaction().commit();

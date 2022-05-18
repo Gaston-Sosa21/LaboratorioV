@@ -1,13 +1,23 @@
 package biblioteca.entidad;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="Libros")
@@ -16,16 +26,16 @@ public class Libro implements Serializable{
 		//Implementar serializable
 		private static final long serialVersionUID = 1L;
 		
-		@Id
-		@Column(name ="sibn")
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private String isbn;
+		@Id/*
+		@Column(name ="ISBN")
+		@GeneratedValue(strategy = GenerationType.IDENTITY)*/
+		private String ISBN;
 		
 		@Column(name ="titulo")
 		private String titulo;
 		
 		@Column(name ="fecha_lanzamiento")
-		private Date  fecha_lanzamiento;
+		private LocalDate  fecha_lanzamiento;
 		
 		@Column(name ="idioma")
 		private String idioma;
@@ -33,20 +43,27 @@ public class Libro implements Serializable{
 		@Column(name ="cantidad_paginas")
 		private int cantidad_paginas;
 		
-		@Column(name ="autor")
+		@ManyToOne(cascade = {CascadeType.ALL})
+		@JoinColumn(name= "idAutor")
 		private Autor autor;
 		
 		@Column(name ="descripcion")
 		private String descripcion;
 		
+		@ManyToMany(cascade = {CascadeType.ALL})
+		@JoinTable( name = "Libros_x_Genero", 
+					joinColumns = {@JoinColumn (name = "ISBN_Libro")}, 
+					inverseJoinColumns= {@JoinColumn (name = "idGenero")})
+		private Set<Genero> listaGeneros =  new HashSet<Genero> ();
+		
 		public Libro(){}
 
-		public String getIsbn() {
-			return isbn;
+		public String getISBN() {
+			return ISBN;
 		}
 
-		public void setIsbn(String isbn) {
-			this.isbn = isbn;
+		public void setISBN(String isbn) {
+			this.ISBN = isbn;
 		}
 
 		public String getTitulo() {
@@ -57,11 +74,11 @@ public class Libro implements Serializable{
 			this.titulo = titulo;
 		}
 
-		public Date getFecha_lanzamiento() {
+		public LocalDate getFecha_lanzamiento() {
 			return fecha_lanzamiento;
 		}
 
-		public void setFecha_lanzamiento(Date fecha_lanzamiento) {
+		public void setFecha_lanzamiento(LocalDate fecha_lanzamiento) {
 			this.fecha_lanzamiento = fecha_lanzamiento;
 		}
 
@@ -100,13 +117,22 @@ public class Libro implements Serializable{
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
+		
+		public Set<Genero> getListaGeneros() {
+			return listaGeneros;
+		}
+		public void setListaGeneros(Set<Genero> listaGeneros) {
+			this.listaGeneros = listaGeneros;
+		}
 
 		@Override
 		public String toString() {
-			return "libro [isbn=" + isbn + ", titulo=" + titulo + ", fecha_lanzamiento=" + fecha_lanzamiento
+			return "Libro [ISBN=" + ISBN + ", titulo=" + titulo + ", fecha_lanzamiento=" + fecha_lanzamiento
 					+ ", idioma=" + idioma + ", cantidad_paginas=" + cantidad_paginas + ", autor=" + autor
-					+ ", descripcion=" + descripcion + "]";
+					+ ", descripcion=" + descripcion + ", listaGeneros=" + listaGeneros + "]";
 		}
+
+		
 		
 		
 }
