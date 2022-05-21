@@ -34,10 +34,10 @@ public class Biblioteca implements Serializable{
 		private List<Libro> libro = new ArrayList<Libro>();
 		
 		@Column(name ="fecha_alta")
-		private LocalDate  fecha_alta;
+		private java.sql.Date  fecha_alta;
 		
 		@Column(name ="estado")
-		private boolean estado;
+		private int estado;
 		
 		public Biblioteca(){}
 
@@ -57,19 +57,19 @@ public class Biblioteca implements Serializable{
 			this.libro = libro;
 		}
 
-		public LocalDate getFecha_alta() {
+		public java.sql.Date getFecha_alta() {
 			return fecha_alta;
 		}
 
-		public void setFecha_alta(LocalDate fecha_alta) {
-			this.fecha_alta = fecha_alta;
+		public void setFecha_alta(java.sql.Date date) {
+			this.fecha_alta = date;
 		}
 
-		public boolean isEstado() {
+		public int isEstado() {
 			return estado;
 		}
 
-		public void setEstado(boolean estado) {
+		public void setEstado(int estado) {
 			this.estado = estado;
 		}
 
@@ -79,7 +79,7 @@ public class Biblioteca implements Serializable{
 
 		@Override
 		public String toString() {
-			return "Biblioteca [id=" + id + ", libro=" + libro + ", fecha_alta=" + fecha_alta + ", estado=" + estado
+			return "Biblioteca [id=" + id + ", libro="+ libro + ", fecha_alta=" + fecha_alta + ", estado=" + estado
 					+ "]";
 		}		
 

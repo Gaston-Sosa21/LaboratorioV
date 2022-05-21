@@ -11,6 +11,9 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hbm2ddl.auto">create</property>
         <property name="show sql">true</property>
+ 	
+ 	    <property name="format_sql">true</property>
+    	<property name="use_sql_comments">true</property>
         <!--  MAPEO -->
         
         <mapping class="biblioteca.entidad.Autor"/>
@@ -18,6 +21,11 @@
         <mapping class="biblioteca.entidad.Genero"/>
         <mapping class="biblioteca.entidad.Libro"/>
         <mapping class="biblioteca.entidad.Nacionalidad"/>       
-        
+  
     </session-factory>
+    
+
+    
 </hibernate-configuration>
+
+  

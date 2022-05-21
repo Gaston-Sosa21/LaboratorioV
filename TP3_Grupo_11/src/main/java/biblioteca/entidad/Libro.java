@@ -35,7 +35,7 @@ public class Libro implements Serializable{
 		private String titulo;
 		
 		@Column(name ="fecha_lanzamiento")
-		private LocalDate  fecha_lanzamiento;
+		private java.sql.Date  fecha_lanzamiento;
 		
 		@Column(name ="idioma")
 		private String idioma;
@@ -74,12 +74,12 @@ public class Libro implements Serializable{
 			this.titulo = titulo;
 		}
 
-		public LocalDate getFecha_lanzamiento() {
+		public java.sql.Date getFecha_lanzamiento() {
 			return fecha_lanzamiento;
 		}
 
-		public void setFecha_lanzamiento(LocalDate fecha_lanzamiento) {
-			this.fecha_lanzamiento = fecha_lanzamiento;
+		public void setFecha_lanzamiento(java.sql.Date date) {
+			this.fecha_lanzamiento = date;
 		}
 
 		public String getIdioma() {
