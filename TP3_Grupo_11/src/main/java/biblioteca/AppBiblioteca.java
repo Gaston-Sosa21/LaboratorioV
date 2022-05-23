@@ -80,6 +80,36 @@ public class AppBiblioteca
     	genero4.setDescripcion("Terror");
     	
     	
+    	
+    	Biblioteca biblioteca = new Biblioteca();
+    	biblioteca.setFecha_alta(java.sql.Date.valueOf("2022-01-08"));
+    	biblioteca.setEstado(1);
+    	Biblioteca biblioteca2 = new Biblioteca();
+    	biblioteca2.setFecha_alta(java.sql.Date.valueOf("2022-04-08"));
+    	biblioteca2.setEstado(2);
+    	Biblioteca biblioteca3 = new Biblioteca();
+    	biblioteca3.setFecha_alta(java.sql.Date.valueOf("2022-09-03"));
+    	biblioteca3.setEstado(1);
+    	Biblioteca biblioteca4 = new Biblioteca();
+    	biblioteca4.setFecha_alta(java.sql.Date.valueOf("2022-10-04"));
+    	biblioteca4.setEstado(1);
+    	Biblioteca biblioteca5 = new Biblioteca();
+    	biblioteca5.setFecha_alta(java.sql.Date.valueOf("2022-11-12"));
+    	biblioteca5.setEstado(2);
+    	
+    	
+    	ArrayList<Biblioteca> listaBibliotecas = new ArrayList<Biblioteca>();
+    	listaBibliotecas.add(biblioteca);
+    	listaBibliotecas.add(biblioteca2);
+    	
+    	ArrayList<Biblioteca> listaBibliotecas2 = new ArrayList<Biblioteca>();
+    	listaBibliotecas2.add(biblioteca4);
+    	listaBibliotecas2.add(biblioteca3);
+    	
+    	ArrayList<Biblioteca> listaBibliotecas3 = new ArrayList<Biblioteca>();
+    	listaBibliotecas3.add(biblioteca5);
+    	
+	
     	//luego los libros
     	Libro libro = new Libro();
     	libro.setISBN("TIT");
@@ -89,6 +119,7 @@ public class AppBiblioteca
     	libro.setCantidad_paginas(500);
     	libro.setAutor(autor);
     	libro.setDescripcion("Se hunde");
+    	libro.setBiblioteca(listaBibliotecas);
     	
     	Libro libro2 = new Libro();
     	libro2.setISBN("ET28");
@@ -98,6 +129,7 @@ public class AppBiblioteca
     	libro2.setCantidad_paginas(96);
     	libro2.setAutor(autor2);
     	libro2.setDescripcion("Inesperada visita de quien traumó su vida");
+    	libro2.setBiblioteca(listaBibliotecas2);
     	
     	Libro libro3 = new Libro();
     	libro3.setISBN("LP32");
@@ -107,15 +139,7 @@ public class AppBiblioteca
     	libro3.setCantidad_paginas(300);
     	libro3.setAutor(autor3);
     	libro3.setDescripcion("Historia del teatro, desde sus comienzos.");
-    	
-    	
-    	
-    	ArrayList<Libro> listaLibros = new ArrayList<Libro>();
-    	listaLibros.add(libro);
-    	ArrayList<Libro> listaLibros2 = new ArrayList<Libro>();
-    	listaLibros2.add(libro2);
-    	ArrayList<Libro> listaLibros3 = new ArrayList<Libro>();
-    	listaLibros3.add(libro3);
+    	libro3.setBiblioteca(listaBibliotecas3);
     	
     	
     	HashSet<Genero> listaGeneros = new HashSet<Genero>();
@@ -125,59 +149,40 @@ public class AppBiblioteca
     	listaGeneros.add(genero4);
     	
     	libro.setListaGeneros(listaGeneros);
+    	
+    	HashSet<Genero> listaGeneros2 = new HashSet<Genero>();
+    	listaGeneros2.add(genero3);
+    	listaGeneros2.add(genero2);
+    	libro2.setListaGeneros(listaGeneros2);
+    	
+    	HashSet<Genero> listaGeneros3 = new HashSet<Genero>();
+    	listaGeneros3.add(genero1);
+    	listaGeneros3.add(genero4);
+    	libro3.setListaGeneros(listaGeneros3);
 
-    
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-    	String DateHoy = sdf.format(new Date(0));
-    	//Supuestamente con esto toma la fecha actual pero no me esta dejando
 
-    	Biblioteca biblioteca = new Biblioteca();
-    	biblioteca.setLibro(listaLibros);
-    	biblioteca.setFecha_alta(java.sql.Date.valueOf("2022-01-08"));
-    	biblioteca.setEstado(1);  
-    	
-    	Biblioteca biblioteca2 = new Biblioteca();
-    	biblioteca2.setLibro(listaLibros2);
-    	biblioteca2.setFecha_alta(java.sql.Date.valueOf("2021-11-05"));
-    	biblioteca2.setEstado(1);  
-   
-    	Biblioteca biblioteca3 = new Biblioteca();
-    	biblioteca3.setLibro(listaLibros2);
-    	biblioteca3.setFecha_alta(java.sql.Date.valueOf("2021-10-05"));
-    	biblioteca3.setEstado(2);  
-   
-    	
-    	
-    	//orden en los que se debe generar la instancia
-    	/*session.save(nacionalidad);
-    	session.save(autor); 
-    	session.save(genero); 
-    	session.save(libro); */
-     	session.save(biblioteca);
-    	session.save(biblioteca2);
-    	session.save(biblioteca3);
-    	
+     	session.save(libro);
+     	session.save(libro2);
+     	session.save(libro3);
+
     	session.getTransaction().commit();
+    	
+    	daoHibernate.InsertBiblioteca("TIT", "2022-09-07", 1, session);
+    	
+    	biblioteca.setEstado(2);
+    	biblioteca.setFecha_alta(java.sql.Date.valueOf("2022-05-20"));
+    	daoHibernate.UpdateBiblioteca(biblioteca, session);
+	
+    	Biblioteca bib = daoHibernate.ListarBiblioteca(biblioteca, session);
+    	System.out.println(bib);
+  
     	session.close();
     	
+    	
+    	
     	sessionFactory.close(); 
-    	    	
-    	// Modificamos el registro
 
-    	Biblioteca bbta = new Biblioteca();
-    	bbta.setId(1);
-    	//bbta.setLibro(listaLibros);
-    	bbta.setEstado(2);
-    	bbta.setFecha_alta(java.sql.Date.valueOf("2022-05-20"));
-    	
-    	 daoHibernate.UpdateBiblioteca(bbta); 
 
-    //	 System.out.println("Hasta donde llegaré? ");
-    	
-    	// Le damos de baja
-    	
-        //Listamos lo que tenemos
-
-    	
+    	//daoHibernate.DeleteBiblioteca(biblio);
     }
 }

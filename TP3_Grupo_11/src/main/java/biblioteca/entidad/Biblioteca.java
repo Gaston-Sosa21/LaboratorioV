@@ -29,9 +29,6 @@ public class Biblioteca implements Serializable{
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
 		
-		@OneToMany(cascade = {CascadeType.ALL})
-		@JoinColumn(name= "ISBN_Libro")
-		private List<Libro> libro = new ArrayList<Libro>();
 		
 		@Column(name ="fecha_alta")
 		private java.sql.Date  fecha_alta;
@@ -49,13 +46,6 @@ public class Biblioteca implements Serializable{
 			this.id = id;
 		}
 
-		public List<Libro> getLibro() {
-			return libro;
-		}
-
-		public void setLibro(List<Libro> libro) {
-			this.libro = libro;
-		}
 
 		public java.sql.Date getFecha_alta() {
 			return fecha_alta;
@@ -79,8 +69,8 @@ public class Biblioteca implements Serializable{
 
 		@Override
 		public String toString() {
-			return "Biblioteca [id=" + id + ", libro="+ libro + ", fecha_alta=" + fecha_alta + ", estado=" + estado
-					+ "]";
-		}		
+			return "Biblioteca [id=" + id + ", fecha_alta=" + fecha_alta + ", estado=" + estado + "]";
+		}
+	
 
 }

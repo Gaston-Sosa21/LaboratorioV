@@ -1,6 +1,7 @@
 package biblioteca.entidad;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -55,6 +57,11 @@ public class Libro implements Serializable{
 					joinColumns = {@JoinColumn (name = "ISBN_Libro")}, 
 					inverseJoinColumns= {@JoinColumn (name = "idGenero")})
 		private Set<Genero> listaGeneros =  new HashSet<Genero> ();
+		
+		@OneToMany(cascade = {CascadeType.ALL})
+		@JoinColumn(name= "ISBN_Libro", nullable = false)
+		
+		private List<Biblioteca> biblioteca = new ArrayList<Biblioteca>();
 		
 		public Libro(){}
 
@@ -125,13 +132,23 @@ public class Libro implements Serializable{
 			this.listaGeneros = listaGeneros;
 		}
 
+		public List<Biblioteca> getBiblioteca() {
+			return biblioteca;
+		}
+
+		public void setBiblioteca(List<Biblioteca> biblioteca) {
+			this.biblioteca = biblioteca;
+		}
+
 		@Override
 		public String toString() {
 			return "Libro [ISBN=" + ISBN + ", titulo=" + titulo + ", fecha_lanzamiento=" + fecha_lanzamiento
 					+ ", idioma=" + idioma + ", cantidad_paginas=" + cantidad_paginas + ", autor=" + autor
-					+ ", descripcion=" + descripcion + ", listaGeneros=" + listaGeneros + "]";
+					+ ", descripcion=" + descripcion + ", listaGeneros=" + listaGeneros + ", biblioteca=" + biblioteca
+					+ "]";
 		}
 
+	
 		
 		
 		
