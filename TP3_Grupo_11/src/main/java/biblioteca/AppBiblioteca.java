@@ -65,6 +65,17 @@ public class AppBiblioteca
     	autor3.setNacionalidad(nacionalidad3);
     	autor3.setEmail("Caravaggio.artista@gmail.com");    
     	
+      	Autor autor4 = new Autor();
+      	autor4.setNombre("Clark");
+      	autor4.setApellido("Kent");    	
+    	autor4.setNacionalidad(nacionalidad3);
+    	autor4.setEmail("Kent.Planet@gmail.com");    
+    	
+     	Autor autor5 = new Autor();
+     	autor5.setNombre("Lorenzo");
+     	autor5.setApellido("Bmont");    	
+     	autor5.setNacionalidad(nacionalidad);
+     	autor5.setEmail("Lorenz.ob@gmail.com");    
     	
     	//se crean generos
     	Genero genero1 = new Genero();
@@ -79,6 +90,8 @@ public class AppBiblioteca
     	Genero genero4 = new Genero();
     	genero4.setDescripcion("Terror");
     	
+    	Genero genero5 = new Genero();
+    	genero5.setDescripcion("Aventura");
     	
     	
     	Biblioteca biblioteca = new Biblioteca();
@@ -96,7 +109,9 @@ public class AppBiblioteca
     	Biblioteca biblioteca5 = new Biblioteca();
     	biblioteca5.setFecha_alta(java.sql.Date.valueOf("2022-11-12"));
     	biblioteca5.setEstado(2);
-    	
+    	Biblioteca biblioteca6 = new Biblioteca();
+    	biblioteca6.setFecha_alta(java.sql.Date.valueOf("2022-05-05"));
+    	biblioteca6.setEstado(1);
     	
     	ArrayList<Biblioteca> listaBibliotecas = new ArrayList<Biblioteca>();
     	listaBibliotecas.add(biblioteca);
@@ -109,6 +124,8 @@ public class AppBiblioteca
     	ArrayList<Biblioteca> listaBibliotecas3 = new ArrayList<Biblioteca>();
     	listaBibliotecas3.add(biblioteca5);
     	
+     	ArrayList<Biblioteca> listaBibliotecas4 = new ArrayList<Biblioteca>();
+    	listaBibliotecas4.add(biblioteca6);
 	
     	//luego los libros
     	Libro libro = new Libro();
@@ -141,13 +158,33 @@ public class AppBiblioteca
     	libro3.setDescripcion("Historia del teatro, desde sus comienzos.");
     	libro3.setBiblioteca(listaBibliotecas3);
     	
+    	Libro libro4 = new Libro();
+    	libro4.setISBN("KEL");
+    	libro4.setTitulo("Días de Oro");
+    	libro4.setFecha_lanzamiento(java.sql.Date.valueOf("1980-10-08"));
+    	libro4.setIdioma("Ingles");
+    	libro4.setCantidad_paginas(6000);
+    	libro4.setAutor(autor4);
+    	libro4.setDescripcion("Historia mundial.");
+    	libro4.setBiblioteca(listaBibliotecas4);
+    	
+      	Libro libro5 = new Libro();
+      	libro5.setISBN("M1CZ");
+    	libro5.setTitulo("Goles en la tierra");
+    	libro5.setFecha_lanzamiento(java.sql.Date.valueOf("2011-02-20"));
+    	libro5.setIdioma("Español");
+    	libro5.setCantidad_paginas(323);
+    	libro5.setAutor(autor5);
+    	libro5.setDescripcion("Fubol");
+    	libro5.setBiblioteca(listaBibliotecas4);
     	
     	HashSet<Genero> listaGeneros = new HashSet<Genero>();
     	listaGeneros.add(genero1);
     	listaGeneros.add(genero2);
     	listaGeneros.add(genero3);
     	listaGeneros.add(genero4);
-    	
+    	listaGeneros.add(genero5);
+
     	libro.setListaGeneros(listaGeneros);
     	
     	HashSet<Genero> listaGeneros2 = new HashSet<Genero>();
@@ -160,29 +197,34 @@ public class AppBiblioteca
     	listaGeneros3.add(genero4);
     	libro3.setListaGeneros(listaGeneros3);
 
+    	HashSet<Genero> listaGeneros4 = new HashSet<Genero>();
+    	listaGeneros4.add(genero5);
+    	libro4.setListaGeneros(listaGeneros4);
 
      	session.save(libro);
      	session.save(libro2);
      	session.save(libro3);
-
+     	session.save(libro4);
+     	session.save(libro5); 
     	session.getTransaction().commit();
     	
     	daoHibernate.InsertBiblioteca("TIT", "2022-09-07", 1, session);
     	
     	biblioteca.setEstado(2);
     	biblioteca.setFecha_alta(java.sql.Date.valueOf("2022-05-20"));
+    	
     	daoHibernate.UpdateBiblioteca(biblioteca, session);
 	
     	Biblioteca bib = daoHibernate.ListarBiblioteca(biblioteca, session);
     	System.out.println(bib);
   
+    	daoHibernate.DeleteBiblioteca(biblioteca6,listaBibliotecas4,session);
+
+    	
     	session.close();
-    	
-    	
     	
     	sessionFactory.close(); 
 
 
-    	//daoHibernate.DeleteBiblioteca(biblio);
     }
 }

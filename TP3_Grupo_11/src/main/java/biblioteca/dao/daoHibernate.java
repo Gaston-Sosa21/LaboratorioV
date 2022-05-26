@@ -1,5 +1,5 @@
 package biblioteca.dao;
-
+import javax.persistence.Entity;
 import java.util.ArrayList;
 
 import org.hibernate.Session;
@@ -33,7 +33,6 @@ public class daoHibernate {
 	public static void InsertBiblioteca(String ISBN, String FechaAlta, int Estado, Session session) {
 		 
 
-	     
 	     session.beginTransaction();
 	     
 	     Biblioteca bbta = new Biblioteca();
@@ -54,10 +53,14 @@ public class daoHibernate {
 
 	 }
 	
-	public static void DeleteBiblioteca(Biblioteca biblioteca) {
+	public static void DeleteBiblioteca(Biblioteca biblio, ArrayList<Biblioteca> listaBibliotecas4 ,Session session) {
 		 
-		
-
+		session.beginTransaction();
+		listaBibliotecas4.remove(biblio);
+		session.delete(biblio);
+	    session.getTransaction().commit();
+	    
+	    
 	 }
 	
 	public static Biblioteca ListarBiblioteca(Biblioteca biblioteca, Session session) {
@@ -77,5 +80,7 @@ public class daoHibernate {
 	     session.getTransaction().commit();
 
 	 }
+
+
 	 
 }
