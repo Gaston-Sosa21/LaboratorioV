@@ -93,6 +93,9 @@ public class AppBiblioteca
     	Genero genero5 = new Genero();
     	genero5.setDescripcion("Aventura");
     	
+    	Genero genero6 = new Genero();
+    	genero6.setDescripcion("Comedia");
+    	
     	
     	Biblioteca biblioteca = new Biblioteca();
     	biblioteca.setFecha_alta(java.sql.Date.valueOf("2022-01-08"));
@@ -129,7 +132,7 @@ public class AppBiblioteca
 	
     	//luego los libros
     	Libro libro = new Libro();
-    	libro.setISBN("TIT");
+    	libro.setISBN("00001");
     	libro.setTitulo("Titanic");
     	libro.setFecha_lanzamiento(java.sql.Date.valueOf("1912-04-15"));
     	libro.setIdioma("Español");
@@ -139,7 +142,7 @@ public class AppBiblioteca
     	libro.setBiblioteca(listaBibliotecas);
     	
     	Libro libro2 = new Libro();
-    	libro2.setISBN("ET28");
+    	libro2.setISBN("00002");
     	libro2.setTitulo("La visita");
     	libro2.setFecha_lanzamiento(java.sql.Date.valueOf("2005-03-05"));
     	libro2.setIdioma("Español");
@@ -149,7 +152,7 @@ public class AppBiblioteca
     	libro2.setBiblioteca(listaBibliotecas2);
     	
     	Libro libro3 = new Libro();
-    	libro3.setISBN("LP32");
+    	libro3.setISBN("00003");
     	libro3.setTitulo("El teatro");
     	libro3.setFecha_lanzamiento(java.sql.Date.valueOf("1957-10-05"));
     	libro3.setIdioma("Italiano");
@@ -159,7 +162,7 @@ public class AppBiblioteca
     	libro3.setBiblioteca(listaBibliotecas3);
     	
     	Libro libro4 = new Libro();
-    	libro4.setISBN("KEL");
+    	libro4.setISBN("00004");
     	libro4.setTitulo("Días de Oro");
     	libro4.setFecha_lanzamiento(java.sql.Date.valueOf("1980-10-08"));
     	libro4.setIdioma("Ingles");
@@ -169,7 +172,7 @@ public class AppBiblioteca
     	libro4.setBiblioteca(listaBibliotecas4);
     	
       	Libro libro5 = new Libro();
-      	libro5.setISBN("M1CZ");
+      	libro5.setISBN("12345");
     	libro5.setTitulo("Goles en la tierra");
     	libro5.setFecha_lanzamiento(java.sql.Date.valueOf("2011-02-20"));
     	libro5.setIdioma("Español");
@@ -200,6 +203,10 @@ public class AppBiblioteca
     	HashSet<Genero> listaGeneros4 = new HashSet<Genero>();
     	listaGeneros4.add(genero5);
     	libro4.setListaGeneros(listaGeneros4);
+    	
+    	HashSet<Genero> listaGeneros5 = new HashSet<Genero>();
+    	listaGeneros5.add(genero6);
+    	libro5.setListaGeneros(listaGeneros5);
 
      	session.save(libro);
      	session.save(libro2);
@@ -208,7 +215,7 @@ public class AppBiblioteca
      	session.save(libro5); 
     	session.getTransaction().commit();
     	
-    	daoHibernate.InsertBiblioteca("TIT", "2022-09-07", 1, session);
+    	daoHibernate.InsertBiblioteca("00001", "2022-09-07", 1, session);
     	
     	biblioteca.setEstado(2);
     	biblioteca.setFecha_alta(java.sql.Date.valueOf("2022-05-20"));
