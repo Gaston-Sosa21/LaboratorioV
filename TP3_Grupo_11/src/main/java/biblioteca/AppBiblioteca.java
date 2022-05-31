@@ -193,7 +193,7 @@ public class AppBiblioteca
     	HashSet<Genero> listaGeneros3 = new HashSet<Genero>();
     	listaGeneros3.add(genero1);
     	listaGeneros3.add(genero4);
-    	libro3.setListaGeneros(listaGeneros3);
+    	libro5.setListaGeneros(listaGeneros3);
 
     	HashSet<Genero> listaGeneros4 = new HashSet<Genero>();
     	listaGeneros4.add(genero5);
@@ -201,7 +201,7 @@ public class AppBiblioteca
     	
     	HashSet<Genero> listaGeneros5 = new HashSet<Genero>();
     	listaGeneros5.add(genero6);
-    	libro5.setListaGeneros(listaGeneros5);
+    	libro3.setListaGeneros(listaGeneros5);
 
      	session.save(libro);
      	session.save(libro2);
