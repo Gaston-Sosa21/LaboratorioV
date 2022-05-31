@@ -1,13 +1,7 @@
 package biblioteca.dao;
-import javax.persistence.Entity;
 import java.util.ArrayList;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
-
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Libro;
 

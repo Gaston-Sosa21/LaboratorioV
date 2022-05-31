@@ -7,11 +7,6 @@ import biblioteca.entidad.Genero;
 import biblioteca.entidad.Libro;
 import biblioteca.entidad.Nacionalidad;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.hibernate.Session;
