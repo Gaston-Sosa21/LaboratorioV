@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<bean id="usuario" class="entidad.Usuario"></bean>
+	
+	<!--  
+	No estoy seguro de si hay que aplicarlo también cuando se instancia la capa negocio,
+	creería que no pero por las dudas lo dejo comentado
+	
+		<bean id="usuarioNegocio" class="negocio.UsuarioNegocio"></bean>
+	-->
+	
+</beans>
