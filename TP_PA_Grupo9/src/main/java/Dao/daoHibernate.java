@@ -6,6 +6,8 @@ import org.hibernate.Session;
 
 import Ejercicio1.Tarjeta;
 import Ejercicio1.Titular;
+import Ejercicio4.Equipo;
+import Ejercicio4.Torneo;
 
 
 
@@ -41,5 +43,30 @@ public class daoHibernate {
     
         
         ch.cerrarSession();
+	}
+	
+	public static void leerEjercicio4()
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+		
+        List<Object[]> listaObject= (List<Object[]>) session.createQuery("FROM Torneo torneo INNER JOIN torneo.listaEquipos equipos WHERE torneo.id = 1").list();
+      
+        System.out.println("---------Ejercicio 4---------");
+        System.out.println();
+        Object[] objeto = listaObject.get(0);
+        Torneo torneo =  (Torneo) objeto[0];
+        
+        System.out.println(torneo.toString());
+    	System.out.println("   "+"Equipos:");
+
+        for (Object[] obj : listaObject) {
+	        Equipo equipo = (Equipo) obj[1];
+        	System.out.println("   "+ equipo.toString());
+
+		}
+    
+        ch.cerrarSession();
+		
 	}
 }
