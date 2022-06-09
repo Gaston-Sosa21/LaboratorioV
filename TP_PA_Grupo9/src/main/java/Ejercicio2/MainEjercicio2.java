@@ -23,51 +23,6 @@ public class MainEjercicio2 {
     	
     	session.beginTransaction();
 
-    	
-    	Compras Compra = new Compras();
-    	Compra.setDescripcion("SSD 950Gb");	
-    	Compra.setTotal(15600);
-    	Compra.setFecha(java.sql.Date.valueOf("2022-05-02"));
-
-    	Compras Compra2 = new Compras();
-    	Compra2.setDescripcion("Ryzen 7 5700G");	
-    	Compra2.setTotal(52276);
-     	Compra2.setFecha(java.sql.Date.valueOf("2022-06-07"));
-    
-    	Compras Compra3 = new Compras("Cooler Disipador",19010,java.sql.Date.valueOf("2022-06-06"));
-
-    	Compras Compra4 = new Compras();
-    	Compra4.setDescripcion("Gabinete + Fuente");	
-    	Compra4.setTotal(6000);
-    	Compra4.setFecha(java.sql.Date.valueOf("2022-06-07"));
-    
-    	Compras Compra5 = new Compras("Teclado RGB",6500,java.sql.Date.valueOf("2022-06-08"));
-
-    	ArrayList<Compras> CompraCliente = new ArrayList<Compras>();
-    	CompraCliente.add(Compra);
-    	CompraCliente.add(Compra4);
-    	CompraCliente.add(Compra3);
-    	
-    	ArrayList<Compras> CompraCliente2 = new ArrayList<Compras>();
-    	CompraCliente2.add(Compra2);
-    	CompraCliente2.add(Compra5);
-    	
-    	Cliente client = new Cliente();
-    	client.setNombre("Agustín");
-    	client.setApellido("Andrede");
-    	client.setDNI("42980654");
-    	client.setMail("Andrede_Agustin@gmail.com");
-    	client.setTelefono(1123064598);
-    	client.setListaPedidos(CompraCliente);
-    	
-    	Cliente client2 = new Cliente();
-    	client2.setNombre("Marta");
-    	client2.setApellido("Konig");
-    	client2.setDNI("43900654");
-    	client2.setMail("Martha@gmail.com");
-    	client2.setTelefono(1156987422);
-    	client2.setListaPedidos(CompraCliente2);
-//-------------------------------------------------------
     	///Articulos
     	Articulos arti2 = new Articulos();
     	arti2.setDescripcion("SSD 950Gb");	

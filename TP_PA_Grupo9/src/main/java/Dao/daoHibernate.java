@@ -9,9 +9,9 @@ import Ejercicio1.Titular;
 import Ejercicio4.Equipo;
 import Ejercicio4.Torneo;
 import Ejercicio2.Articulos;
-import Ejercicio2.Cliente;
-import Ejercicio2.Compras;
 import Ejercicio2.Tienda;
+import Ejercicio3.Cliente;
+import Ejercicio3.Pedido;
 
 
 
@@ -74,10 +74,10 @@ public class daoHibernate {
 	}
 	
 			
-public static void leerEjercicio2()
-{
-	ConfigHibernate ch = new ConfigHibernate();
-	Session session= ch.abrirConexion();
+	public static void leerEjercicio2()
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
 
         List<Object[]> listaObject= (List<Object[]>) session.createQuery("FROM Tienda til inner join til.ListaArticulos").list();
 
@@ -110,5 +110,44 @@ public static void leerEjercicio2()
         	System.out.println(" Fecha Ingreso: "+ ar.getFechaIngreso());
         }
      ch.cerrarSession();
+	}
+
+	public static void leerEjercicio3()
+	{
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+		String query = "FROM Pedido pe inner join pe.cliente cli WHERE cli.id = 1 ";
+	    List<Object[]> listaObject= (List<Object[]>) session.createQuery(query).list();
+	    
+	    
+	    System.out.println("---------Ejercicio 3---------");
+	    System.out.println();
+	    
+	    Object[] objeto = listaObject.get(0);
+	    Cliente cliente =  (Cliente) objeto[1];
+	    
+	    System.out.println("INFORMACIÓN CLIENTE:");
+		System.out.println("- Id Cliente: "+ cliente.getId());
+		System.out.println("- Nombre y apellido: " + cliente.getNombre() + " " + cliente.getApellido());
+		System.out.println("- Localidad: " + cliente.getLocalidad());
+		System.out.println("- Direccion: "+ cliente.getDireccion());
+		System.out.println("- Telefono: "+ cliente.getTelefono());
+		System.out.println();
+	    
+	   
+	    for (Object[] obj : listaObject) {
+	        
+	    	
+	        Pedido pedido = (Pedido) obj[0];
+	        
+	    	System.out.println("INFORMACIÓN PEDIDO");
+	    	System.out.println("- Id. Pedido: "+ pedido.getIdPedido());
+	    	System.out.println("- Cantidad: "+ pedido.getCantidad());
+	    	System.out.println("- Fecha pedido: "+ pedido.getFecha());
+	    	System.out.println("- Detalle: "+ pedido.getDetalle());
+	    	System.out.println();
+		}
+	
+	    ch.cerrarSession();
 	}
 }

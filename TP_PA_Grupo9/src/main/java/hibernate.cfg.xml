@@ -18,5 +18,7 @@
   <mapping class="Ejercicio4.Torneo"/>
   <mapping class="Ejercicio2.Tienda"/>
   <mapping class="Ejercicio2.Articulos"/>
+  <mapping class="Ejercicio3.Cliente"/>
+  <mapping class="Ejercicio3.Pedido"/>
  </session-factory>
 </hibernate-configuration>
