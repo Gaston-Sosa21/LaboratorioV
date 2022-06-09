@@ -19,7 +19,7 @@ public class Main {
 	    usuario.setUsuario("Pepe");
 	    usuario.setContrasenia("123");
 	    
-	    UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+	    UsuarioNegocio usuarioNegocio = (UsuarioNegocio) appContext.getBean("usuarioNegocio") ;
 	    boolean estado= usuarioNegocio.agregarUsuario(usuario);
 	    if(estado)
 	    	System.out.println("Se agrego correctamente");

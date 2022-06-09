@@ -8,10 +8,10 @@
 	<bean id="usuario" class="entidad.Usuario"></bean>
 	
 	<!--  
-	No estoy seguro de si hay que aplicarlo también cuando se instancia la capa negocio,
-	creería que no pero por las dudas lo dejo comentado
+	No estoy seguro de si hay que aplicarlo también cuando se instancia la capa negocio y dao
+	pero por las dudas lo dejo hecho-->
 	
-		<bean id="usuarioNegocio" class="negocio.UsuarioNegocio"></bean>
-	-->
+	<bean id="usuarioNegocio" class="negocio.UsuarioNegocio"></bean>
+	<bean id="usuarioDao" class="dao.UsuarioDao"></bean>
 	
 </beans>
