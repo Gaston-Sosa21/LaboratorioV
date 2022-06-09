@@ -16,19 +16,10 @@ public class MainEjercicio4 {
 	session.beginTransaction();
 		
 	Torneo torneo1 = new Torneo("Torneo el Pecho Frio");
-	
-	Equipo equipo1 =  new Equipo();
-	equipo1.setNombre("Vodka Junior");
-	
-	Equipo equipo2 =  new Equipo();
-	equipo2.setNombre("Aston Birra");
-	
-	Equipo equipo3 =  new Equipo();
-	equipo3.setNombre("Yayo Vallecano");
-	
-	Equipo equipo4 = new Equipo();
-	equipo4.setNombre("Real Furcia");
-
+	Equipo equipo1 =  new Equipo("Vodka Junior");
+	Equipo equipo2 =  new Equipo("Aston Birra");
+	Equipo equipo3 =  new Equipo("Yayo Vallecano");
+	Equipo equipo4 = new Equipo("Real Furcia");
 	
 	HashSet<Equipo> listaEquipos = new HashSet<Equipo>();
 	

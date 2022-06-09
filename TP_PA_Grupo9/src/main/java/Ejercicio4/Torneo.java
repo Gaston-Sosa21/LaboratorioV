@@ -36,19 +36,15 @@ public class Torneo implements Serializable{
 	public Set<Equipo> getListaEquipos() {
 		return listaEquipos;
 	}
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public void setListaEquipos(Set<Equipo> listaEquipos) {
 		this.listaEquipos = listaEquipos;
 	}
-
 	public Torneo(int id, Set<Equipo> listaEquipos) {
 		super();
 		this.id = id;
@@ -58,11 +54,9 @@ public class Torneo implements Serializable{
 		super();
 		this.id = id;
 	}
-
 	public Torneo() {
 		super();
 	}
-
 	public String getNombre() {
 		return nombre;
 	}

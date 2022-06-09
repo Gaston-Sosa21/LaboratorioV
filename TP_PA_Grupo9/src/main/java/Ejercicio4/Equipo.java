@@ -24,13 +24,9 @@ public class Equipo implements Serializable {
 	
 	private String nombre;
 	
-	//@ManyToMany(mappedBy = "listaEquipos")
-	//private Set<Torneo> torneos;
-	
 	public Equipo(int id, Set<Torneo> torneos, String nombre) {
 		super();
 		this.id = id;
-		//this.torneos = torneos;
 		this.nombre = nombre;
 	}
 
@@ -54,6 +50,11 @@ public class Equipo implements Serializable {
 		super();
 	}
 	
+	public Equipo(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+
 	@Override
 	public String toString() {
 		return "#" + id + ": " + nombre;
