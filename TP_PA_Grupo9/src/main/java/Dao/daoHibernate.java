@@ -8,6 +8,10 @@ import Ejercicio1.Tarjeta;
 import Ejercicio1.Titular;
 import Ejercicio4.Equipo;
 import Ejercicio4.Torneo;
+import Ejercicio2.Articulos;
+import Ejercicio2.Cliente;
+import Ejercicio2.Compras;
+import Ejercicio2.Tienda;
 
 
 
@@ -67,6 +71,44 @@ public class daoHibernate {
 		}
     
         ch.cerrarSession();
-		
+	}
+	
+			
+public static void leerEjercicio2()
+{
+	ConfigHibernate ch = new ConfigHibernate();
+	Session session= ch.abrirConexion();
+
+        List<Object[]> listaObject= (List<Object[]>) session.createQuery("FROM Tienda til inner join til.ListaArticulos").list();
+
+        
+        System.out.println("-------------Ejercicio 2-------------");
+        System.out.println();
+    	boolean paso = true;
+
+        for (Object[] comp : listaObject) {
+        	
+	        Tienda tie = (Tienda) comp[0];
+        	Articulos ar = (Articulos) comp[1];
+
+        	if(paso == true) {
+            	System.out.println("EMPRESA: " + tie.getRAZONSOCIAL());
+            	System.out.println("	CUIT: "+ tie.getCUIT());
+            	System.out.println("	CONTACTO MAIL: "+tie.getMail());
+            	System.out.println("	CONTACTO TEL: "+ tie.getTelefono());
+            	
+            	System.out.println();
+
+            	System.out.println("	Lista de Articulos ");
+            	paso=false;
+        	}
+        	System.out.println("-----------------------------");
+
+        	System.out.println(" Codigo: "+  ar.getIdArticulo());
+        	System.out.println(" Descripcion: " + ar.getDescripcion());
+        	System.out.println(" Precio de Venta: "+ ar.getTotal());
+        	System.out.println(" Fecha Ingreso: "+ ar.getFechaIngreso());
+        }
+     ch.cerrarSession();
 	}
 }
