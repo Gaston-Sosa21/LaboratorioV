@@ -27,13 +27,7 @@ public class Usuario implements Serializable{
 	{
 		
 	}
-	
-	//Se argego este constructor para poder utilizar las dos formas en el bean
-	public Usuario(String usuario, String contrasenia) {
-		this.usuario = usuario;
-		this.contrasenia = contrasenia;
-	}
-	
+		
 	public String getContrasenia() {
 		return contrasenia;
 	}
@@ -55,7 +49,13 @@ public class Usuario implements Serializable{
 		return "usuario=" + usuario + ", contrasenia=" + contrasenia + "]";
 	}
 	
-	//Metodos init y destroy
+	//Metodos init, destroy y constructor
+	
+	//Se argego este constructor para poder utilizar las dos formas en el bean
+		public Usuario(String usuario, String contrasenia) {
+			this.usuario = usuario;
+			this.contrasenia = contrasenia;
+		}
 	
 	public void initUsuario() {
 		System.out.println("Se inicializa un usuario");
