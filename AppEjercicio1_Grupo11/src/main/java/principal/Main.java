@@ -15,10 +15,6 @@ public class Main {
 		
 		appContext = new ClassPathXmlApplicationContext("Resources/Beans.xml");		
 		
-		//Los atributos se completaron en el XML
-		//usuario.setUsuario("Pepe");
-	    //usuario.setContrasenia("123");
-		
 		//Obtener usuarioArturo objeto que retorna el Bean
 		Usuario usuarioArturo = (Usuario) appContext.getBean("usuarioArturo");
 		//actualizo el password del objeto desde el main con el set

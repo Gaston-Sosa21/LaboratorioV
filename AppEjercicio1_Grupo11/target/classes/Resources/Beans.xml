@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Usuario utilizando la carga por SETS  -->
+	<bean id="usuarioArturo" class="entidad.Usuario" init-method="initUsuario" destroy-method="destroyUsuario" scope="prototype">
+	
+		<property name="usuario" value="ArturoIllia"></property>
+		<property name="contrasenia" value="Arturo@123"></property>
+		
+	</bean>
+	
+	<!-- Usuario utilizando la carga por CONSTRUCTOR  -->
+	<!-- public Usuario(String usuario, String contrasenia)  -->
+	<bean id="usuarioJose" class="entidad.Usuario" init-method="initUsuario" destroy-method="destroyUsuario" scope="prototype">
+		
+		<constructor-arg index="0" type="String" value="JoseLuisPerales"></constructor-arg>
+		<constructor-arg index="1" type="String" value="Jose@123"></constructor-arg>
+		
+	</bean>	
+	
+	<bean id="usuarioNegocio" class="negocio.UsuarioNegocio" scope="singleton"></bean>
+	<bean id="usuarioDao" class="dao.UsuarioDao"  scope="singleton"></bean>
+	
+</beans>
