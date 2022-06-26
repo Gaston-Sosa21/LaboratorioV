@@ -21,6 +21,9 @@
         <mapping class="biblioteca.entidad.Genero"/>
         <mapping class="biblioteca.entidad.Libro"/>
         <mapping class="biblioteca.entidad.Nacionalidad"/>       
+        
+         <mapping class="biblioteca.entidad.Cliente"/>   
+         <mapping class="biblioteca.entidad.Prestamo"/>   
   
     </session-factory>
     
