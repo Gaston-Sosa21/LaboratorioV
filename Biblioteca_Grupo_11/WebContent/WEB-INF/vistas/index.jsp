@@ -21,8 +21,8 @@
 		    	
 		     	<form action = "" method="post" class="col-12">
 					
-					<div class="form-group">
-					<button type="submit" class="btn btn-info btn-block btnIndex">ABML CLIENTE</button>
+					<div class="form-group">					
+						<button  type="submit" class="btn btn-info btn-block btnIndex">ABML CLIENTE</button>
 					</div>
 			        
 					<div class="form-group">
@@ -30,11 +30,16 @@
 					</div>
 			
 					<button type="submit" class="btn btn-info btn-block btnIndex">PRESTAMOS</button>
-					</form>
-		   
+				
+				
+				</form>
+				
 	    </div>
 	</div>	
 </div>
+
+
+		   
 
 <div class="olas">
 	<div class="ola"></div>
@@ -47,5 +52,7 @@
 	<p>Ricardo Recofsky - Gastón Sosa - Francisco Madoery - Santiago Daniel Ros</p>
 	<p>© LAB V 2022 | Carrera TUSI - UTN FRGP | Desarrollado por alumnos UTN FRGP.</p>
 </footer>
+
+<!-- <a href="ClienteAlta.jsp" class="btn btn-dark btn-Menu" role="button"> CLIENTE ALTA</a>	-->
 </body>
 </html>
