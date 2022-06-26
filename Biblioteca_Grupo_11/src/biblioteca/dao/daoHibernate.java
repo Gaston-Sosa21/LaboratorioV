@@ -53,7 +53,7 @@ public class daoHibernate {
 
 	 }
 	
-	public static void DeleteBiblioteca(Biblioteca biblio, ArrayList<Biblioteca> listaBibliotecas4 ,Session session) {
+	public static void DeleteBiblioteca(Biblioteca biblio, ArrayList<Biblioteca> listaBibliotecas4, Session session) {
 		 
 		session.beginTransaction();
 		listaBibliotecas4.remove(biblio);

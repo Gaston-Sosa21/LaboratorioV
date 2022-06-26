@@ -19,18 +19,16 @@
 	    <div class="col-sm-8 main-section">
 		   	   
 		    	
-		     	<form action = "Redireccionar_ClienteAlta.html" method="post" class="col-12">
+		     	<form action = "Redireccionar_ClienteAlta.html" method="post">
 					
-					<div class="form-group">					
-						<input  type="submit" value="ABML CLIENTE" name="btnCliente" class="btn btn-info btn-block btnIndex">
-					</div>
-			      
-					<div class="form-group">
-						<input type="submit" value="ABML BIBLIOTECA" name="btnBiblioteca" class="btn btn-info btn-block btnIndex">
-					</div>
-					
-					<div class="form-group">
-						<input type="submit" value="PRESTAMOS" name="btnPrestamos" class="btn btn-info btn-block btnIndex">
+					<div class="loginDiv">
+					<br><br>
+						<p>Nombre de usuario</p>
+						<input type="text" name="txtUsuario"  class="col-12"><br><br>
+						<p>Contraseña</p><br>
+						<input type="password" name="txtContraseña"  class="col-12"><br><br><br>
+						
+						<input type="submit" value="Confirmar" name="btnConfirmar"  class="btn btn-primary col-12"><br>
 					</div>
 
 				</form>  
