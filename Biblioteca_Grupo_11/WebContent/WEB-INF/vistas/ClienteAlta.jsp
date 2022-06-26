@@ -103,7 +103,7 @@
       </div>
       
       <div class="form-group col-md-6">
-      <label for="inputProvincia">Provincia de residencia</label>
+      <label for="inputProvincia">Localidad</label>
       <select id="inputProvincia" class="form-control">
         <option selected>Seleccione...</option>
         <option>...</option>
