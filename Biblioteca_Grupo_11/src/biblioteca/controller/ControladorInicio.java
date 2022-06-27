@@ -52,7 +52,8 @@ public class ControladorInicio {
 		ModelAndView MV = new ModelAndView();
 	//	MV.addObject("usuario", txtUsuario);
 	//	MV.addObject("contrasenia", txtContrasenia);
-		MV.setViewName("ListaClientes");
+	//	MV.setViewName("ListaClientes");
+		MV.setViewName("ClienteAlta");
 		return MV;
 	}
 	 
@@ -62,7 +63,7 @@ public class ControladorInicio {
 		ModelAndView MV = new ModelAndView();
 	//	MV.addObject("usuario", txtUsuario);
 	//	MV.addObject("contrasenia", txtContrasenia);
-		MV.setViewName("ListaBiblioteca");
+		MV.setViewName("BibliotecaABML");
 		return MV;
 	}
 	 

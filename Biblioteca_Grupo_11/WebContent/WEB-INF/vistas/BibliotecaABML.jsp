@@ -5,18 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/StyleSheetAdmin.css">
-<link rel="stylesheet" href="css/ControlsTable.css">
-<link rel="stylesheet" href="css/datepicker.css">
-<!-- 
-<style type="text/css">
-	<jsp:include page="css\StyleSheetAdmin.css"></jsp:include>
-	<jsp:include page="css\ControlsTable.css"></jsp:include>
-	<!-- Date Picker 
-	<jsp:include page="css\datepicker.css"></jsp:include>
-</style>
- -->
+
+
+<link rel="stylesheet" href="/Biblioteca_Grupo_11/css/index.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/Biblioteca_Grupo_11/css/StyleSheetAdmin.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/Biblioteca_Grupo_11/css/ControlsTable.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/Biblioteca_Grupo_11/css/datepicker.css" type="text/css" media="screen" />
+
+
 
 <!-- BOOSTRAP  -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -63,6 +59,66 @@
 		</ul>
 	</div>
 </div>
+
+<div class="parteDer" >
+    
+	<div class="titulo1">
+		<h1>Agregar bibliotecas </h1>
+	</div>
+	 
+	 <a href="#" class="btn btn-dark botonAlta" role="button"> Nuevo Movimiento</a>
+		<table class="table table-dark" id="TdWithFilter" >
+	  <thead>
+	    <tr>
+	      <th scope="col">Editar</th>
+	      <th scope="col">Eliminar</th>
+	      <th scope="col">Libro</th>
+	      <th scope="col">Fecha Alta</th>
+	      <th scope="col">Estado</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td><a class="btn btn-primary" href="#" role="button">Editar</a></td>
+	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td>Harry Potter</td>
+  			<td>25/05/2010</td>
+  			<td>Prestado</td>
+	    </tr>
+	    <tr>
+	      <td><a class="btn btn-primary" href="#" role="button">Editar</a></td>
+	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td>El principito</td>
+  			<td>10/10/2010</td>
+  			<td>Prestado</td>
+	    </tr>
+	    <tr>
+	      <td><a class="btn btn-primary" href="#" role="button">Editar</a></td>
+	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	      <td>El principito 2</td>
+  			<td>10/10/2014</td>
+  			<td>Prestado</td>
+	    </tr>
+	     <tr>
+	      <td><a class="btn btn-primary" href="#" role="button">Editar</a></td>
+	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td> Maradona</td>
+  			<td>24/06/1987</td>
+  			<td>En biblioteca</td>
+	    </tr>
+	    <tr>
+	      <td><a class="btn btn-primary" href="#" role="button">Editar</a></td>
+	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td>Leo messi</td>
+  			<td>24/06/1987</td>
+  			<td>En biblioteca</td>
+	    </tr>
+	  </tbody>
+	</table>
+	
+ </div>
+
+<!-- 
 
 <div class="parteDer" >
 <div style="margin:auto; height: 500px; widht:480px; background-color:#acd">
@@ -140,7 +196,7 @@
 	
  </div>
 
-
+-->
 
 </body>
 </html>
