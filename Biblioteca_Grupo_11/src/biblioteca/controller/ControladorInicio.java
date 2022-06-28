@@ -22,17 +22,8 @@ public class ControladorInicio {
 		ModelAndView MV = new ModelAndView();
 		MV.setViewName("Login");
 		return MV;
-	}
-	
-	 @RequestMapping("Redireccionar_ClienteAlta.html")
-	public ModelAndView eventoRedireccionarClienteAlta(/*String txtUsuario,Integer txtContrasenia*/)
-	{			
-		ModelAndView MV = new ModelAndView();
-	//	MV.addObject("usuario", txtUsuario);
-	//	MV.addObject("contrasenia", txtContrasenia);
-		MV.setViewName("ClienteAlta");
-		return MV;
-	}
+	}	
+
 	 
 	 @RequestMapping("Redireccionar_PostLogin.html")
 	public ModelAndView eventoRedireccionarPostLogin(/*String txtUsuario,Integer txtContrasenia*/)
@@ -53,7 +44,7 @@ public class ControladorInicio {
 	//	MV.addObject("usuario", txtUsuario);
 	//	MV.addObject("contrasenia", txtContrasenia);
 	//	MV.setViewName("ListaClientes");
-		MV.setViewName("ClienteAlta");
+		MV.setViewName("ListaClientes");
 		return MV;
 	}
 	 
@@ -63,7 +54,7 @@ public class ControladorInicio {
 		ModelAndView MV = new ModelAndView();
 	//	MV.addObject("usuario", txtUsuario);
 	//	MV.addObject("contrasenia", txtContrasenia);
-		MV.setViewName("BibliotecaABML");
+		MV.setViewName("ListaBiblioteca");
 		return MV;
 	}
 	 
@@ -76,4 +67,59 @@ public class ControladorInicio {
 		MV.setViewName("ListaPrestamos");
 		return MV;
 	}
+	 
+	 
+	 /* ********************* REDIRECCIONES CLIENTE *********************** */
+	 
+	 @RequestMapping("Redireccionar_ClienteAlta.html")
+		public ModelAndView eventoRedireccionarClienteAlta()
+		{			
+			ModelAndView MV = new ModelAndView();
+			MV.setViewName("ClienteAlta");
+			return MV;
+		}
+	 
+	 @RequestMapping("Redireccionar_EdicionCliente.html")
+		public ModelAndView eventoRedireccionarEdicionCliente()
+		{			
+			ModelAndView MV = new ModelAndView();
+			MV.setViewName("ClienteAlta");
+			return MV;
+		}
+	 
+	 /* ********************* REDIRECCIONES BIBLIOTECA *********************** */
+	 
+	 @RequestMapping("Redireccionar_BibliotecaAlta.html")
+		public ModelAndView eventoRedireccionarBicliotecaAlta()
+		{			
+			ModelAndView MV = new ModelAndView();
+			MV.setViewName("BibliotecaAlta");
+			return MV;
+		}
+	 
+	 @RequestMapping("Redireccionar_EdicionBiblioteca.html")
+		public ModelAndView eventoRedireccionarEdicionBiblioteca()
+		{			
+			ModelAndView MV = new ModelAndView();
+			MV.setViewName("BibliotecaAlta");
+			return MV;
+		}
+	 
+	 /* ********************* REDIRECCIONES PERSTAMOS *********************** */
+	 
+	 @RequestMapping("Redireccionar_PrestamosAlta.html")
+		public ModelAndView eventoRedireccionarPrestamosAlta()
+		{			
+			ModelAndView MV = new ModelAndView();
+			MV.setViewName("PrestamoAlta");
+			return MV;
+		}
+	 
+	 @RequestMapping("Redireccionar_EdicionPrestamos.html")
+		public ModelAndView eventoRedireccionarEdicionPrestamo()
+		{			
+			ModelAndView MV = new ModelAndView();
+			MV.setViewName("PrestamoAlta");
+			return MV;
+		}
 }

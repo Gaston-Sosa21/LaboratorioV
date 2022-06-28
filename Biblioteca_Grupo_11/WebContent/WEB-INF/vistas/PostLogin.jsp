@@ -33,7 +33,7 @@
 				</form> 
 				<br>
 				<form action = "Redireccionar_ListaPrestamos.html" method="get">	
-					<input type="submit" value="Presstamos" name="btnConfirmar"  class="cuadrado "><br>
+					<input type="submit" value="Prestamos" name="btnConfirmar"  class="cuadrado "><br>
 				</form>  
 		</div>	
 </div>	
@@ -43,5 +43,6 @@
 	<p>Ricardo Recofsky - Gastón Sosa - Francisco Madoery - Santiago Daniel Ros</p>
 	<p>© LAB V 2022 | Carrera TUSI - UTN FRGP | Desarrollado por alumnos UTN FRGP.</p>
 </footer>
+
 </body>
 </html>

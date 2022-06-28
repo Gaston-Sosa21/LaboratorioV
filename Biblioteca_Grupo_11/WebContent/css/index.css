@@ -1,13 +1,17 @@
 .loginDiv{
 	
-	height: 420px;
+	height: 350px;
 	width: 400px;
 	margin:auto;
-	background-color: #ACD;
+	background-color: rgba(165, 201, 219, 0.7);
 	padding-left: 10px;
 	padding-right:10px;
+	border-radius: 15px;
 
+}
 
+.inputs{
+	width: 55%;
 }
 
 

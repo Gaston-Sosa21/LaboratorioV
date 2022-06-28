@@ -69,28 +69,33 @@
 <div style="margin:auto; height: 500px; widht:480px; background-color:#acd">
 <form method="get" action="">
 		
-<h3>Administrar libro:</h3>
+<h3>Administrar Prestamo:</h3>
   <div class="form-row">
    
     <div class="form-group col-md-6	">       
       <label for="txtCantidad">Libro</label>      
       <input type="text" class="form-control" name="txtCantidad">  
     </div> 
-     
-    <div class="form-group col-md-6	">    
-      <label for="ddlLibro">Estado</label>      
-       <select id="ddlLibro" class="form-control">
-	        <option selected>Seleccione...</option>
-	        <option>En biblioteca</option>
-	        <option>Prestado</option>
-       </select> 
-    </div>       
-  </div><!-- END DIV -->
-  <div class="form-row">
-		<div class="form-group col-md-6">
+    
+    <div class="form-group col-md-6">
         	  <label for="fechaNacimiento">Fecha de Alta</label>
         	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label">
-        </div>       
+    </div>           
+          
+  </div><!-- END DIV -->
+  <div class="form-row">
+	  <div class="form-group col-md-6	">       
+	      <label for="txtCantidad">Cantidad de Dias</label>      
+	      <input type="text" class="form-control" name="txtCantidad">  
+	    </div>
+		 <div class="form-group col-md-6	">    
+          <label for="ddlLibro">Cliente</label>      
+            <select id="ddlLibro" class="form-control">
+	        <option selected>Seleccione...</option>
+	        <option>Jose Larralde</option>
+	        <option>Marcelo Peralta</option>
+       </select> 
+    </div> 
    </div> 
   <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>
   </form>

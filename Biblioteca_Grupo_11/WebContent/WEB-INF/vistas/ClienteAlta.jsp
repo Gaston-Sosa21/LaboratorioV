@@ -52,8 +52,15 @@
 	</div>
 	<div>	
 		<ul>
-			<a href="GestionarDocentes.jsp" class="btn btn-dark btn-Menu" role="button"> ABML BIBLIOTECA</a>	
-			<a href="GestionarCursos.jsp" class="btn btn-dark btn-Menu" role="button"> PRESTAMOS</a>
+			<form action = "Redireccionar_ListaClientes.html" method="get">	
+				<input type="submit" value="CLIENTES" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
+			</form> 			
+			 <form action = "Redireccionar_ListaBiblioteca.html" method="get">	
+				<input type="submit" value="BIBLIOTECA" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
+			</form> 
+			 <form action = "Redireccionar_ListaPrestamos.html" method="get">	
+				<input type="submit" value="PRESTAMOS" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
+			</form> 
 		</ul>
 	</div>
 </div>
@@ -77,7 +84,7 @@
                 <label for="fechaNacimiento">Fecha de Nacimiento</label>
                 <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label">
            		
-            </div>
+   </div>
             
   
  
