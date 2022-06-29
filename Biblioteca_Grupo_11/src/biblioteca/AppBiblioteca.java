@@ -221,6 +221,13 @@ public class AppBiblioteca
     	daoHibernate.DeleteBiblioteca(biblioteca6,listaBibliotecas4,session);
 
     	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	session.close();
     	
     	sessionFactory.close(); 

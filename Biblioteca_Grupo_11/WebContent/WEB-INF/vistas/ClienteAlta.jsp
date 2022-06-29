@@ -36,11 +36,11 @@
 			var mensaje = confirm("Confirma");
 			//Detectamos si el usuario acepto el mensaje
 			if (mensaje) {
-			alert("Se ha dado de alta corectamente al Alumno Legajo N");
+			alert("Se ha dado de alta corectamente al Cliente");
 			}
 			//Detectamos si el usuario denegó el mensaje
 			else {
-			alert("¡No se ha dado de alta al alumno!");
+			alert("¡No se ha dado de alta al cliente!");
 			}
 			}
 		</script>
@@ -66,17 +66,19 @@
 </div>
 
 <div class="parteDer" >
-	<form>
+
+
+	 <form action="GuardarCliente.html" method="post">
 		
 	
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNombre">Nombre</label>
-      <input type="nombre" class="form-control" id="inputNombre">
+      <input type="nombre" class="form-control" id="inputNombre" name="txtNombre">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Apellido</label>
-      <input type="apellido" class="form-control" id="inputApellido">
+      <input type="apellido" class="form-control" id="inputApellido" name="txtApellido">
     </div>
   </div>
   <div class="form-row">
@@ -90,19 +92,19 @@
  
 		   <div class="form-group col-md-6">
 		     <label for="inputDni">DNI</label>
-		     <input type="text" class="form-control" id="inputDni">
+		     <input type="text" class="form-control" id="inputDni" name="txtDni">
 		   </div>
 		 </div>
   
   <div class="form-group">
     <label for="inputAddress">Direccion</label>
-    <input type="text" class="form-control" id="inputDirecccion" placeholder="">
+    <input type="text" class="form-control" id="inputDirecccion" placeholder="" name="txtDireccion">
   </div>
   
   <div class="form-row">
       <div class="form-group col-md-6">
       <label for="inputNacionalidad">Nacionalidad</label>
-      <select id="inputNacionalidad" class="form-control">
+      <select id="inputNacionalidad" class="form-control" name="txtNacionalidad">
         <option selected>Seleccione...</option>
         <option>...</option>
       </select>
@@ -110,7 +112,7 @@
       
       <div class="form-group col-md-6">
       <label for="inputProvincia">Localidad</label>
-      <select id="inputProvincia" class="form-control">
+      <select id="inputProvincia" class="form-control" name="txtLocalidad">
         <option selected>Seleccione...</option>
         <option>...</option>
       </select>
@@ -120,18 +122,20 @@
     
   <div class="form-group">
     <label for="inputEmail">Email</label>
-    <input type="text" class="form-control" id="inputEmail" placeholder="">
+    <input type="text" class="form-control" id="inputEmail" placeholder="" name="txtMail">
   </div>
   
   <div class="form-group">
     <label for="inputTelefono">Telefono</label>
-    <input type="text" class="form-control" id="inputTelefono" placeholder="">
+    <input type="text" class="form-control" id="inputTelefono" placeholder="" name="txtTelefono">
   </div>
   
- 
-  <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>
+     <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>
   
 </form>
+	
+ 
+
 	
  </div>
 
