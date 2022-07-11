@@ -13,7 +13,7 @@ import biblioteca.negocio.NegocioCliente;
 @Controller
 public class ControladorCliente {
 
-	biblioteca.negocio.NegocioCliente nc = new biblioteca.negocio.NegocioCliente();
+	NegocioCliente nc = new NegocioCliente();
 	
 	/* ********************* REDIRECCIONES CLIENTE *********************** */
 	 
@@ -21,7 +21,7 @@ public class ControladorCliente {
 		public ModelAndView eventoRedireccionarClienteAlta()
 		{			
 			ModelAndView MV = new ModelAndView();
-			MV.setViewName("ClienteAlta");
+			MV.setViewName("AltaCliente");
 			return MV;
 		}
 	 
@@ -30,7 +30,7 @@ public class ControladorCliente {
 		public ModelAndView eventoRedireccionarEdicionCliente()
 		{			
 			ModelAndView MV = new ModelAndView();
-			MV.setViewName("ClienteAlta");
+			MV.setViewName("AltaCliente");
 			return MV;
 		}
 	 

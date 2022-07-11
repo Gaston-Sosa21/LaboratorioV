@@ -77,39 +77,5 @@ public class ControladorInicio {
 	}
 	 
 	 
-	 /* ********************* REDIRECCIONES BIBLIOTECA *********************** */
-	 
-	 @RequestMapping("Redireccionar_BibliotecaAlta.html")
-		public ModelAndView eventoRedireccionarBicliotecaAlta()
-		{			
-			ModelAndView MV = new ModelAndView();
-			MV.setViewName("BibliotecaAlta");
-			return MV;
-		}
-	 
-	 @RequestMapping("Redireccionar_EdicionBiblioteca.html")
-		public ModelAndView eventoRedireccionarEdicionBiblioteca()
-		{			
-			ModelAndView MV = new ModelAndView();
-			MV.setViewName("BibliotecaAlta");
-			return MV;
-		}
-	 
-	 /* ********************* REDIRECCIONES PERSTAMOS *********************** */
-	 
-	 @RequestMapping("Redireccionar_PrestamosAlta.html")
-		public ModelAndView eventoRedireccionarPrestamosAlta()
-		{			
-			ModelAndView MV = new ModelAndView();
-			MV.setViewName("PrestamoAlta");
-			return MV;
-		}
-	 
-	 @RequestMapping("Redireccionar_EdicionPrestamos.html")
-		public ModelAndView eventoRedireccionarEdicionPrestamo()
-		{			
-			ModelAndView MV = new ModelAndView();
-			MV.setViewName("PrestamoAlta");
-			return MV;
-		}
+
 }
