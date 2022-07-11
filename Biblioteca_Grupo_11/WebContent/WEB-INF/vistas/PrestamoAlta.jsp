@@ -79,7 +79,7 @@
     
     <div class="form-group col-md-6">
         	  <label for="fechaNacimiento">Fecha de Alta</label>
-        	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label">
+        	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label" value="05/07/2022 20:30" disabled>
     </div>           
           
   </div><!-- END DIV -->

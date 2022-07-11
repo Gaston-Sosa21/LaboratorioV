@@ -73,8 +73,15 @@
   <div class="form-row">
    
     <div class="form-group col-md-6	">       
-      <label for="txtCantidad">Libro</label>      
-      <input type="text" class="form-control" name="txtCantidad">  
+       <label for="ddlLibro">Libro</label>      
+       <select id="ddlLibro" class="form-control">
+	        <option selected>Seleccione...</option>
+	        <option>Titanic</option>
+	        <option>La visita</option>
+	        <option>El teatro</option>
+	        <option>Días de Oro</option>
+	        <option>Goles en la tierra</option>
+	   </select>   
     </div> 
      
     <div class="form-group col-md-6	">    
@@ -89,7 +96,7 @@
   <div class="form-row">
 		<div class="form-group col-md-6">
         	  <label for="fechaNacimiento">Fecha de Alta</label>
-        	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label">
+        	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label" value="05/07/2022 20:30" disabled>
         </div>       
    </div> 
   <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>

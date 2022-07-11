@@ -93,6 +93,7 @@
 	    <tr>
 	      <th scope="col">Editar</th>
 	      <th scope="col">Eliminar</th>
+	      <th scope="col">ID Biblioteca</th>
 	      <th scope="col">Libro</th>
 	      <th scope="col">Fecha Alta</th>
 	      <th scope="col">Estado</th>
@@ -107,6 +108,7 @@
 			  </form> 
 	      </td>
 	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td>80000001</td>
 	     <td>Harry Potter</td>
   			<td>25/05/2010</td>
   			<td>Prestado</td>
@@ -119,6 +121,7 @@
 			  </form> 
 	      </td>
 	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td>80000002</td>
 	     <td>El principito</td>
   			<td>10/10/2010</td>
   			<td>Prestado</td>
@@ -131,6 +134,7 @@
 			  </form> 
 	      </td>
 	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	      <td>80000003</td>
 	      <td>El principito 2</td>
   			<td>10/10/2014</td>
   			<td>Prestado</td>
@@ -143,6 +147,7 @@
 			  </form> 
 	      </td>
 	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td>80000004</td>
 	     <td> Maradona</td>
   			<td>24/06/1987</td>
   			<td>En biblioteca</td>
@@ -155,9 +160,23 @@
 			  </form> 
 	      </td>
 	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td>80000005</td>
 	     <td>Leo messi</td>
   			<td>24/06/1987</td>
   			<td>En biblioteca</td>
+	    </tr>
+	    <tr>
+	        <!-- <td><a class="btn btn-primary" href="#" role="button">Editar</a></td> -->
+	      <td>
+		      <form action = "Redireccionar_EdicionBiblioteca.html" method="get">	
+				<input type="submit" value="Editar" name="btnConfirmar"  class="btn btn-primary" ><br>
+			  </form> 
+	      </td>
+	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
+	     <td>80000006</td>
+	     <td>Leo messi</td>
+  			<td>24/06/1987</td>
+  			<td>Prestado</td>
 	    </tr>
 	  </tbody>
 	</table>
