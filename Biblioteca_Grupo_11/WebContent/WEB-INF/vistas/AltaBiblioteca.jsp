@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,18 +32,18 @@
 
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
-			function ConfirmDemo() {
-			//Ingresamos un mensaje a mostrar
-			var mensaje = confirm("Confirma");
-			//Detectamos si el usuario acepto el mensaje
-			if (mensaje) {
-			alert("Se ha dado de alta corectamente al Alumno Legajo N");
-			}
-			//Detectamos si el usuario denegó el mensaje
-			else {
-			alert("¡No se ha dado de alta al alumno!");
-			}
-			}
+function ConfirmDemo() {
+		//Ingresamos un mensaje a mostrar
+		var mensaje = confirm("Confirma");
+		//Detectamos si el usuario acepto el mensaje
+		if (mensaje) {
+		alert("Se ha dado de alta corectamente al Cliente");
+		}
+		//Detectamos si el usuario denegó el mensaje
+		else {
+		alert("¡No se ha dado de alta al cliente!");
+		}
+		}
 		</script>
 </head>
 <body>
@@ -55,7 +56,7 @@
 		<form action = "Redireccionar_ListaClientes.html" method="get">	
 				<input type="submit" value="CLIENTES" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
 			</form> 			
-			 <form action = "Redireccionar_ListaBiblioteca.html" method="get">	
+			 <form action = "ListaBiblioteca.html" method="get">	
 				<input type="submit" value="BIBLIOTECA" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
 			</form> 
 			 <form action = "Redireccionar_ListaPrestamos.html" method="get">	
@@ -67,36 +68,45 @@
 
 <div class="parteDer" >
 <div style="margin:auto; height: 500px; widht:480px; background-color:#acd">
-<form method="get" action="">
+
+<form action="ListaBiblioteca.html" method="post" >
+
+	<button type="submit" class="btn btn-primary float-right" onclick="ConfirmDemo()">Volver</button>
+	
+</form>
+
+<form action="AltaBiblioteca.html" method="post" >
 		
 <h3>Administrar libro:</h3>
   <div class="form-row">
+
    
     <div class="form-group col-md-6	">       
        <label for="ddlLibro">Libro</label>      
-       <select id="ddlLibro" class="form-control">
-	        <option selected>Seleccione...</option>
-	        <option>Titanic</option>
-	        <option>La visita</option>
-	        <option>El teatro</option>
-	        <option>DÃ­as de Oro</option>
-	        <option>Goles en la tierra</option>
+       <select id="ddlLibro" name="ddlLibro" class="form-control">
+       <option selected>Seleccione...</option>
+       
+       <c:forEach items="${listaLibros}" var="item">
+       
+	        <option value="${item.ISBN}">${item.titulo}</option>
+	        
+		</c:forEach>
 	   </select>   
     </div> 
      
     <div class="form-group col-md-6	">    
-      <label for="ddlLibro">Estado</label>      
-       <select id="ddlLibro" class="form-control">
+      <label for="ddlEstado">Estado</label>      
+       <select id="ddlEstado" name="ddlEstado" class="form-control">
 	        <option selected>Seleccione...</option>
-	        <option>En biblioteca</option>
-	        <option>Prestado</option>
+	        <option value="0">En biblioteca</option>
+	        <option value="1">Prestado</option>
        </select> 
     </div>       
   </div><!-- END DIV -->
   <div class="form-row">
 		<div class="form-group col-md-6">
         	  <label for="fechaNacimiento">Fecha de Alta</label>
-        	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label" value="05/07/2022 20:30" disabled>
+        	  <input type="text" id="txtFecha" name="txtFecha" class="form-control datepicker" value="${date}" disabled>
         </div>       
    </div> 
   <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>

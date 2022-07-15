@@ -29,7 +29,7 @@ public class ControladorCliente {
 	 @RequestMapping("Redireccionar_EdicionCliente.html")
 		public ModelAndView eventoRedireccionarEdicionCliente()
 		{			
-			ModelAndView MV = new ModelAndView();
+			ModelAndView MV = new ModelAndView();			
 			MV.setViewName("AltaCliente");
 			return MV;
 		}

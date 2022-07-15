@@ -55,7 +55,7 @@ public class Biblioteca implements Serializable{
 			this.fecha_alta = date;
 		}
 
-		public int isEstado() {
+		public int getEstado() {
 			return estado;
 		}
 

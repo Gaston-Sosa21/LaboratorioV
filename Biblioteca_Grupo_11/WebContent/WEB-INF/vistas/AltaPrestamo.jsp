@@ -55,7 +55,7 @@
 		<form action = "Redireccionar_ListaClientes.html" method="get">	
 				<input type="submit" value="CLIENTES" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
 			</form> 			
-			 <form action = "Redireccionar_ListaBiblioteca.html" method="get">	
+			 <form action = "ListaBiblioteca.html" method="get">	
 				<input type="submit" value="BIBLIOTECA" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
 			</form> 
 			 <form action = "Redireccionar_ListaPrestamos.html" method="get">	

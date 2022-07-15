@@ -11,10 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 import biblioteca.dao.daoCliente;
 import biblioteca.entidad.Cliente;
 import biblioteca.entidad.Nacionalidad;
+import biblioteca.negocio.NegocioBiblioteca;
 
 @Controller
 public class ControladorInicio {
 
+	NegocioBiblioteca bneg = new NegocioBiblioteca();
 	
 	@RequestMapping("Redireccionar_index.html")
 	public ModelAndView eventoRedireccionarPag1()
@@ -55,16 +57,25 @@ public class ControladorInicio {
 		MV.setViewName("ListaClientes");
 		return MV;
 	}
+	
 	 
-	 @RequestMapping("Redireccionar_ListaBiblioteca.html")
-	public ModelAndView eventoRedireccionarListaBiblioteca(/*String txtUsuario,Integer txtContrasenia*/)
-	{			
-		ModelAndView MV = new ModelAndView();
-	//	MV.addObject("usuario", txtUsuario);
-	//	MV.addObject("contrasenia", txtContrasenia);
-		MV.setViewName("ListaBiblioteca");
-		return MV;
-	}
+	 @RequestMapping("ListaBiblioteca.html")
+		public ModelAndView eventoListarBibliotecas2()
+		{
+			try {
+					
+					ModelAndView MV = new ModelAndView();
+					MV.addObject("listaBibliotecas", bneg.ObtenerBibliotecas());
+					MV.setViewName("ListaBiblioteca");
+					return MV;
+					
+			}catch(Exception ex) {
+					
+				    System.out.println("Error: "+ ex.toString());
+				    return null;
+			}
+		    	
+		}
 	 
 	 @RequestMapping("Redireccionar_ListaPrestamos.html")
 	public ModelAndView eventoRedireccionarListaPrestamos(/*String txtUsuario,Integer txtContrasenia*/)

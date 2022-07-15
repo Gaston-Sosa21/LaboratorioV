@@ -28,7 +28,7 @@
 					<input type="submit" value="Clientes" name="btnConfirmar"  class="cuadrado "><br>
 				</form> 
 				<br>
-				<form action = "Redireccionar_ListaBiblioteca.html" method="get">	
+				<form action = "ListaBiblioteca.html" method="get">	
 					<input type="submit" value="Biblioteca" name="btnConfirmar"  class="cuadrado "><br>
 				</form> 
 				<br>
