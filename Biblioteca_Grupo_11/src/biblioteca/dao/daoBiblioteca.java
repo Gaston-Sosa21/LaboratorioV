@@ -14,7 +14,7 @@ import biblioteca.entidad.Libro;
 
 public class daoBiblioteca {
 
-	public int CargarBiblioteca(String ISBN, String FechaAlta, int Estado) {
+	public Boolean CargarBiblioteca(String ISBN, String FechaAlta, int Estado) {
 		
 		try {
 			
@@ -46,13 +46,13 @@ public class daoBiblioteca {
 		     
 		     session.close();
 		     
-		     return 1;
+		     return true;
 		     
 		}
 		
 		catch(Exception e) {
 			System.out.println("Error: " + e.toString());
-			return 0;
+			return false;
 		}
 		 
 
@@ -95,5 +95,24 @@ public class daoBiblioteca {
 	     session.close();
 	     
 	     return listaLibros;
+	 }
+	
+	public Libro BuscarLibro(String ISBN) {
+		 
+		 SessionFactory sessionFactory;
+  	
+	   	 Configuration configuration = new Configuration();
+	   	 configuration.configure();	
+	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	   	 Session session = sessionFactory.openSession();
+
+	     session.beginTransaction();
+	     
+	     Libro lib = (Libro)session.createQuery("FROM Libro l where l.ISBN = '" + ISBN + "'").uniqueResult();
+	     
+	     session.close();
+	     
+	     return lib;
 	 }
 }

@@ -88,8 +88,6 @@
            		
    </div>
             
-  
- 
 		   <div class="form-group col-md-6">
 		     <label for="inputDni">DNI</label>
 		     <input type="text" class="form-control" id="inputDni" name="txtDni">

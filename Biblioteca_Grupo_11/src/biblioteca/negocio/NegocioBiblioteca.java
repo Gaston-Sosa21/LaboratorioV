@@ -11,20 +11,22 @@ public class NegocioBiblioteca {
 
 	daoBiblioteca bdao = new daoBiblioteca();
 	
-	public int AltaBiblioteca(String ISBN, String FechaAlta, int Estado) {
+	public Boolean AltaBiblioteca(String ISBN, String FechaAlta, int Estado) {
 		
 		try {
 			
-		    int valor = bdao.CargarBiblioteca(ISBN, FechaAlta, Estado);
-			
-		    return valor;
+		    
+		    
+			return bdao.CargarBiblioteca(ISBN, FechaAlta, Estado);
+		   
 			
 		}catch(Exception ex){
 			
 			System.out.println("Error: " + ex.toString());
-			return 0;
+			return false;
 		}
 	}
+		
 	
 	public List<Object[]> ObtenerBibliotecas(){
 		
@@ -52,5 +54,19 @@ public class NegocioBiblioteca {
 				
 				return null;
 			}
+	}
+	
+	public Libro ObtenerLibroPorId(String ISBN){
+		
+		try {
+			
+			return bdao.BuscarLibro(ISBN);
 		}
+		catch(Exception e) {
+			
+			System.out.println("Error: " + e.toString());
+			
+			return null;
+		}
+}
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import biblioteca.entidad.Cliente;
+import biblioteca.entidad.Libro;
 import biblioteca.entidad.Nacionalidad;
 import biblioteca.negocio.NegocioBiblioteca;
 
@@ -36,21 +37,30 @@ public class ControladorBiblioteca {
 		}
 	 
 	 @RequestMapping("AltaBiblioteca.html")
-		public ModelAndView eventoGuardarBiblioteca(String ddlLibro, String ddlEstado)
+		public ModelAndView eventoGuardarBiblioteca(String ddlLibro, String ddlEstado, String txtVolver)
 		{
 			try {
-					
-					int filas  = bneg.AltaBiblioteca(ddlLibro, LocalDate.now().toString(), Integer.parseInt(ddlEstado)); 
-					
-					String Mensaje="Se agrego una nueva biblioteca del libro " + ddlLibro;
-					
-					if(filas<0) {
-					  Mensaje = "Error! No pudo agregarse la nueva biblioteca ";	
+					ModelAndView MV = new ModelAndView();
+					String agrego= "no";
+				
+					if(ddlLibro != " " && Integer.parseInt(ddlEstado) != -1) {
+						
+																		
+						if(bneg.AltaBiblioteca(ddlLibro, LocalDate.now().toString(), Integer.parseInt(ddlEstado))) {
+							
+							Libro lib = bneg.ObtenerLibroPorId(ddlLibro);
+							MV.addObject("Libro", lib.getTitulo());
+							agrego = "si";
+							
+						}
 					}
 					
-					ModelAndView MV = new ModelAndView();
-					MV.addObject(Mensaje, ddlLibro);
+					
+					
+					
 					MV.setViewName("ListaBiblioteca");
+					MV.addObject("mostrarMensaje", true);
+					MV.addObject("Agrego", agrego);
 					MV.addObject("listaBibliotecas", bneg.ObtenerBibliotecas());
 					MV.setViewName("ListaBiblioteca");
 					return MV;

@@ -20,13 +20,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 <!-- Filtros de Tabla -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js" crossorigin="anonymous"></script>
 <script src="./js/FiltrosTheadTabla.js"></script>
 <script src="./js/datepicker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+
 
 <!-- Date Picker -->
 
@@ -53,12 +55,40 @@
 				alert("Se cerrado la sesion correctamente");
 				}//Detectamos si el usuario denegó el mensaje
 				else {
-					alert("No se ha podido cerrar la sesiom");
+					alert("No se ha podido cerrar la sesion");
 				}
 			 }
+			 
+			 function mostrarMensaje (){
+			 
+				 if('${mostrarMensaje}'){
+				 
+				 	if('${Agrego}' == "si"){
+				 	
+				 		Swal.fire(
+						  'Exito!',
+						  'Se agrego correctamente una biblioteca del libro ' + '${Libro}',
+						  'success'
+						)
+				 		
+				 	}
+				 	else{
+				 	
+						Swal.fire(
+						  'Error!',
+						  'No se pudo agregar la nueva biblioteca',
+						  'error',
+						)				 	
+				 	}
+					 	
+				 }
+											 
+			 }
+			 
+			 
 		</script>
 </head>
-<body>
+<body onLoad="mostrarMensaje()">
 <div class="parteIzq">
 	<div class="titulo2">
 		<h2>Administrar: </h2>
@@ -122,86 +152,6 @@
 	</table>
 	
  </div>
-
-<!-- 
-
-<div class="parteDer" >
-<div style="margin:auto; height: 500px; widht:480px; background-color:#acd">
-<form method="get" action="">
-		
-<h3>BIBLIOTECAS</h3>
-
-<br>
-<button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar bibliotecas</button>
-<br>
-<div class="form-row">
-  
-    <div class="form-group col-md-6	">
-    
-      <label for="ddlEstados">Filtrar por estados: </label>
-      
-       <select id="ddlEstados" class="form-control">
-        <option selected>Seleccione...</option>
-        <option>...</option>
-      </select>
-      <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Filtrar</button>
-      <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Eliminar filtros</button>
-    </div>
-    
-  </div>
-
-<br>
-  	<table>
-  		<tr style="text-align:center; font-weight:bold;">
-
-  			<td></td>
-  			<td></td>
-  			<td>ID</td>
-  			<td>Libro</td>
-  			<td>Fecha Alta</td>
-  			<td>Estado</td>
-  		</tr>
-	  	<tr>
-	  		<td><button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Eliminar</button></td>
-  			<td><button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Modificar</button></td>
-  			<td>1</td>
-  			<td>Harry Potter</td>
-  			<td>25/05/2010</td>
-  			<td>Prestado</td>
-  		</tr>
-  		<tr>
-  			<td><button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Eliminar</button></td>
-  			<td><button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Modificar</button></td>
-  			<td>2</td>
-  			<td>Harry Potter</td>
-  			<td>25/05/2010</td>
-  			<td>En biblioteca</td>
-  		</tr>
-  		<tr>
-  			<td><button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Eliminar</button></td>
-  			<td><button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Modificar</button></td>
-  			<td>3</td>
-  			<td>El principito</td>
-  			<td>10/10/2010</td>
-  			<td>Prestado</td>
-  		</tr>
-  		<tr>
-  			<td><button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Eliminar</button></td>
-  			<td><button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Modificar</button></td>
-  			<td>4</td>
-  			<td>Leo messi</td>
-  			<td>24/06/1987</td>
-  			<td>En biblioteca</td>
-  		</tr>
-  	</table>
-
-  </form>
-</div>  
-
-	
- </div>
-
--->
 
 </body>
 </html>

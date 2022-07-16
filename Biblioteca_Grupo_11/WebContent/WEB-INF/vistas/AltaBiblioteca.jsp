@@ -18,33 +18,70 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 <!-- Filtros de Tabla -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script> 
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js" crossorigin="anonymous"></script>
 <script src="./js/FiltrosTheadTabla.js"></script>
 <script src="./js/datepicker.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <!-- Date Picker -->
 
 
 
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
-function ConfirmDemo() {
-		//Ingresamos un mensaje a mostrar
-		var mensaje = confirm("Confirma");
-		//Detectamos si el usuario acepto el mensaje
-		if (mensaje) {
-		alert("Se ha dado de alta corectamente al Cliente");
-		}
-		//Detectamos si el usuario denegó el mensaje
-		else {
-		alert("¡No se ha dado de alta al cliente!");
-		}
-		}
-		</script>
+
+function confirmarVolver(){
+	
+	Swal.fire({
+		  title: 'Estas seguro?',
+		  text: "",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Confirmar',
+		  cancelButtonText: 'Cancelar'
+		}).then(function(result){
+			
+		  if (result.value) {
+			var elem = document.getElementById("txtVolver");
+			elem.value = "si";
+			
+		  }
+		});
+	
+		
+}
+
+function confirmarAgregar(){
+	
+	Swal.fire({
+		  title: 'Estas seguro?',
+		  text: "",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Confirmar',
+		  cancelButtonText: 'Cancelar'
+		}).then(function(result){
+			
+		  if (result.value) {
+			var elem = document.getElementById("txtAgregar");
+			elem.value = "si";
+			
+		  }
+		});
+	
+		
+}
+
+</script>
+
+
 </head>
 <body>
 <div class="parteIzq">
@@ -69,9 +106,10 @@ function ConfirmDemo() {
 <div class="parteDer" >
 <div style="margin:auto; height: 500px; widht:480px; background-color:#acd">
 
-<form action="ListaBiblioteca.html" method="post" >
+<form id="volver" action="ListaBiblioteca.html" method="post" >
 
-	<button type="submit" class="btn btn-primary float-right" onclick="ConfirmDemo()">Volver</button>
+	<button type="submit" class="btn btn-primary float-right" onclick="confirmarVolver()">Volver</button>
+	<input type="hidden" id="txtVolver" name="txtVolver" class="form-control" value="no">
 	
 </form>
 
@@ -84,7 +122,7 @@ function ConfirmDemo() {
     <div class="form-group col-md-6	">       
        <label for="ddlLibro">Libro</label>      
        <select id="ddlLibro" name="ddlLibro" class="form-control">
-       <option selected>Seleccione...</option>
+       <option value=" " selected>Seleccione...</option>
        
        <c:forEach items="${listaLibros}" var="item">
        
@@ -97,7 +135,7 @@ function ConfirmDemo() {
     <div class="form-group col-md-6	">    
       <label for="ddlEstado">Estado</label>      
        <select id="ddlEstado" name="ddlEstado" class="form-control">
-	        <option selected>Seleccione...</option>
+	        <option value="-1" selected>Seleccione...</option>
 	        <option value="0">En biblioteca</option>
 	        <option value="1">Prestado</option>
        </select> 
@@ -109,7 +147,8 @@ function ConfirmDemo() {
         	  <input type="text" id="txtFecha" name="txtFecha" class="form-control datepicker" value="${date}" disabled>
         </div>       
    </div> 
-  <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>
+  <button type="submit" class="btn btn-primary" onclick="ConfirmarAgregar()" >Agregar</button>
+  <input type="hidden" id="txtAgregar" name="txtAgregar" class="form-control" value="no">
   </form>
 </div>  
  </div>
