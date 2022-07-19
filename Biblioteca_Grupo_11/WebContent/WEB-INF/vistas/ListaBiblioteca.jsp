@@ -21,6 +21,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Filtros de Tabla -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
@@ -36,17 +38,33 @@
 
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
-			function ConfirmDemo(){
-				//Ingresamos un mensaje a mostrar
-				var mensaje = confirm("Confirma");
-				//Detectamos si el usuario acepto el mensaje
-				if (mensaje) {
-				alert("Se ha dado de alta corectamente al Alumno Legajo N");
-				}//Detectamos si el usuario denegó el mensaje
-				else {
-					alert("¡No se ha dado de alta al alumno!");
-				}
-			 }
+
+			function confirmarEliminar(form){
+				
+				Swal.fire({
+					  title: 'Estas seguro?',
+					  text: "",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Confirmar',
+					  cancelButtonText: 'Cancelar'
+					}).then(function(result){
+						
+					  if (result.value) {
+						var elem = document.getElementById("confirmarEliminar");
+						elem.value = "si";
+						form.action = "EliminarBiblioteca.html";
+						return true;	
+					  }
+					});
+				
+				return false;
+					
+			}
+			
+			
 			function MsjCerrarSesion(){
 				//Ingresamos un mensaje a mostrar
 				var mensaje = confirm("Realmente desea cerrar la sesion?");
@@ -63,23 +81,73 @@
 			 
 				 if('${mostrarMensaje}'){
 				 
-				 	if('${Agrego}' == "si"){
+					if('${accion}' == "agregar"){
+						
+						if('${Agrego}' == "si"){
+						 	
+					 		Swal.fire(
+							  'Exito!',
+							  'Se agrego correctamente una biblioteca del libro ' + '${Libro}',
+							  'success'
+							)
+					 		
+					 	}
+					
+					 	else{
+					 	
+							Swal.fire(
+							  'Error!',
+							  'No se pudo agregar la nueva biblioteca',
+							  'error',
+							)				 	
+					 	}
+					
+					}
+					else if('${accion}' == "editar"){
+						
+						if('${Edito}' == "si"){
+						 	
+					 		Swal.fire(
+							  'Exito!',
+							  'Se edito correctamente la biblioteca con ID: ' + '${Biblioteca}',
+							  'success'
+							)
+					 		
+					 	}
+						
+					 	else{
+					 	
+							Swal.fire(
+							  'Error!',
+							  'No se pudo editar la biblioteca',
+							  'error',
+							)				 	
+					 	}
+					}
+					else{
+						
+						if('${Elimino}' == "si"){
+						 	
+					 		Swal.fire(
+							  'Exito!',
+							  'Se elimino correctamente la biblioteca con ID: ' + '${Biblioteca}',
+							  'success'
+							)
+					 		
+					 	}
+						
+					 	else{
+					 	
+							Swal.fire(
+							  'Error!',
+							  'No se pudo eliminar la biblioteca',
+							  'error',
+							)				 	
+					 	}
+					}
+					 
+					 
 				 	
-				 		Swal.fire(
-						  'Exito!',
-						  'Se agrego correctamente una biblioteca del libro ' + '${Libro}',
-						  'success'
-						)
-				 		
-				 	}
-				 	else{
-				 	
-						Swal.fire(
-						  'Error!',
-						  'No se pudo agregar la nueva biblioteca',
-						  'error',
-						)				 	
-				 	}
 					 	
 				 }
 											 
@@ -108,10 +176,10 @@
 	</div>
 </div>
 
-<div class="parteDer" >
+<div class="parteDer">
     
 	<div class="titulo1">
-		<h1>Administrar Libros </h1>
+		<h1>Administrar Bibliotecas </h1>
 	</div>
 	 
 	  <form action = "Redireccionar_BibliotecaAlta.html" method="get">	
@@ -119,7 +187,7 @@
 	</form> 
 	 <!-- <a href="Redireccionar_index.html" class="btn btn-dark botonAlta" role="button"> Nuevo Cliente</a>
 	 -->
-		<table class="table table-dark" id="TdWithFilter" >
+		<table class="table table-dark" id="TdWithFilter" style="text-align:center" >
 	  <thead>
 	    <tr>
 	      <th scope="col">Editar</th>
@@ -130,21 +198,43 @@
 	      <th scope="col">Estado</th>
 	    </tr>
 	  </thead>
-	  <tbody>
+	  <tbody style="text-align:center">
 	  <c:forEach items="${listaBibliotecas}" var="item">
 	  
 	    <tr>
 	       <!-- <td><a class="btn btn-primary" href="#" role="button">Editar</a></td> -->
-	      <td>
-		      <form action = "Redireccionar_EdicionBiblioteca.html" method="get">	
-				<input type="submit" value="Editar" name="btnConfirmar"  class="btn btn-primary" ><br>
+	      <td style="text-align:center">
+		      <form action = "Redireccionar_EditarBiblioteca.html" method="post">	
+					<button type="submit" name="btnConfirmar"  class="btn btn-primary" >
+						<i class="fa fa-edit"></i>
+					</button>
+					<input type="hidden" id="txtEditar" name="txtEditar" class="form-control" value="${item[1].id}">
 			  </form> 
 	      </td>
-	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
-	     <td>${item[1].id}</td>
-	     <td>${item[0].titulo}</td>
-  			<td>${item[1].fecha_alta}</td>
-  			<td>${item[1].estado}</td>
+	      <td style="text-align:center">
+		      <form action = "EliminarBiblioteca.html" method="post" onsubmit="return confirmarEliminar(this)"> 
+			      	<button type="submit" class="btn btn-danger">
+						<i class="fa fa-close"></i>
+				  	</button>
+				  	<input type="hidden" id="txtEliminar" name="txtEliminar" class="form-control" value="${item[1].id}">
+				  	<input type="hidden" id="confirmarEliminar" name="confirmarEliminar" class="form-control" value="no">
+			  </form>
+		  </td>
+	     <td style="text-align:center">${item[1].id}</td>
+	     <td style="text-align:center">${item[0].titulo}</td>
+  			<td style="text-align:center">${item[1].fecha_alta}</td>
+  			<td style="text-align:center">
+  			
+  			<c:choose>
+			    <c:when test= "${item[1].estado eq 0}">
+			        En biblioteca 
+			    </c:when>    
+			    <c:otherwise>
+			        Prestado 
+			    </c:otherwise>
+			</c:choose>
+  
+  			</td>
 	    </tr>
 	    
 	</c:forEach>

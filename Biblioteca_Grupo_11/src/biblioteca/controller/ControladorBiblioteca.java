@@ -2,12 +2,14 @@ package biblioteca.controller;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Cliente;
 import biblioteca.entidad.Libro;
 import biblioteca.entidad.Nacionalidad;
@@ -28,11 +30,14 @@ public class ControladorBiblioteca {
 			return MV;
 		}
 	 
-	 @RequestMapping("Redireccionar_EdicionBiblioteca.html")
-		public ModelAndView eventoRedireccionarEdicionBiblioteca()
+	 @RequestMapping("Redireccionar_EditarBiblioteca.html")
+		public ModelAndView eventoRedireccionarEdicionBiblioteca(String txtEditar)
 		{			
 			ModelAndView MV = new ModelAndView();
-			MV.setViewName("BibliotecaAlta");
+			
+			MV.addObject("biblioteca", bneg.ObtenerBibliotecaPorId(txtEditar));
+			MV.addObject("listaLibros", bneg.ObtenerLibros());
+			MV.setViewName("EditarBiblioteca");
 			return MV;
 		}
 	 
@@ -43,7 +48,7 @@ public class ControladorBiblioteca {
 					ModelAndView MV = new ModelAndView();
 					String agrego= "no";
 				
-					if(ddlLibro != " " && Integer.parseInt(ddlEstado) != -1) {
+					if(ddlLibro != null && Integer.parseInt(ddlEstado) != -1) {
 						
 																		
 						if(bneg.AltaBiblioteca(ddlLibro, LocalDate.now().toString(), Integer.parseInt(ddlEstado))) {
@@ -60,10 +65,85 @@ public class ControladorBiblioteca {
 					
 					MV.setViewName("ListaBiblioteca");
 					MV.addObject("mostrarMensaje", true);
+					MV.addObject("accion", "agregar");
 					MV.addObject("Agrego", agrego);
 					MV.addObject("listaBibliotecas", bneg.ObtenerBibliotecas());
 					MV.setViewName("ListaBiblioteca");
 					return MV;
+					
+			}catch(Exception ex) {
+					
+				    System.out.println("Error: "+ ex.toString());
+				    return null;
+			}
+		    	
+		}
+	 
+	 @RequestMapping("EditarBiblioteca.html")
+		public ModelAndView eventoEditarBiblioteca(String ddlLibro, String ddlEstado, String txtVolver, String txtFecha, String txtId)
+		{
+			try {
+					ModelAndView MV = new ModelAndView();
+					String edito= "no";
+				
+					if(ddlLibro != null && Integer.parseInt(ddlEstado) != -1) {
+						
+																		
+						if(bneg.EditarBiblioteca(txtId, ddlLibro, txtFecha, Integer.parseInt(ddlEstado))) {
+							
+							Object[] obj = bneg.ObtenerBibliotecaPorId(txtId);
+							Biblioteca bib = (Biblioteca)obj[1];
+							MV.addObject("Biblioteca", bib.getId());
+							edito = "si";
+							
+						}
+					}
+					
+					
+					
+					
+					MV.setViewName("ListaBiblioteca");
+					MV.addObject("mostrarMensaje", true);
+					MV.addObject("accion", "editar");
+					MV.addObject("Edito", edito);
+					MV.addObject("listaBibliotecas", bneg.ObtenerBibliotecas());
+					MV.setViewName("ListaBiblioteca");
+					return MV;
+					
+			}catch(Exception ex) {
+					
+				    System.out.println("Error: "+ ex.toString());
+				    return null;
+			}
+		    	
+		}
+	 
+	 @RequestMapping("EliminarBiblioteca.html")
+		public ModelAndView eventoEliminarBiblioteca(String txtEliminar, String confirmarEliminar)
+		{
+			try {
+					ModelAndView MV = new ModelAndView();
+					String elimino= "no";
+						
+					//if(confirmarEliminar == "si") {
+						
+						if(bneg.EliminarBiblioteca(txtEliminar)) {
+
+							MV.addObject("Biblioteca", txtEliminar);
+							elimino = "si";
+							
+						}					
+						
+					//}
+				
+					MV.setViewName("ListaBiblioteca");
+					MV.addObject("mostrarMensaje", true);
+					MV.addObject("accion", "eliminar");
+					MV.addObject("Elimino", elimino);
+					MV.addObject("listaBibliotecas", bneg.ObtenerBibliotecas());
+					MV.setViewName("ListaBiblioteca");
+					return MV;
+					
 					
 			}catch(Exception ex) {
 					

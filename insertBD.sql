@@ -36,6 +36,42 @@ curdate(),
 'Titanic',
 1);
 
+INSERT INTO `biblioteca_grupo_11`.`libros`
+(`ISBN`,
+`cantidad_paginas`,
+`descripcion`,
+`fecha_lanzamiento`,
+`idioma`,
+`titulo`,
+`idAutor`)
+VALUES
+('HRRY_111',
+100,
+'MAgo',
+curdate(),
+'Espaniol',
+'Harry Potter 1',
+1);
+
+INSERT INTO `biblioteca_grupo_11`.`libros`
+(`ISBN`,
+`cantidad_paginas`,
+`descripcion`,
+`fecha_lanzamiento`,
+`idioma`,
+`titulo`,
+`idAutor`)
+VALUES
+('HRRY_222',
+100,
+'MAgo',
+curdate(),
+'Espaniol',
+'Harry Potter 2',
+1);
+
+
+
 
 INSERT INTO `biblioteca_grupo_11`.`bibliotecas`
 (`id`,

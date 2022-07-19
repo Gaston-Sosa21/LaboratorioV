@@ -58,6 +58,89 @@ public class daoBiblioteca {
 
 	 }
 	
+	public Boolean ModificarBiblioteca(String id, String ISBN, String FechaAlta, int Estado) {
+		
+		try {
+			
+			SessionFactory sessionFactory;
+	    	
+	    	 Configuration configuration = new Configuration();
+	    	 configuration.configure();	
+	    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	    	 Session session = sessionFactory.openSession();
+	 
+		     session.beginTransaction();
+		     
+		     
+		     Object[] obj = BuscarBiblioteca(id);
+		     Libro lib = BuscarLibro(ISBN);
+		     Biblioteca bbta = (Biblioteca)obj[1];
+		     
+		     
+		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
+		     bbta.setEstado(Estado);
+		     
+		     
+		     ArrayList<Biblioteca> lb= new ArrayList<Biblioteca>();
+		     lb.add(bbta);
+		
+		     lib.setBiblioteca(lb);
+		     
+		     session.update(lib);
+		
+		     session.getTransaction().commit();
+		     
+		     session.close();
+		     
+		     return true;
+		     
+		}
+		
+		catch(Exception e) {
+			System.out.println("Error: " + e.toString());
+			return false;
+		}
+		 
+
+	 }
+	
+	public Boolean EliminarBiblioteca(String id) {
+		
+		try {
+			
+			SessionFactory sessionFactory;
+	    	
+	    	 Configuration configuration = new Configuration();
+	    	 configuration.configure();	
+	    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	    	 Session session = sessionFactory.openSession();
+	 
+		     session.beginTransaction();
+		     
+		     
+		     Object[] obj = BuscarBiblioteca(id);
+		     Biblioteca bbta = (Biblioteca)obj[1];
+
+		     session.delete(bbta);
+		
+		     session.getTransaction().commit();
+		     
+		     session.close();
+		     
+		     return true;
+		     
+		}
+		
+		catch(Exception e) {
+			System.out.println("Error: " + e.toString());
+			return false;
+		}
+		 
+
+	 }
+	
 	
 	public List<Object[]> ListarBibliotecas() {
 		 
@@ -114,5 +197,24 @@ public class daoBiblioteca {
 	     session.close();
 	     
 	     return lib;
+	 }
+	
+	public Object[] BuscarBiblioteca(String id) {
+		 
+		 SessionFactory sessionFactory;
+ 	
+	   	 Configuration configuration = new Configuration();
+	   	 configuration.configure();	
+	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	   	 Session session = sessionFactory.openSession();
+
+	     session.beginTransaction();
+	     
+	     Object[] listaObject = (Object[])session.createQuery("FROM Libro l inner join l.biblioteca b where b.id = '" + id + "'").uniqueResult();
+	     
+	     session.close();
+	     
+	     return listaObject;
 	 }
 }

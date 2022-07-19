@@ -26,6 +26,38 @@ public class NegocioBiblioteca {
 			return false;
 		}
 	}
+	
+	public Boolean EditarBiblioteca(String id, String ISBN, String FechaAlta, int Estado) {
+		
+		try {
+			
+		    
+		    
+			return bdao.ModificarBiblioteca(id, ISBN, FechaAlta, Estado);
+		   
+			
+		}catch(Exception ex){
+			
+			System.out.println("Error: " + ex.toString());
+			return false;
+		}
+	}
+	
+	public Boolean EliminarBiblioteca(String id) {
+		
+		try {
+			
+		    
+		    
+			return bdao.EliminarBiblioteca(id);
+		   
+			
+		}catch(Exception ex){
+			
+			System.out.println("Error: " + ex.toString());
+			return false;
+		}
+	}
 		
 	
 	public List<Object[]> ObtenerBibliotecas(){
@@ -68,5 +100,19 @@ public class NegocioBiblioteca {
 			
 			return null;
 		}
-}
+	}
+	
+	public Object[] ObtenerBibliotecaPorId(String id){
+		
+		try {
+			
+			return bdao.BuscarBiblioteca(id);
+		}
+		catch(Exception e) {
+			
+			System.out.println("Error: " + e.toString());
+			
+			return null;
+		}
+	}
 }

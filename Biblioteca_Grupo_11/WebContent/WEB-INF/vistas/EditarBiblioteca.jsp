@@ -113,41 +113,67 @@ function confirmarAgregar(){
 	
 </form>
 
-<form action="AltaBiblioteca.html" method="post" >
+<form action="EditarBiblioteca.html" method="post" >
 		
-<h3>Agregar biblioteca:</h3>
+<h3>Editar biblioteca:</h3>
   <div class="form-row">
-
+  
+	<div class="form-group col-md-6">
+        	  <label for="txtId">ID</label>
+        	  <input type="text" id="txtId" name="txtId" class="form-control" value="${biblioteca[1].id}" readonly>
+    </div>
    
     <div class="form-group col-md-6	">       
        <label for="ddlLibro">Libro</label>      
        <select id="ddlLibro" name="ddlLibro" class="form-control">
-       <option disabled selected value=null>Seleccione...</option>
+       <option value=null disabled>Seleccione...</option>
        
        <c:forEach items="${listaLibros}" var="item">
-       
-	        <option value="${item.ISBN}">${item.titulo}</option>
+       	<c:choose>
+       		<c:when test="${item.ISBN eq biblioteca[0].ISBN}">
+	    
+	        	<option value="${item.ISBN}" selected>${item.titulo}</option>
 	        
+	    	</c:when>
+	    	<c:otherwise>
+                <option value="${item.ISBN}">${item.titulo}</option>
+            </c:otherwise>
+	    
+	       </c:choose>   
 		</c:forEach>
 	   </select>   
     </div> 
      
-    <div class="form-group col-md-6	">    
-      <label for="ddlEstado">Estado</label>      
-       <select id="ddlEstado" name="ddlEstado" class="form-control">
-	        <option value="-1" disabled selected>Seleccione...</option>
-	        <option value="0">En biblioteca</option>
-	        <option value="1">Prestado</option>
-       </select> 
-    </div>       
+      
   </div><!-- END DIV -->
   <div class="form-row">
+  
+	  <div class="form-group col-md-6	">    
+	      <label for="ddlEstado">Estado</label>      
+	       <select id="ddlEstado" name="ddlEstado" class="form-control">
+		        <option value="-1" disabled selected>Seleccione...</option>
+		        
+		        <c:choose>
+		       		<c:when test="${biblioteca[1].estado eq 0}">
+			    
+			        	<option value="0" selected>En biblioteca</option>
+			        	<option value="1" >Prestado</option>
+			    	</c:when>
+			    	<c:otherwise>
+			    		<option value="0">En biblioteca</option>
+		                <option value="1" selected>Prestado</option>
+		            </c:otherwise>
+	    
+	       		</c:choose>   
+	       </select> 
+	    </div>    
+	     
 		<div class="form-group col-md-6">
         	  <label for="fechaNacimiento">Fecha de Alta</label>
-        	  <input type="text" id="txtFecha" name="txtFecha" class="form-control datepicker" value="${date}" disabled>
+        	  <input type="date" id="txtFecha" name="txtFecha" class="form-control" value="${biblioteca[1].fecha_alta}">
         </div>       
    </div> 
-  <button type="submit" class="btn btn-primary" onclick="ConfirmarAgregar()" >Agregar</button>
+  <button type="submit" class="btn btn-primary" onclick="ConfirmarAgregar()" >Confirmar</button>
   <input type="hidden" id="txtAgregar" name="txtAgregar" class="form-control" value="no">
   </form>
 </div>  
