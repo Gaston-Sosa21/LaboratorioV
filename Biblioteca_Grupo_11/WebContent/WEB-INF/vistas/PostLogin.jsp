@@ -40,7 +40,7 @@
 
 
 <footer class="footerIndex">
-	<p>Ricardo Recofsky - Gastón Sosa - Francisco Madoery - Santiago Daniel Ros</p>
+	<p>Ricardo Recofsky - Gastón Sosa - Francisco Madoery - Marcos Zone</p>
 	<p>© LAB V 2022 | Carrera TUSI - UTN FRGP | Desarrollado por alumnos UTN FRGP.</p>
 </footer>
 

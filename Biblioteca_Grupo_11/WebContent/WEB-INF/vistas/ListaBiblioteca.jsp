@@ -38,9 +38,10 @@
 
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
-
-			function confirmarEliminar(form){
-				
+			
+			function confirmarEliminar2(){
+				event.preventDefault(); // prevent form submit
+		        var form = event.target.form;
 				Swal.fire({
 					  title: 'Estas seguro?',
 					  text: "",
@@ -53,28 +54,38 @@
 					}).then(function(result){
 						
 					  if (result.value) {
-						var elem = document.getElementById("confirmarEliminar");
-						elem.value = "si";
-						form.action = "EliminarBiblioteca.html";
-						return true;	
+						//var elem = document.getElementById("confirmarEliminar");
+						//elem.value = "si";
+						//console.log(elem.value);
+						form.submit();
+						
 					  }
 					});
-				
-				return false;
 					
 			}
 			
-			
 			function MsjCerrarSesion(){
-				//Ingresamos un mensaje a mostrar
-				var mensaje = confirm("Realmente desea cerrar la sesion?");
-				//Detectamos si el usuario acepto el mensaje
-				if (mensaje) {
-				alert("Se cerrado la sesion correctamente");
-				}//Detectamos si el usuario denegó el mensaje
-				else {
-					alert("No se ha podido cerrar la sesion");
-				}
+				event.preventDefault(); // prevent form submit
+		        var form = event.target.form;
+				Swal.fire({
+					  title: 'Estas seguro?',
+					  text: "",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Confirmar',
+					  cancelButtonText: 'Cancelar'
+					}).then(function(result){
+						
+					  if (result.value) {
+						//var elem = document.getElementById("confirmarEliminar");
+						//elem.value = "si";
+						//console.log(elem.value);
+						form.submit();
+						
+					  }
+					});
 			 }
 			 
 			 function mostrarMensaje (){
@@ -212,8 +223,8 @@
 			  </form> 
 	      </td>
 	      <td style="text-align:center">
-		      <form action = "EliminarBiblioteca.html" method="post" onsubmit="return confirmarEliminar(this)"> 
-			      	<button type="submit" class="btn btn-danger">
+		      <form action = "EliminarBiblioteca.html" method="post"> 
+			      	<button type="submit" class="btn btn-danger" onclick="confirmarEliminar2()">
 						<i class="fa fa-close"></i>
 				  	</button>
 				  	<input type="hidden" id="txtEliminar" name="txtEliminar" class="form-control" value="${item[1].id}">

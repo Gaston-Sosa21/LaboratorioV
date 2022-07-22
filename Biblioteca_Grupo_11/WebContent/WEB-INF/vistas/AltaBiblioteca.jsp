@@ -33,51 +33,55 @@
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
 
-function confirmarVolver(){
-	
-	Swal.fire({
-		  title: 'Estas seguro?',
-		  text: "",
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Confirmar',
-		  cancelButtonText: 'Cancelar'
-		}).then(function(result){
+		function confirmarVolver(){
 			
-		  if (result.value) {
-			var elem = document.getElementById("txtVolver");
-			elem.value = "si";
+			event.preventDefault(); // prevent form submit
+	        var form = event.target.form;
+			Swal.fire({
+				  title: 'Estas seguro?',
+				  text: "",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Confirmar',
+				  cancelButtonText: 'Cancelar'
+				}).then(function(result){
+					
+				  if (result.value) {
+					var elem = document.getElementById("txtVolver");
+					elem.value = "si";
+					form.submit();
+				  }
+				});
 			
-		  }
-		});
-	
+				
+		}
 		
-}
-
-function confirmarAgregar(){
-	
-	Swal.fire({
-		  title: 'Estas seguro?',
-		  text: "",
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Confirmar',
-		  cancelButtonText: 'Cancelar'
-		}).then(function(result){
+		function confirmarAgregar(){
 			
-		  if (result.value) {
-			var elem = document.getElementById("txtAgregar");
-			elem.value = "si";
+			event.preventDefault(); // prevent form submit
+	        var form = event.target.form;
+			Swal.fire({
+				  title: 'Estas seguro?',
+				  text: "",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Confirmar',
+				  cancelButtonText: 'Cancelar'
+				}).then(function(result){
+					
+				  if (result.value) {
+					var elem = document.getElementById("txtAgregar");
+					elem.value = "si";
+					form.submit();
+				  }
+				});
 			
-		  }
-		});
-	
-		
-}
+				
+		}
 
 </script>
 
@@ -147,7 +151,7 @@ function confirmarAgregar(){
         	  <input type="text" id="txtFecha" name="txtFecha" class="form-control datepicker" value="${date}" disabled>
         </div>       
    </div> 
-  <button type="submit" class="btn btn-primary" onclick="ConfirmarAgregar()" >Agregar</button>
+  <button type="submit" class="btn btn-primary" onclick="confirmarAgregar()" >Agregar</button>
   <input type="hidden" id="txtAgregar" name="txtAgregar" class="form-control" value="no">
   </form>
 </div>  

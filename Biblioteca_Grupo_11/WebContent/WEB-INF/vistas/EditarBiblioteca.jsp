@@ -34,7 +34,8 @@
 <script type="text/javascript">
 
 function confirmarVolver(){
-	
+	event.preventDefault(); // prevent form submit
+    var form = event.target.form;
 	Swal.fire({
 		  title: 'Estas seguro?',
 		  text: "",
@@ -49,15 +50,16 @@ function confirmarVolver(){
 		  if (result.value) {
 			var elem = document.getElementById("txtVolver");
 			elem.value = "si";
-			
+			form.submit();
 		  }
 		});
 	
 		
 }
 
-function confirmarAgregar(){
-	
+function confirmarEditar(){
+	event.preventDefault(); // prevent form submit
+    var form = event.target.form;
 	Swal.fire({
 		  title: 'Estas seguro?',
 		  text: "",
@@ -72,7 +74,7 @@ function confirmarAgregar(){
 		  if (result.value) {
 			var elem = document.getElementById("txtAgregar");
 			elem.value = "si";
-			
+			form.submit();
 		  }
 		});
 	
@@ -173,7 +175,7 @@ function confirmarAgregar(){
         	  <input type="date" id="txtFecha" name="txtFecha" class="form-control" value="${biblioteca[1].fecha_alta}">
         </div>       
    </div> 
-  <button type="submit" class="btn btn-primary" onclick="ConfirmarAgregar()" >Confirmar</button>
+  <button type="submit" class="btn btn-primary" onclick="confirmarEditar()" >Confirmar</button>
   <input type="hidden" id="txtAgregar" name="txtAgregar" class="form-control" value="no">
   </form>
 </div>  
