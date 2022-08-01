@@ -53,6 +53,14 @@ public class Prestamo implements Serializable{
 				this.cantidad_dias = cantidad_dias;
 				this.cliente = cliente;
 			}
+			
+			public Prestamo( Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias,	Cliente cliente) {
+				super();
+				this.biblioteca = biblioteca;
+				this.fecha_prestamo = fecha_prestamo;
+				this.cantidad_dias = cantidad_dias;
+				this.cliente = cliente;
+			}
 
 			public int getId() {
 				return id;

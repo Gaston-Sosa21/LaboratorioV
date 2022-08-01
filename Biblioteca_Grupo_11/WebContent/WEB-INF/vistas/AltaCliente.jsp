@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -84,8 +85,10 @@
   <div class="form-row">
   				<div class="form-group col-md-6">
                 <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label">
-           		
+                <input type="date" name="date4" class="form-control datepicker" aria-labelledby="date4-label"
+                  min="01-01-1912"
+           		 required>
+           		<input type="hidden" id="timezone" name="timezone" value="-03:00">
    </div>
             
 		   <div class="form-group col-md-6">
@@ -103,17 +106,17 @@
       <div class="form-group col-md-6">
       <label for="inputNacionalidad">Nacionalidad</label>
       <select id="inputNacionalidad" class="form-control" name="txtNacionalidad">
-        <option selected>Seleccione...</option>
-        <option>...</option>
+        <c:forEach items="${listaNacionalidades}" var="item">
+       
+	        <option value="${item.descripcion}">${item.descripcion}</option>
+	        
+		</c:forEach>
       </select>
       </div>
       
       <div class="form-group col-md-6">
-      <label for="inputProvincia">Localidad</label>
-      <select id="inputProvincia" class="form-control" name="txtLocalidad">
-        <option selected>Seleccione...</option>
-        <option>...</option>
-      </select>
+      <label for="inputLocalidad">Localidad</label>
+    <input type="text" class="form-control" id="inputDirecccion" placeholder="" name="txtLocalidad">
       </div>
     
     </div>

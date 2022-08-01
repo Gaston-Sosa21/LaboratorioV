@@ -1,7 +1,10 @@
 package biblioteca.negocio;
 
+import java.util.List;
+
 import biblioteca.dao.daoCliente;
 import biblioteca.entidad.Cliente;
+
 
 public class NegocioCliente {
 
@@ -19,11 +22,21 @@ public class NegocioCliente {
 			System.out.println("Error: " + ex.toString());
 			return 0;
 		}
-
-		
 	}
 	
-	
+	public List<Cliente> ObtenerClientes(){
+		
+		try {
+			
+			return dc.ListarClientes();
+		}
+		catch(Exception e) {
+			
+			System.out.println("Error: " + e.toString());
+			
+			return null;
+		}
+}
 	
 	
 }
