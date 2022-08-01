@@ -107,10 +107,18 @@
   <div class="form-row">
   				<div class="form-group col-md-6">
                 <label for="fechaNacimiento">Fecha de Nacimiento</label>
+
                 <input type="date" name="txtFecha" id="txtFecha" class="form-control datepicker"  value="${DatosCliente.fecha_nacimiento}">
            		       
        </div>    
          
+
+                <input type="date" name="date4" class="form-control datepicker" aria-labelledby="date4-label"
+                  min="01-01-1912"
+           		 required>
+           		<input type="hidden" id="timezone" name="timezone" value="-03:00">
+   </div>
+
 		   <div class="form-group col-md-6">
 		     <label for="inputDni">DNI</label>
 		     <input type="text" class="form-control" id="inputDni" name="txtDni" maxlength="8" onkeypress="return valideKey(event);" value="${DatosCliente.dni}">
@@ -144,6 +152,7 @@
     </div> 
     
       <div class="form-group col-md-6">
+
       <label for="inputLocalidad">Localidad</label>
       <select id="inputLocalidad" class="form-control" name="txtLocalidad" >
       <option value="-1" disabled selected>Seleccione...</option>
@@ -161,6 +170,21 @@
 		</c:forEach>
         
       </select>
+
+      <label for="inputNacionalidad">Nacionalidad</label>
+      <select id="inputNacionalidad" class="form-control" name="txtNacionalidad">
+        <c:forEach items="${listaNacionalidades}" var="item">
+       
+	        <option value="${item.descripcion}">${item.descripcion}</option>
+	        
+		</c:forEach>
+      </select>
+      </div>
+      
+      <div class="form-group col-md-6">
+      <label for="inputLocalidad">Localidad</label>
+    <input type="text" class="form-control" id="inputDirecccion" placeholder="" name="txtLocalidad">
+
       </div>
    </div>
     
@@ -179,11 +203,7 @@
  </form>
   
     </div>
-    
-
-	
-
-
+ 
 
 </body>
 </html>

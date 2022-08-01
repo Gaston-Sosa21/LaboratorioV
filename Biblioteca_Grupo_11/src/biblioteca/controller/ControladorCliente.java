@@ -1,5 +1,8 @@
 package biblioteca.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,20 +11,27 @@ import org.springframework.web.servlet.ModelAndView;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
 import biblioteca.negocio.NegocioCliente;
+import biblioteca.negocio.NegocioNacionalidad;
 
 @Controller
 public class ControladorCliente {
 
 	NegocioCliente nc = new NegocioCliente();
+	NegocioNacionalidad nNac = new NegocioNacionalidad();
 	
 	/* ********************* REDIRECCIONES CLIENTE *********************** */
 	 
 	 @RequestMapping("Redireccionar_ClienteAlta.html")
 		public ModelAndView eventoRedireccionarClienteAlta()
 		{			
+
 			ModelAndView MV = new ModelAndView();	
 			MV.addObject("ListaNacionalidades",nc.ListaNacionalidades());
 			MV.addObject("ListarLocalidadaes",nc.ListaLocalidades());
+
+			ModelAndView MV = new ModelAndView();
+			MV.addObject("listaNacionalidades", nNac.ObtenerNacionalidades());
+
 			MV.setViewName("AltaCliente");
 			return MV;
 		}
@@ -59,6 +69,7 @@ public class ControladorCliente {
 
 				String dato = "Ok";// nc.ValidarDatos(txtFecha.toString(), txtDni.toString(),txtMail.toString(),txtTelefono.toString());
 				
+
 				if(dato!="Ok") {
 					Mensaje="Error! "+ dato;
 					System.out.println(Mensaje);
@@ -68,12 +79,29 @@ public class ControladorCliente {
 	
 				System.out.println("Recibí el id: "+IdCliente);
 				System.out.println("Nacionalidad : "+txtNacionalidad);
+
+				Cliente cl = new Cliente();				
+
+				//FORMATEAR FECHA PAR LA CARGA		
+				date4 += "T00:00";
+				SimpleDateFormat sd =  new SimpleDateFormat("yyyy-MM-dd");	
+				java.util.Date d = sd.parse(date4); 				
+				SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ",Locale.ENGLISH);
+				String str_f_nac = outputDateFormat.format(d);
+				java.util.Date f_nac = sd.parse(str_f_nac); 
+				
+
 				Nacionalidad nacionalidad = new Nacionalidad();
 
 				cl.setNombres(txtNombre.toString());
 				cl.setApellidos(txtApellido.toString());
 				cl.setDni(Integer.parseInt(txtDni));
+
 				cl.setFecha_nacimiento(java.sql.Date.valueOf(txtFecha.toString()));
+				
+				cl.setFecha_nacimiento(f_nac);
+				
+
 				cl.setDireccion(txtDireccion);
 		    	
 				String NombreNacionalidad = nc.BuscarNacionalidad(txtNacionalidad);

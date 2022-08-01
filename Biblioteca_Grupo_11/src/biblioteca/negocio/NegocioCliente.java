@@ -1,11 +1,14 @@
 package biblioteca.negocio;
 
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 import biblioteca.dao.daoCliente;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
+
 
 public class NegocioCliente {
 
@@ -22,6 +25,7 @@ public class NegocioCliente {
 				
 			System.out.println("Error: " + ex.toString());
 			return 0;
+
 		}	
 	}
 	
@@ -38,6 +42,24 @@ public class NegocioCliente {
 			return null;
 		}
 	}
+
+		}
+	}
+	
+	public List<Cliente> ObtenerClientes(){
+		
+		try {
+			
+			return dc.ListarClientes();
+		}
+		catch(Exception e) {
+			
+			System.out.println("Error: " + e.toString());
+			
+			return null;
+		}
+}
+
 	
 	public Clientes ObtenerClientePorID(String ID)
 	{

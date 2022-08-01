@@ -9,8 +9,13 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
+
+import biblioteca.entidad.Cliente;
+import biblioteca.entidad.Libro;
+
 import biblioteca.dao.daoHibernate;
 
 import biblioteca.entidad.Nacionalidad;
@@ -49,6 +54,7 @@ public class daoCliente {
 		
 	 }
 	
+
 
 	public List<Object[]> ListarClientes() {
 		
@@ -207,4 +213,24 @@ public class daoCliente {
 	}
 	
 
+
+	public List<Cliente> ListarClientes() {
+		 
+		 SessionFactory sessionFactory;
+  	
+	   	 Configuration configuration = new Configuration();
+	   	 configuration.configure();	
+	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	   	 Session session = sessionFactory.openSession();
+
+	     session.beginTransaction();
+	     
+	     List<Cliente> listaClientes = (List<Cliente>)session.createQuery("FROM Cliente l").list();
+	     
+	     session.close();
+	     
+	     return listaClientes;
+	 }
+	
 }

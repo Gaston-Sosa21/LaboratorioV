@@ -219,17 +219,9 @@ public class AppBiblioteca
     	System.out.println(bib);
   
     	daoHibernate.DeleteBiblioteca(biblioteca6,listaBibliotecas4,session);
-
     	
     	
-    	
-    	
-    	
-    	
-    	
-    	
-    	session.close();
-    	
+    	session.close();    	
     	sessionFactory.close(); 
 
 
