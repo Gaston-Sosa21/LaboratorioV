@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -74,44 +73,29 @@
   <div class="form-row">
    
     <div class="form-group col-md-6	">       
-       <label for="ddlLibro">Libro</label>      
-       <select id="ddlLibro" name="ddlLibro" class="form-control">
-       <option disabled selected value=null>Seleccione...</option>
-       
-       <c:forEach items="${listaLibros}" var="item">
-       
-	        <option value="${item.ISBN}">${item.titulo}</option>
-	        
-		</c:forEach>
-	   </select>   
+      <label for="txtCantidad">Libro</label>      
+      <input type="text" class="form-control" name="txtCantidad">  
     </div> 
     
     <div class="form-group col-md-6">
         	  <label for="fechaNacimiento">Fecha de Alta</label>
-        	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label" value="${date}" disabled>
-    </div>      
-       
+        	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label" value="05/07/2022 20:30" disabled>
+    </div>           
           
   </div><!-- END DIV -->
   <div class="form-row">
-  
 	  <div class="form-group col-md-6	">       
 	      <label for="txtCantidad">Cantidad de Dias</label>      
 	      <input type="text" class="form-control" name="txtCantidad">  
 	    </div>
-	    
-	  <div class="form-group col-md-6	">    
+		 <div class="form-group col-md-6	">    
           <label for="ddlLibro">Cliente</label>      
             <select id="ddlLibro" class="form-control">
 	        <option selected>Seleccione...</option>
-	        
-	         <c:forEach items="${listaClientes}" var="item">       
-	        <option value="${item.Id}">${item.Nombre}</option>
-	        
-		</c:forEach>
+	        <option>Jose Larralde</option>
+	        <option>Marcelo Peralta</option>
        </select> 
     </div> 
-    
    </div> 
   <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>
   </form>
