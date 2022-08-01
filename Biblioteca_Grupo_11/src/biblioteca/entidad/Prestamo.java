@@ -37,7 +37,7 @@ public class Prestamo implements Serializable{
 			
 			@ManyToOne(cascade = {CascadeType.ALL})
 			@JoinColumn(name= "idCliente")
-			private Clientes cliente;
+			private Cliente cliente;
 
 			public Prestamo() {
 				super();
@@ -45,7 +45,7 @@ public class Prestamo implements Serializable{
 			}
 
 			public Prestamo(int id, Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias,
-					Clientes cliente) {
+					Cliente cliente) {
 				super();
 				this.id = id;
 				this.biblioteca = biblioteca;
@@ -86,11 +86,11 @@ public class Prestamo implements Serializable{
 				this.cantidad_dias = cantidad_dias;
 			}
 
-			public Clientes getCliente() {
+			public Cliente getCliente() {
 				return cliente;
 			}
 
-			public void setCliente(Clientes cliente) {
+			public void setCliente(Cliente cliente) {
 				this.cliente = cliente;
 			}
 

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,23 +43,6 @@
 			alert("¡No se ha dado de alta al cliente!");
 			}
 			}
-			
-			function AltaOrModification(){
-				var url = window.location.href;
-
-			}
-			
-		   function valideKey(evt){	    
-			   var code = (evt.which) ? evt.which : evt.keyCode;
-			    
-			  if(code==8) { 
-				  return true;
-	    	  } else if(code>=48 && code<=57) { 
-				   return true;
-	     	 } else{
-				   return false;
-			  }
-			}
 		</script>
 </head>
 <body>
@@ -70,7 +51,6 @@
 		<h2>Administrar: </h2>
 	</div>
 	<div>	
-	<br><br>
 		<ul>
 			<form action = "Redireccionar_ListaClientes.html" method="get">	
 				<input type="submit" value="CLIENTES" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
@@ -89,99 +69,73 @@
 
 
 	 <form action="GuardarCliente.html" method="post">
-	
-	
-  <input type="hidden" id="txtID" class="form-control"  name="IdCliente" value="${DatosCliente.id}">
+		
 	
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNombre">Nombre</label>
-      <input type="nombre" class="form-control" id="inputNombre" name="txtNombre" value="${DatosCliente.nombres}">
+      <input type="nombre" class="form-control" id="inputNombre" name="txtNombre">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Apellido</label>
-      <input type="apellido" class="form-control" id="inputApellido" name="txtApellido" value="${DatosCliente.apellidos}">
+      <input type="apellido" class="form-control" id="inputApellido" name="txtApellido">
     </div>
   </div>
-   
   <div class="form-row">
   				<div class="form-group col-md-6">
                 <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                <input type="date" name="txtFecha" id="txtFecha" class="form-control datepicker"  value="${DatosCliente.fecha_nacimiento}">
-           		       
-       </div>    
-         
+                <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label">
+           		
+   </div>
+            
 		   <div class="form-group col-md-6">
 		     <label for="inputDni">DNI</label>
-		     <input type="text" class="form-control" id="inputDni" name="txtDni" maxlength="8" onkeypress="return valideKey(event);" value="${DatosCliente.dni}">
+		     <input type="text" class="form-control" id="inputDni" name="txtDni">
 		   </div>
 		 </div>
   
   <div class="form-group">
     <label for="inputAddress">Direccion</label>
-    <input type="text" class="form-control" id="inputDirecccion" placeholder="" name="txtDireccion" value="${DatosCliente.direccion}">
+    <input type="text" class="form-control" id="inputDirecccion" placeholder="" name="txtDireccion">
   </div>
   
-  <div>
-  
- 
-           <div class="form-group col-md-6">       
-       <label for="txtNacionalidad">Nacionalidad</label>      
-       <select id="nacionalidad" name="txtNacionalidad" class="form-control">
-       <option value="-1" disabled selected>Seleccione...</option>
-       <c:forEach items="${ListaNacionalidades}" var="item">     
-           <c:choose>
-       		<c:when test="${item.id eq IdNacionalidad}">    
-	        	<option value="${item.id}" selected>${item.descripcion}</option>    
-	    	</c:when>
-	    	<c:otherwise>
-                <option value="${item.id}">${item.descripcion}</option>    
-            </c:otherwise>
-	    
-	       </c:choose>   
-		</c:forEach>
-	   </select>   
-    </div> 
-    
+  <div class="form-row">
       <div class="form-group col-md-6">
-      <label for="inputLocalidad">Localidad</label>
-      <select id="inputLocalidad" class="form-control" name="txtLocalidad" >
-      <option value="-1" disabled selected>Seleccione...</option>
-      
-        <c:forEach items="${ListarLocalidadaes}" var="item">     
-           <c:choose>
-       		<c:when test="${item eq DatosCliente.localidad}">    
-	        	<option selected>${item}</option>    
-	    	</c:when>
-	    	<c:otherwise>
-                <option >${item}</option>    
-            </c:otherwise>
-	    
-	       </c:choose>   
-		</c:forEach>
-        
+      <label for="inputNacionalidad">Nacionalidad</label>
+      <select id="inputNacionalidad" class="form-control" name="txtNacionalidad">
+        <option selected>Seleccione...</option>
+        <option>...</option>
       </select>
       </div>
-   </div>
+      
+      <div class="form-group col-md-6">
+      <label for="inputProvincia">Localidad</label>
+      <select id="inputProvincia" class="form-control" name="txtLocalidad">
+        <option selected>Seleccione...</option>
+        <option>...</option>
+      </select>
+      </div>
     
-      <div class="form-group">
+    </div>
+    
+  <div class="form-group">
     <label for="inputEmail">Email</label>
-    <input type="text" class="form-control" id="inputEmail" placeholder="" name="txtMail" value="${DatosCliente.email}">
+    <input type="text" class="form-control" id="inputEmail" placeholder="" name="txtMail">
   </div>
   
   <div class="form-group">
     <label for="inputTelefono">Telefono</label>
-    <input type="text" class="form-control" id="inputTelefono" placeholder="" maxlength="10" name="txtTelefono" onkeypress="return valideKey(event);" value="${DatosCliente.telefono}">
+    <input type="text" class="form-control" id="inputTelefono" placeholder="" name="txtTelefono">
   </div>
   
+     <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>
   
-       <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Guardar</button>
- </form>
-  
-    </div>
-    
+</form>
+	
+ 
 
 	
+ </div>
 
 
 

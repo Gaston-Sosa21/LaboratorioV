@@ -29,8 +29,7 @@ tr:nth-child(even)
 	.parteIzq
 	{
 	    padding-top: 2em;
-		/*background-color:#408080;*/
-		background-image:linear-gradient(to bottom,#ffab2e 20%, #cc7a00 100%);
+		background-color:#408080;
 		width:23%;
 		height:1000px;
 		float:left
