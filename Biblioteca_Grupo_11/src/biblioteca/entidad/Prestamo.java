@@ -26,8 +26,8 @@ public class Prestamo implements Serializable{
 			private int id;
 			
 			@ManyToOne(cascade = {CascadeType.ALL})
-			@JoinColumn(name= "idBiblioteca")
-			private Biblioteca biblioteca;
+			@JoinColumn(name= "idLibro")
+			private Libro libro;
 			
 			@Column(name ="fecha_prestamo")
 			private java.sql.Date  fecha_prestamo;
@@ -44,19 +44,19 @@ public class Prestamo implements Serializable{
 				// TODO Auto-generated constructor stub
 			}
 
-			public Prestamo(int id, Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias,
+			public Prestamo(int id, Libro libro, Date fecha_prestamo, Integer cantidad_dias,
 					Cliente cliente) {
 				super();
 				this.id = id;
-				this.biblioteca = biblioteca;
+				this.libro = libro;
 				this.fecha_prestamo = fecha_prestamo;
 				this.cantidad_dias = cantidad_dias;
 				this.cliente = cliente;
 			}
 			
-			public Prestamo( Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias,	Cliente cliente) {
+			public Prestamo( Libro libro, Date fecha_prestamo, Integer cantidad_dias,	Cliente cliente) {
 				super();
-				this.biblioteca = biblioteca;
+				this.libro = libro;
 				this.fecha_prestamo = fecha_prestamo;
 				this.cantidad_dias = cantidad_dias;
 				this.cliente = cliente;
@@ -70,12 +70,12 @@ public class Prestamo implements Serializable{
 				this.id = id;
 			}
 
-			public Biblioteca getBiblioteca() {
-				return biblioteca;
+			public Libro getLibro() {
+				return libro;
 			}
 
-			public void setBiblioteca(Biblioteca biblioteca) {
-				this.biblioteca = biblioteca;
+			public void setLibro(Libro libro) {
+				this.libro = libro;
 			}
 
 			public java.sql.Date getFecha_prestamo() {
@@ -108,7 +108,7 @@ public class Prestamo implements Serializable{
 
 			@Override
 			public String toString() {
-				return "Prestamo [id=" + id + ", biblioteca=" + biblioteca + ", fecha_prestamo=" + fecha_prestamo
+				return "Prestamo [id=" + id + ", libro=" + libro + ", fecha_prestamo=" + fecha_prestamo
 						+ ", cantidad_dias=" + cantidad_dias + ", cliente=" + cliente + "]";
 			}			
 			

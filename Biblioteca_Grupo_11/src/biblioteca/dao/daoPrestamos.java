@@ -12,11 +12,12 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Cliente;
+import biblioteca.entidad.Libro;
 import biblioteca.entidad.Prestamo;
 
 public class daoPrestamos {
 	
-public Boolean CargarPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias, Cliente cliente) {
+public Boolean CargarPrestamo(Libro libro, Date fecha_prestamo, Integer cantidad_dias, Cliente cliente) {
 		
 		try {
 			
@@ -28,7 +29,7 @@ public Boolean CargarPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Intege
 	    	 Session session = sessionFactory.openSession();	 
 		     session.beginTransaction();
 		     
-		     Prestamo prestamo = new Prestamo(biblioteca,fecha_prestamo,cantidad_dias,cliente);	     
+		     Prestamo prestamo = new Prestamo(libro,fecha_prestamo,cantidad_dias,cliente);	     
 		     
 		     //Agregamos el nuevo prestamos a la lista
 		     ArrayList<Prestamo> Lprestamos = new ArrayList<Prestamo>();		     

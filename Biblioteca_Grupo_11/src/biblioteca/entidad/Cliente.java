@@ -51,7 +51,7 @@ public class Cliente implements Serializable{
 		private String telefono;
 		
 		@Column(name ="fecha_nacimiento")
-		private java.util.Date  fecha_nacimiento;				
+		private java.sql.Date fecha_nacimiento;				
 
 		public Cliente() {
 			super();
@@ -169,7 +169,7 @@ public class Cliente implements Serializable{
 		}
 
 
-		public void setFecha_nacimiento(java.util.Date fecha) {
+		public void setFecha_nacimiento(java.sql.Date fecha) {
 			this.fecha_nacimiento = fecha;
 		}
 

@@ -32,19 +32,58 @@
 
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
-			function ConfirmDemo() {
-			//Ingresamos un mensaje a mostrar
-			var mensaje = confirm("Confirma");
-			//Detectamos si el usuario acepto el mensaje
-			if (mensaje) {
-			alert("Se ha dado de alta corectamente al Alumno Legajo N");
-			}
-			//Detectamos si el usuario denegó el mensaje
-			else {
-			alert("¡No se ha dado de alta al alumno!");
-			}
-			}
-		</script>
+
+		function confirmarVolver(){
+			
+			event.preventDefault(); // prevent form submit
+	        var form = event.target.form;
+			Swal.fire({
+				  title: 'Estas seguro?',
+				  text: "",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Confirmar',
+				  cancelButtonText: 'Cancelar'
+				}).then(function(result){
+					
+				  if (result.value) {
+					var elem = document.getElementById("txtVolver");
+					elem.value = "si";
+					form.submit();
+				  }
+				});
+			
+				
+		}
+		
+		function confirmarAgregar(){
+			
+			event.preventDefault(); // prevent form submit
+	        var form = event.target.form;
+			Swal.fire({
+				  title: 'Estas seguro?',
+				  text: "",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Confirmar',
+				  cancelButtonText: 'Cancelar'
+				}).then(function(result){
+					
+				  if (result.value) {
+					var elem = document.getElementById("txtAgregar");
+					elem.value = "si";
+					form.submit();
+				  }
+				});
+			
+				
+		}
+
+</script>
 </head>
 <body>
 <div class="parteIzq">
@@ -88,7 +127,7 @@
     
     <div class="form-group col-md-6">
         	  <label for="fechaNacimiento">Fecha de Alta</label>
-        	  <input type="datetime-local" name="date4" id="date4" class="form-control datepicker" aria-labelledby="date4-label" value="${date}" disabled>
+        	  <input type="text" id="txtFecha" name="txtFecha" class="form-control datepicker" value="${date}" disabled>
     </div>      
        
           
@@ -101,19 +140,20 @@
 	    </div>
 	    
 	  <div class="form-group col-md-6	">    
-          <label for="ddlLibro">Cliente</label>      
-            <select id="ddlLibro" class="form-control">
+          <label for="cte">Cliente</label>      
+            <select id="cte" class="form-control">
 	        <option selected>Seleccione...</option>
 	        
 	         <c:forEach items="${listaClientes}" var="item">       
-	        <option value="${item.Id}">${item.Nombre}</option>
+	        <option value="${item.id}">${item.nombres}</option>
 	        
 		</c:forEach>
        </select> 
     </div> 
     
    </div> 
-  <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Agregar</button>
+   <button type="submit" class="btn btn-primary" onclick="confirmarAgregar()" >Agregar</button>
+  <input type="hidden" id="txtAgregar" name="txtAgregar" class="form-control" value="no">
   </form>
 </div>  
  </div>

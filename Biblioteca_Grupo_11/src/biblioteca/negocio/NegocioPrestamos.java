@@ -6,18 +6,18 @@ import java.util.List;
 import biblioteca.dao.daoPrestamos;
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Cliente;
-
+import biblioteca.entidad.Libro;
 import biblioteca.entidad.Prestamo;
 
 public class NegocioPrestamos {
 
 	daoPrestamos pdao = new daoPrestamos();
 	
-public Boolean AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias, Cliente cliente) {
+public Boolean AltaPrestamo(Libro libro, Date fecha_prestamo, Integer cantidad_dias, Cliente cliente) {
 		
 		try {	    
 		    
-			return pdao.CargarPrestamo(biblioteca, fecha_prestamo, cantidad_dias,cliente);
+			return pdao.CargarPrestamo(libro, fecha_prestamo, cantidad_dias,cliente);
 			
 		}catch(Exception ex){
 			
@@ -27,7 +27,7 @@ public Boolean AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer 
 	}
 	
 	//TERMINAR!
-	public Boolean EditarPrestamo(int Id, Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias, Cliente cliente){
+	public Boolean EditarPrestamo(int Id, Libro libro, Date fecha_prestamo, Integer cantidad_dias, Cliente cliente){
 		
 		try {
 			
