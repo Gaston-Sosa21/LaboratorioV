@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -82,7 +83,7 @@
 	<div class="titulo1">
 		<h1>Administrar Prestamos</h1>
 	</div>
-	 <form action = "Redireccionar_PrestamosAlta.html" method="get">	
+	 <form action = "Redireccionar_ListaPrestamos.html" method="get">	
 			<input type="submit" value="Nuevo Prestamo" name="btnConfirmar"  class="btn btn-dark botonAlta"><br>
 	</form> 
 	 <!-- <a href="Redireccionar_index.html" class="btn btn-dark botonAlta" role="button"> Nuevo Cliente</a>
@@ -98,46 +99,34 @@
 	      <th scope="col">Cliente</th>
 	    </tr>
 	  </thead>
-	  <tbody>
+	  <tbody style="text-align:center">
+	  <c:forEach items="${listaPrestamos}" var="item">
 	    <tr>
-	      <!-- <td><a class="btn btn-primary" href="#" role="button">Editar</a></td> -->
-	      <td>
-		      <form action = "Redireccionar_EdicionPrestamos.html" method="get">	
-				<input type="submit" value="Editar" name="btnConfirmar"  class="btn btn-primary" ><br>
+	       <!-- <td><a class="btn btn-primary" href="#" role="button">Editar</a></td> -->
+	      <td style="text-align:center">
+		      <form action = "Redireccionar_EditarBiblioteca.html" method="post">	
+					<button type="submit" name="btnConfirmar"  class="btn btn-primary" >
+						<i class="fa fa-edit"></i>
+					</button>
+					<input type="hidden" id="txtEditar" name="txtEditar" class="form-control" value="${item[1].id}">
 			  </form> 
 	      </td>
-	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
-	    	<td>El principito</td>
-  			<td>10/04/2022</td>
-  			<td>4</td>
-  			<td>Marce Peralta</td>
+	      <td style="text-align:center">
+		      <form action = "EliminarBiblioteca.html" method="post"> 
+			      	<button type="submit" class="btn btn-danger" onclick="confirmarEliminar2()">
+						<i class="fa fa-close"></i>
+				  	</button>
+				  	<input type="hidden" id="txtEliminar" name="txtEliminar" class="form-control" value="${item[1].id}">
+				  	<input type="hidden" id="confirmarEliminar" name="confirmarEliminar" class="form-control" value="no">
+			  </form>
+		  </td>
+	     <td style="text-align:center">${item[1].libro}</td>
+	     <td style="text-align:center">${item[0].fecha}</td>
+  		 <td style="text-align:center">${item[0].dias}</td>
+  		 <td style="text-align:center">${item[1].cliente}</td>
 	    </tr>
-	    <tr>
-	      <!-- <td><a class="btn btn-primary" href="#" role="button">Editar</a></td> -->
-	      <td>
-		      <form action = "Redireccionar_EdicionPrestamos.html" method="get">	
-				<input type="submit" value="Editar" name="btnConfirmar"  class="btn btn-primary" ><br>
-			  </form> 
-	      </td>
-	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
-	     	<td>El principito</td>
-  			<td>17/02/2022</td>
-  			<td>47</td>
-  			<td>Jose Larralde</td>
-	    </tr>
-	    <tr>
-	      <!-- <td><a class="btn btn-primary" href="#" role="button">Editar</a></td> -->
-	      <td>
-		      <form action = "Redireccionar_EdicionPrestamos.html" method="get">	
-				<input type="submit" value="Editar" name="btnConfirmar"  class="btn btn-primary" ><br>
-			  </form> 
-	      </td>
-	      <td> <button type="button" class="btn btn-eliminar btn-circle btn"><i class="fa fa-times"></i></button></td>
-	        <td>Mi planta de naranja lima</td>
-  			<td>10/01/2021</td>
-  			<td>14</td>
-  			<td>Joao Valdez</td>
-	    </tr>	    	
+	    
+	</c:forEach>    	
 	  </tbody>
 	</table>	
  </div>
