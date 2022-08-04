@@ -29,7 +29,7 @@
 					<p>Nombre de usuario</p>
 					<input type="text" name="txtUsuario"  class="col-12 inputs"><br><br>
 					<p>Contraseña</p><br>
-					<input type="password" name="txtContrasenia"  class="col-12 inputs"><br><br><br>
+					<input type="password" name="txtClave"  class="col-12 inputs"><br><br><br>
 					
 					<input type="submit" value="INGRESAR" name="btnConfirmar"  class="btn btn-primary col-6"><br>
 	

@@ -20,5 +20,6 @@
   <mapping class="biblioteca.entidad.Nacionalidad"/>
   <mapping class="biblioteca.entidad.Clientes"/>
   <mapping class="biblioteca.entidad.Prestamo"/>
+  <mapping class="biblioteca.entidad.Usuario"/>
  </session-factory>
 </hibernate-configuration>

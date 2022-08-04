@@ -19,7 +19,7 @@ public class daoUsuario {
 
 	   	 session.beginTransaction();
 	   	 
-	   	usuarios = (Usuario)session.createQuery("FROM Usuario U WHERE U.nombre = :nombre").setParameter("nombre", nombre);
+	   	usuarios = (Usuario)session.createQuery("FROM Usuario U WHERE U.nombre = '"+ nombre +"'").uniqueResult();
 	   	
 	   	session.close();		
 	   	
