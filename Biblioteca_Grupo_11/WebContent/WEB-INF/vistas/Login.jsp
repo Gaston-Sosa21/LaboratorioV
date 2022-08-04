@@ -23,7 +23,7 @@
 <br>
 <br>
 	<div class="text-center">
-     	<form action = "Redireccionar_PostLogin.html" method="get">					
+     	<form action = "Redireccionar_PostLogin.html" method="post">					
 			<div class="loginDiv">
 					<br><br>
 					<p>Nombre de usuario</p>
