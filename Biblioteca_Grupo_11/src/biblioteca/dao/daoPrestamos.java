@@ -96,7 +96,7 @@ public Boolean ModificarBiblioteca(int Id, String ISBN, String FechaAlta, int Es
 	 
  }
 */
-public Boolean EliminarPrestamo(int Id) {
+public Boolean EliminarPrestamo(String idPrestamo) {
 
 	try {
 
@@ -109,10 +109,8 @@ public Boolean EliminarPrestamo(int Id) {
     	 Session session = sessionFactory.openSession();
 
 	     session.beginTransaction();
-
-
-	     Object[] obj = BuscarObjPrestamo(Id);
-	     Prestamo prestamo = (Prestamo)obj[1];
+	    
+	     Prestamo prestamo = BuscarPrestamo(idPrestamo);
 
 	     session.delete(prestamo);
 
@@ -193,7 +191,7 @@ public Boolean EliminarPrestamo(int Id) {
 	     daoBiblioteca dbib = new daoBiblioteca();	     
 	     Libro libro = new Libro();
 	     int idLibro = -1;
-	     int i = 0;
+	 
 	     for (Prestamo prestamo : listaPrestamos) {
 	    	 
 	    	 idLibro = prestamo.getBiblioteca().getId();
@@ -210,7 +208,7 @@ public Boolean EliminarPrestamo(int Id) {
 	     return listaCompuesta;
 	 }
 
-	public Prestamo BuscarPrestamo(int Id) {
+	public Prestamo BuscarPrestamo(String id) {
 
 		 SessionFactory sessionFactory;
 
@@ -222,14 +220,14 @@ public Boolean EliminarPrestamo(int Id) {
 
 	     session.beginTransaction();
 
-	     Prestamo prestamo = (Prestamo)session.createQuery("FROM Prestamo p where p.Id = " + Id + "").uniqueResult();
+	     Prestamo prestamo = (Prestamo)session.createQuery("FROM Prestamo p where p.id = " + id + "").uniqueResult();
 
 	     session.close();
 
 	     return prestamo;
 	 }
 
-	public Object[] BuscarObjPrestamo(int Id) {
+	public Object[] BuscarObjPrestamo(String idPrestamo) {
 
 		 SessionFactory sessionFactory;
 
@@ -241,7 +239,7 @@ public Boolean EliminarPrestamo(int Id) {
 
 	     session.beginTransaction();
 
-	     Object[] listaObject = (Object[])session.createQuery("FROM Prestamo p where p.Id = " + Id + "").uniqueResult();
+	     Object[] listaObject = (Object[])session.createQuery("FROM Prestamo p where p.id = " + idPrestamo + "").uniqueResult();
 
 	     session.close();
 

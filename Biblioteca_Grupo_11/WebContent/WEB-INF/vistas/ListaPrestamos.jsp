@@ -112,7 +112,7 @@
 			  </form> 
 	      </td>
 	      <td style="text-align:center">
-		      <form action = "EliminarBiblioteca.html" method="post"> 
+		      <form action = "EliminarPrestamo.html" method="post"> 
 			      	<button type="submit" class="btn btn-danger" onclick="confirmarEliminar2()">
 						<i class="fa fa-close"></i>
 				  	</button>

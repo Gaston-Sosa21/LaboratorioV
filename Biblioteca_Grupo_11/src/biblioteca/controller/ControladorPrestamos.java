@@ -41,7 +41,7 @@ public class ControladorPrestamos {
 		}
 	 
 	 @RequestMapping("Redireccionar_EdicionPrestamos.html")
-		public ModelAndView eventoRedireccionarEdicionPrestamo(int IdPrestamo)
+		public ModelAndView eventoRedireccionarEdicionPrestamo(String IdPrestamo)
 		{			
 			ModelAndView MV = new ModelAndView();
 			MV.addObject("prestamo", pneg.ObtenerPrestamoPorId(IdPrestamo));
@@ -127,7 +127,7 @@ public class ControladorPrestamos {
 		}
 	 
 	 @RequestMapping("EliminarPrestamo.html")
-		public ModelAndView eventoEliminarPrestamo(int IdPrestamo)
+		public ModelAndView eventoEliminarPrestamo(String txtEliminar)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
@@ -135,8 +135,8 @@ public class ControladorPrestamos {
 						
 					//if(confirmarEliminar == "si") {
 						
-						if(pneg.EliminarPrestamo(IdPrestamo)) {
-							MV.addObject("Prestamo", IdPrestamo);
+						if(pneg.EliminarPrestamo(txtEliminar)) {
+							MV.addObject("Prestamo", txtEliminar);
 							elimino = "si";							
 						}					
 						

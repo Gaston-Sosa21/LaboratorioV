@@ -43,11 +43,11 @@ public Boolean AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer 
 		}
 	}
 
-	public Boolean EliminarPrestamo(int Id) {
+	public Boolean EliminarPrestamo(String idPrestamo) {
 
 		try {
 
-			return pdao.EliminarPrestamo(Id);		   
+			return pdao.EliminarPrestamo(idPrestamo);		   
 
 		}catch(Exception ex){
 
@@ -87,7 +87,7 @@ public Boolean AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer 
 	
 	
 
-	public Prestamo ObtenerPrestamoPorId(int Id){
+	public Prestamo ObtenerPrestamoPorId(String Id){
 
 		try {
 
@@ -101,7 +101,7 @@ public Boolean AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer 
 		}
 	}
 
-	public Object[] ObtenerObjPrestamoPorId(int Id){
+	public Object[] ObtenerObjPrestamoPorId(String Id){
 
 		try {
 
