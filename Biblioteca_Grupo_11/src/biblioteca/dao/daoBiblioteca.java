@@ -142,6 +142,32 @@ public class daoBiblioteca {
 
 	 }
 	
+	public Biblioteca ObtenerBiblioteca(String ISBN) {
+		
+		try {
+		
+		SessionFactory sessionFactory;
+	  	
+	   	 Configuration configuration = new Configuration();
+	   	 configuration.configure();	
+	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	   	 Session session = sessionFactory.openSession();
+
+	     session.beginTransaction();
+	     List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca").list();
+	     Biblioteca bib = (Biblioteca)listaObject.get(0)[1];
+	     session.close();
+	     //FROM Libro l inner join l.Biblioteca b where  l.ISBN = '" + ISBN + "'"
+	     return bib;
+		
+		}catch(Exception ex) {
+		
+	    System.out.println("Error: "+ ex.toString());
+	    return null;
+		}
+	}
+	
 	
 	public List<Object[]> ListarBibliotecas() {
 		 

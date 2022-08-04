@@ -31,10 +31,10 @@ public Boolean CargarPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Intege
 		     Prestamo prestamo = new Prestamo(biblioteca,fecha_prestamo,cantidad_dias,cliente);	     
 
 		     //Agregamos el nuevo prestamos a la lista
-		     ArrayList<Prestamo> Lprestamos = new ArrayList<Prestamo>();		     
-		     Lprestamos.add(prestamo);	
+		     //ArrayList<Prestamo> Lprestamos = new ArrayList<Prestamo>();		     
+		    // Lprestamos.add(prestamo);	
 		     //lo guardamos en la sesion
-		     session.save(Lprestamos);
+		     session.save(prestamo);
 		     //comiteamos los cambios
 		     session.getTransaction().commit();
 		     //cerramos la sesion

@@ -83,7 +83,7 @@
 	<div class="titulo1">
 		<h1>Administrar Prestamos</h1>
 	</div>
-	 <form action = "Redireccionar_ListaPrestamos.html" method="get">	
+	 <form action = "Redireccionar_PrestamosAlta.html" method="get">	
 			<input type="submit" value="Nuevo Prestamo" name="btnConfirmar"  class="btn btn-dark botonAlta"><br>
 	</form> 
 	 <!-- <a href="Redireccionar_index.html" class="btn btn-dark botonAlta" role="button"> Nuevo Cliente</a>

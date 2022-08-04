@@ -102,16 +102,22 @@ public class NegocioBiblioteca {
 		}
 	}
 	
-	public Object[] ObtenerBibliotecaPorId(String id){
-		
-		try {
-			
+	public Object[] ObtenerBibliotecaPorId(String id){		
+		try {			
 			return bdao.BuscarBiblioteca(id);
 		}
-		catch(Exception e) {
-			
-			System.out.println("Error: " + e.toString());
-			
+		catch(Exception e) {			
+			System.out.println("Error: " + e.toString());			
+			return null;
+		}
+	}
+	
+	public Biblioteca ObtenerBibliotecaPorISBN(String ISBN){		
+		try {			
+			return bdao.ObtenerBiblioteca(ISBN);
+		}
+		catch(Exception e) {			
+			System.out.println("Error: " + e.toString());			
 			return null;
 		}
 	}

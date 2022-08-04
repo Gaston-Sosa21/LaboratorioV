@@ -109,7 +109,7 @@
 
 <div class="parteDer" >
 <div style="margin:auto; height: 500px; widht:480px; background-color:#acd">
-<form id="volver" action="AltaPrestamos.html" method="post" >
+<form id="volver" action="AltaPrestamo.html" method="post" >
 		
 <h3>Administrar Prestamo:</h3>
   <div class="form-row">
@@ -139,8 +139,8 @@
 	    </div>
 	    
 	  <div class="form-group col-md-6	">    
-          <label for="ddlLibro">Cliente</label>      
-            <select id="ddlLibro" class="form-control" required>
+          <label for="cliente">Cliente</label>      
+            <select id="cliente" class="form-control" required>
 	        <option selected>Seleccione...</option>
 	        
 	         <c:forEach items="${listaClientes}" var="item">       
