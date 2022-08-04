@@ -196,6 +196,9 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	 
 	     for (Prestamo prestamo : listaPrestamos) {
 	    	 
+	    	 /*******************************************************/
+	    	 
+	    	 /******************************************************/
 	    	 idLibro = prestamo.getBiblioteca().getId();
 	    	 libro = (Libro)dbib.BuscarBiblioteca( String.valueOf(idLibro) )[0];
 	    	 

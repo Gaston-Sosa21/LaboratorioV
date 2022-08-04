@@ -155,7 +155,7 @@ public class daoBiblioteca {
 	   	 Session session = sessionFactory.openSession();
 
 	     session.beginTransaction();
-	     List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca").list();
+	     List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca where l.ISBN ='"+ISBN+"'").list();
 	     Biblioteca bib = (Biblioteca)listaObject.get(0)[1];
 	     session.close();
 	     //FROM Libro l inner join l.Biblioteca b where  l.ISBN = '" + ISBN + "'"

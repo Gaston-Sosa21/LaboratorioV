@@ -57,7 +57,7 @@ public class ControladorPrestamos {
 					ModelAndView MV = new ModelAndView();
 					String agrego= "no";				
 			
-					List<Object[]> list_bteca = bneg.ObtenerBibliotecas();
+					//List<Object[]> list_bteca = bneg.ObtenerBibliotecas();
 					Biblioteca biblio = bneg.ObtenerBibliotecaPorISBN(ddlLibro);
 					Clientes cte = cneg.ObtenerClientePorID(cliente);
 					 
