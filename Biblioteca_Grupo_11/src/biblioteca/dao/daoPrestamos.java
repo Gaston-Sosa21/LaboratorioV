@@ -111,7 +111,9 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     session.beginTransaction();
 	    
 	     Prestamo prestamo = BuscarPrestamo(idPrestamo);
-
+	     
+	     prestamo.setBiblioteca(null);
+	     prestamo.setCliente(null);
 	     session.delete(prestamo);
 
 	     session.getTransaction().commit();

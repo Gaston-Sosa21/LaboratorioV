@@ -12,6 +12,7 @@ import biblioteca.dao.daoCliente;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
 import biblioteca.negocio.NegocioBiblioteca;
+import biblioteca.negocio.NegocioPrestamos;
 import biblioteca.negocio.NegocioUsuario;
 
 @Controller
@@ -19,6 +20,7 @@ public class ControladorInicio {
 
 	NegocioBiblioteca bneg = new NegocioBiblioteca();
 	NegocioUsuario busu = new NegocioUsuario();
+	NegocioPrestamos pneg = new NegocioPrestamos();
 	
 	/*@RequestMapping("Redireccionar_index.html")
 	public ModelAndView eventoRedireccionarPag1()
@@ -102,8 +104,7 @@ public class ControladorInicio {
 	public ModelAndView eventoRedireccionarListaPrestamos(/*String txtUsuario,Integer txtContrasenia*/)
 	{			
 		ModelAndView MV = new ModelAndView();
-	//	MV.addObject("usuario", txtUsuario);
-	//	MV.addObject("contrasenia", txtContrasenia);
+		MV.addObject("listaPrestamos", pneg.ObtenerPrestamos());
 		MV.setViewName("ListaPrestamos");
 		return MV;
 	}
