@@ -61,22 +61,12 @@ public class ControladorPrestamos {
 					Biblioteca biblio = bneg.ObtenerBibliotecaPorISBN(ddlLibro);
 					Clientes cte = cneg.ObtenerClientePorID(cliente);
 					 
-					if(ddlLibro != null ) {		
-						
-						/*
-						//FORMATEAR FECHA PAR LA CARGA		
-						txtFecha += "T00:00";
-						SimpleDateFormat sd =  new SimpleDateFormat("yyyy-MM-dd");	
-						java.util.Date d = sd.parse(txtFecha); 				
-						SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.ENGLISH);
-						String str_f_nac = outputDateFormat.format(d);
-						java.util.Date f_alta = sd.parse(str_f_nac); 
-						*/
-						
-										
+					if(ddlLibro != null ) {										
 								
-						if (pneg.AltaPrestamo(biblio,  new Date(10,10,2022), Integer.parseInt(txtCantidad), cte)) {							
+						if (pneg.AltaPrestamo(biblio,  LocalDate.now().toString(), Integer.parseInt(txtCantidad), cte)) {							
 							agrego = "si";
+							//actualizar estado de biblioteca
+							bneg.ActualizarEstadoBiblioteca(String.valueOf(bneg.ObtenerBibliotecaPorISBN(ddlLibro).getId()), 1);							
 						}
 					}	
 														
@@ -137,7 +127,9 @@ public class ControladorPrestamos {
 						
 						if(pneg.EliminarPrestamo(txtEliminar)) {
 							MV.addObject("Prestamo", txtEliminar);
-							elimino = "si";							
+							elimino = "si";	
+							//actualizamos el estado de la biblioteca
+							bneg.ActualizarEstadoBiblioteca(String.valueOf(pneg.ObtenerPrestamoPorId(txtEliminar).getBiblioteca().getId()), 0);
 						}					
 						
 					//}

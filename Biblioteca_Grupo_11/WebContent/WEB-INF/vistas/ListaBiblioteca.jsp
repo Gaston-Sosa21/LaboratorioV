@@ -109,7 +109,7 @@
 							Swal.fire(
 							  'Error!',
 							  'No se pudo agregar la nueva biblioteca',
-							  'error',
+							  'error'
 							)				 	
 					 	}
 					
@@ -131,7 +131,7 @@
 							Swal.fire(
 							  'Error!',
 							  'No se pudo editar la biblioteca',
-							  'error',
+							  'error'
 							)				 	
 					 	}
 					}
@@ -152,7 +152,7 @@
 							Swal.fire(
 							  'Error!',
 							  'No se pudo eliminar la biblioteca',
-							  'error',
+							  'error'
 							)				 	
 					 	}
 					}

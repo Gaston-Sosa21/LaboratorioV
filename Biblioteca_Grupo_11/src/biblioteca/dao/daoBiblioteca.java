@@ -246,4 +246,29 @@ public class daoBiblioteca {
 	     
 	     return listaObject;
 	 }
+	
+	public boolean ActualizarEstadoBiblioteca(String idBiblioteca, int estado) {
+		 // estado --> 0 : en biblioteca y 1 : prestado
+		 SessionFactory sessionFactory;
+	
+	   	 Configuration configuration = new Configuration();
+	   	 configuration.configure();	
+	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	   	 Session session = sessionFactory.openSession();
+
+	     session.beginTransaction();
+
+	     Object[] obj = BuscarBiblioteca(idBiblioteca);
+	     Biblioteca bbta = (Biblioteca)obj[1];	
+	     
+	     //bbta.setFecha_alta(java.sql.Date.valueOf(  ));
+	     
+	     bbta.setEstado(estado);
+	     session.update(bbta);
+	     session.getTransaction().commit();	     
+	     session.close();
+	     
+	     return true;
+	 }
 }

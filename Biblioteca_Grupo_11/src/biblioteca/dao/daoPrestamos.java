@@ -17,7 +17,7 @@ import biblioteca.entidad.Prestamo;
 
 public class daoPrestamos {
 
-public Boolean CargarPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
+public Boolean CargarPrestamo(Biblioteca biblioteca, String fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
 
 		try {
 
@@ -29,7 +29,7 @@ public Boolean CargarPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Intege
 	    	 Session session = sessionFactory.openSession();	 
 		     session.beginTransaction();
 
-		     Prestamo prestamo = new Prestamo(biblioteca,fecha_prestamo,cantidad_dias,cliente);	     
+		     Prestamo prestamo = new Prestamo(biblioteca,java.sql.Date.valueOf(fecha_prestamo),cantidad_dias,cliente);	     
 
 		     //Agregamos el nuevo prestamos a la lista
 		     //ArrayList<Prestamo> Lprestamos = new ArrayList<Prestamo>();		     

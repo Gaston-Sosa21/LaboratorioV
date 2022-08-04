@@ -30,8 +30,6 @@ public class NegocioBiblioteca {
 	public Boolean EditarBiblioteca(String id, String ISBN, String FechaAlta, int Estado) {
 		
 		try {
-			
-		    
 		    
 			return bdao.ModificarBiblioteca(id, ISBN, FechaAlta, Estado);
 		   
@@ -45,12 +43,22 @@ public class NegocioBiblioteca {
 	
 	public Boolean EliminarBiblioteca(String id) {
 		
-		try {
+		try {		    
+		    
+			return bdao.EliminarBiblioteca(id);		   
 			
+		}catch(Exception ex){
+			
+			System.out.println("Error: " + ex.toString());
+			return false;
+		}
+	}
+	
+public Boolean ActualizarEstadoBiblioteca(String idBiblioteca, int estado) {
+		
+		try {	    
 		    
-		    
-			return bdao.EliminarBiblioteca(id);
-		   
+			return bdao.ActualizarEstadoBiblioteca(idBiblioteca, estado );		   
 			
 		}catch(Exception ex){
 			

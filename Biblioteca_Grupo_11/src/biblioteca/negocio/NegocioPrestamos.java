@@ -13,7 +13,7 @@ public class NegocioPrestamos {
 
 	daoPrestamos pdao = new daoPrestamos();
 
-public Boolean AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
+public Boolean AltaPrestamo(Biblioteca biblioteca, String fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
 
 		try {	    
 
