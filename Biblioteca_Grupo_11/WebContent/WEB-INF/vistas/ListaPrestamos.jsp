@@ -108,7 +108,7 @@
 					<button type="submit" name="btnConfirmar"  class="btn btn-primary" >
 						<i class="fa fa-edit"></i>
 					</button>
-					<input type="hidden" id="txtEditar" name="txtEditar" class="form-control" value="${item[1].id}">
+					<input type="hidden" id="txtEditar" name="txtEditar" class="form-control" value="${item[0].id}">
 			  </form> 
 	      </td>
 	      <td style="text-align:center">
@@ -116,14 +116,14 @@
 			      	<button type="submit" class="btn btn-danger" onclick="confirmarEliminar2()">
 						<i class="fa fa-close"></i>
 				  	</button>
-				  	<input type="hidden" id="txtEliminar" name="txtEliminar" class="form-control" value="${item[1].id}">
+				  	<input type="hidden" id="txtEliminar" name="txtEliminar" class="form-control" value="${item[0].id}">
 				  	<input type="hidden" id="confirmarEliminar" name="confirmarEliminar" class="form-control" value="no">
 			  </form>
 		  </td>
-	     <td style="text-align:center">${item[1].libro}</td>
-	     <td style="text-align:center">${item[0].fecha}</td>
-  		 <td style="text-align:center">${item[0].dias}</td>
-  		 <td style="text-align:center">${item[1].cliente}</td>
+	     <td style="text-align:center">${item[1].titulo}</td>
+	     <td style="text-align:center">${item[0].fecha_prestamo}</td>
+  		 <td style="text-align:center">${item[0].cantidad_dias}</td>
+  		 <td style="text-align:center">${item[0].cliente.nombres}</td>
 	    </tr>
 	    
 	</c:forEach>    	

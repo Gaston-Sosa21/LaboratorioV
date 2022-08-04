@@ -71,11 +71,11 @@ public Boolean AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer 
 		}
 	}
 
-	public List<Prestamo> ObtenerPrestamos(){
+	public  List<Object[]> ObtenerPrestamos(){
 
 			try {
 
-				return pdao.ListarPrestamos();
+				return pdao.ListarPrestamosCompuestos();
 			}
 			catch(Exception e) {
 
@@ -84,6 +84,8 @@ public Boolean AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer 
 				return null;
 			}
 	}
+	
+	
 
 	public Prestamo ObtenerPrestamoPorId(int Id){
 

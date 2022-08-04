@@ -35,7 +35,7 @@ public class Prestamo implements Serializable{
 			@Column(name="cantidad_dias")
 			private Integer cantidad_dias;
 			
-			@ManyToOne(cascade = {CascadeType.ALL})
+			@ManyToOne(cascade = { CascadeType.ALL})
 			@JoinColumn(name= "idCliente")
 			private Clientes cliente;
 

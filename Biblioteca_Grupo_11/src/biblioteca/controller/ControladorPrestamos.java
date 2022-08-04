@@ -51,7 +51,7 @@ public class ControladorPrestamos {
 		}
 	 
 	 @RequestMapping("AltaPrestamo.html")
-		public ModelAndView eventoGuardarPrestamo(String ddlLibro, String txtFecha, String txtCantidad, Clientes cliente)
+		public ModelAndView eventoGuardarPrestamo(String ddlLibro, String txtFecha, String txtCantidad, String cliente)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
@@ -59,7 +59,7 @@ public class ControladorPrestamos {
 			
 					List<Object[]> list_bteca = bneg.ObtenerBibliotecas();
 					Biblioteca biblio = bneg.ObtenerBibliotecaPorISBN(ddlLibro);
-					//aca agrego el prestamo
+					Clientes cte = cneg.ObtenerClientePorID(cliente);
 					 
 					if(ddlLibro != null ) {		
 						
@@ -75,7 +75,7 @@ public class ControladorPrestamos {
 						
 										
 								
-						if (pneg.AltaPrestamo(biblio,  new Date(10,10,2022), Integer.parseInt(txtCantidad), cliente)) {							
+						if (pneg.AltaPrestamo(biblio,  new Date(10,10,2022), Integer.parseInt(txtCantidad), cte)) {							
 							agrego = "si";
 						}
 					}	

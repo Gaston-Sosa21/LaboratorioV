@@ -226,6 +226,8 @@ public class daoBiblioteca {
 	     return lib;
 	 }
 	
+
+	
 	public Object[] BuscarBiblioteca(String id) {
 		 
 		 SessionFactory sessionFactory;

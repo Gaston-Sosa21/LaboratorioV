@@ -12,6 +12,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
+import biblioteca.entidad.Libro;
 import biblioteca.entidad.Prestamo;
 
 public class daoPrestamos {
@@ -164,11 +165,49 @@ public Boolean EliminarPrestamo(int Id) {
 
 	     session.beginTransaction();
 
-	     List<Prestamo> listaPrestamos = (List<Prestamo>)session.createQuery("FROM Prestamo p").list();
+	     List<Prestamo> listaPrestamos = (List<Prestamo>)session.createQuery("FROM Prestamo p ").list();
 
 	     session.close();
-
+	    
 	     return listaPrestamos;
+	 }
+	
+	public List<Object[]> ListarPrestamosCompuestos() {
+
+		 SessionFactory sessionFactory;
+
+	   	 Configuration configuration = new Configuration();
+	   	 configuration.configure();	
+	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	   	 Session session = sessionFactory.openSession();
+
+	     session.beginTransaction();
+
+	     List<Prestamo> listaPrestamos = (List<Prestamo>)session.createQuery("FROM Prestamo p ").list();
+
+	     session.close();
+	     
+	     List<Object[]> listaCompuesta = new ArrayList<Object[]>();
+	     
+	     daoBiblioteca dbib = new daoBiblioteca();	     
+	     Libro libro = new Libro();
+	     int idLibro = -1;
+	     int i = 0;
+	     for (Prestamo prestamo : listaPrestamos) {
+	    	 
+	    	 idLibro = prestamo.getBiblioteca().getId();
+	    	 libro = (Libro)dbib.BuscarBiblioteca( String.valueOf(idLibro) )[0];
+	    	 
+	    	 Object[] o = new Object[2];
+
+	    	 o[0] = prestamo;
+	    	 o[1] = libro;
+	    	 
+	    	 listaCompuesta.add(o);  
+	     }
+	     
+	     return listaCompuesta;
 	 }
 
 	public Prestamo BuscarPrestamo(int Id) {

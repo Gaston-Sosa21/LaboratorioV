@@ -140,7 +140,7 @@
 	    
 	  <div class="form-group col-md-6	">    
           <label for="cliente">Cliente</label>      
-            <select id="cliente" class="form-control" required>
+            <select id="cliente" name="cliente" class="form-control" required>
 	        <option selected>Seleccione...</option>
 	        
 	         <c:forEach items="${listaClientes}" var="item">       
