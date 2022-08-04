@@ -6,7 +6,7 @@ import java.util.List;
 import biblioteca.dao.daoPrestamos;
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
-
+import biblioteca.entidad.Libro;
 import biblioteca.entidad.Prestamo;
 
 public class NegocioPrestamos {
@@ -85,6 +85,19 @@ public Boolean AltaPrestamo(Biblioteca biblioteca, String fecha_prestamo, Intege
 			}
 	}
 	
+	public  List<Libro> ObtenerLibrosDeBiblioteca(){
+
+		try {
+
+			return pdao.ObtenerLibrosDeBiblioteca();
+		}
+		catch(Exception e) {
+
+			System.out.println("Error: " + e.toString());
+
+			return null;
+		}
+}
 	
 
 	public Prestamo ObtenerPrestamoPorId(String Id){

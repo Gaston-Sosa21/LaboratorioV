@@ -209,6 +209,25 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     
 	     return listaCompuesta;
 	 }
+	
+	public List<Libro> ObtenerLibrosDeBiblioteca()
+	{
+		daoBiblioteca dbib = new daoBiblioteca();		
+		List<Object[]> listaCompuesta = dbib.ListarBibliotecas();	     	     
+	    List<Libro> listLibros = new ArrayList<Libro>();
+	 
+	    for (Object[] obj : listaCompuesta) {	     
+
+		    if ( ((Biblioteca)obj[1]).getEstado() == 0)
+		       listLibros.add((Libro)obj[0]);     
+	
+	     }	     
+	     
+	   return listLibros;
+	 
+	}
+	
+	
 
 	public Prestamo BuscarPrestamo(String id) {
 

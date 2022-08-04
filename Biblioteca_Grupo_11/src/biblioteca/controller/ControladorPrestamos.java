@@ -30,9 +30,9 @@ public class ControladorPrestamos {
 	 @RequestMapping("Redireccionar_PrestamosAlta.html")
 		public ModelAndView eventoRedireccionarPrestamosAlta()
 		{			
-			ModelAndView MV = new ModelAndView();
-		
-			MV.addObject("listaLibros", bneg.ObtenerLibros());
+			ModelAndView MV = new ModelAndView();	
+							
+		   MV.addObject("listaLibros", pneg.ObtenerLibrosDeBiblioteca());
 			MV.addObject("listaClientes", cneg.ListarClientes());
 			MV.addObject("date", LocalDate.now().toString());
 
@@ -103,7 +103,7 @@ public class ControladorPrestamos {
 					
 					MV.addObject("mostrarMensaje", true);
 					MV.addObject("accion", "editar");
-					//MV.addObject("Edito", edito);
+					MV.addObject("Edito", edito);
 					MV.addObject("listaPrestamos", pneg.ObtenerPrestamos());
 					MV.setViewName("ListaPrestamos");
 					return MV;
@@ -124,12 +124,13 @@ public class ControladorPrestamos {
 					String elimino= "no";
 						
 					//if(confirmarEliminar == "si") {
-						
+					   
+					   //actualizamos el estado de la biblioteca
+						bneg.ActualizarEstadoBiblioteca(String.valueOf(pneg.ObtenerPrestamoPorId(txtEliminar).getBiblioteca().getId()), 0);
 						if(pneg.EliminarPrestamo(txtEliminar)) {
 							MV.addObject("Prestamo", txtEliminar);
 							elimino = "si";	
-							//actualizamos el estado de la biblioteca
-							bneg.ActualizarEstadoBiblioteca(String.valueOf(pneg.ObtenerPrestamoPorId(txtEliminar).getBiblioteca().getId()), 0);
+														
 						}					
 						
 					//}

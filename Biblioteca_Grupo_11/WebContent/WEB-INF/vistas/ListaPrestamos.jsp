@@ -97,7 +97,7 @@
 						 	
 					 		Swal.fire(
 							  'Exito!',
-							  'Se agrego correctamente una biblioteca del libro ' + '${Prestamo}',
+							  'Se realizo correctamente el prestamo del libro ' + '${Libro}',
 							  'success'
 							)
 					 		
