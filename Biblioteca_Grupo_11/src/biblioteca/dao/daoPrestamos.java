@@ -1,18 +1,11 @@
 package biblioteca.dao;
 
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
@@ -25,26 +18,16 @@ public Boolean CargarPrestamo(Biblioteca biblioteca, String fecha_prestamo, Inte
 
 		try {
 
-			SessionFactory sessionFactory;	    	
-	    	 Configuration configuration = new Configuration();
-	    	 configuration.configure();	
-	    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    	 Session session = sessionFactory.openSession();	 
-		     session.beginTransaction();
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();
 
-		     Prestamo prestamo = new Prestamo(biblioteca,java.sql.Date.valueOf(fecha_prestamo),cantidad_dias,cliente);	     
+		     Prestamo prestamo = new Prestamo(biblioteca,java.sql.Date.valueOf(fecha_prestamo),cantidad_dias,cliente);	
 
-		     //Agregamos el nuevo prestamos a la lista
-		     //ArrayList<Prestamo> Lprestamos = new ArrayList<Prestamo>();		     
-		    // Lprestamos.add(prestamo);	
-		     //lo guardamos en la sesion
 		     session.save(prestamo);
-		     //comiteamos los cambios
 		     session.getTransaction().commit();
-		     //cerramos la sesion
 		     session.close();
-		     //OK
+
 		     return true;		     
 		}		
 		catch(Exception e) {
@@ -59,16 +42,9 @@ public Boolean ModificarPrestamo(String IdPrestamo, int CantidadDias) {
 	
 	try {
 		
-		SessionFactory sessionFactory;
-    	
-    	 Configuration configuration = new Configuration();
-    	 configuration.configure();	
-    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-    	 Session session = sessionFactory.openSession();
- 
-	     session.beginTransaction();
-	     
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 	     
 	     Prestamo p = BuscarPrestamo(IdPrestamo);	     
 	     p.setCantidad_dias(CantidadDias);
@@ -98,24 +74,16 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 
 	try {
 
-		SessionFactory sessionFactory;
-
-    	 Configuration configuration = new Configuration();
-    	 configuration.configure();	
-    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-    	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 	    
 	     Prestamo prestamo = BuscarPrestamo(idPrestamo);
 	     
 	     prestamo.setBiblioteca(null);
 	     prestamo.setCliente(null);
 	     session.delete(prestamo);
-
 	     session.getTransaction().commit();
-
 	     session.close();
 
 	     return true;
@@ -133,15 +101,9 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 
 	public List<Object[]> ListarObjPrestamos() {
 
-		 SessionFactory sessionFactory;
-
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 
 	     //Buscamos los prestamos con los clientes
 	     List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Prestamo p inner join p.Clientes").list();
@@ -153,34 +115,21 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 
 	public List<Prestamo> ListarPrestamos() {
 
-		 SessionFactory sessionFactory;
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
-
-	     List<Prestamo> listaPrestamos = (List<Prestamo>)session.createQuery("FROM Prestamo p ").list();
-
-	     session.close();
-	    
+	     List<Prestamo> listaPrestamos = (List<Prestamo>)session.createQuery("FROM Prestamo p ").list();	  
+	     
+	     session.close();	    
 	     return listaPrestamos;
 	 }
 	
 	public List<Object[]> ListarPrestamosCompuestos() {
-
-		 SessionFactory sessionFactory;
-
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
+		
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 
 	     List<Prestamo> listaPrestamos = (List<Prestamo>)session.createQuery("FROM Prestamo p ").list();
 
@@ -193,10 +142,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     int idLibro = -1;
 	 
 	     for (Prestamo prestamo : listaPrestamos) {
-	    	 
-	    	 /*******************************************************/
-	    	 
-	    	 /******************************************************/
+
 	    	 idLibro = prestamo.getBiblioteca().getId();
 	    	 libro = (Libro)dbib.BuscarBiblioteca( String.valueOf(idLibro) )[0];
 	    	 
@@ -220,46 +166,31 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	    for (Object[] obj : listaCompuesta) {	     
 
 		    if ( ((Biblioteca)obj[1]).getEstado() == 0)
-		       listLibros.add((Libro)obj[0]);     
-	
-	     }	     
+		       listLibros.add((Libro)obj[0]);   
+	     }	    
 	     
-	   return listLibros;
-	 
+	   return listLibros;	 
 	}
 	
 	
 
 	public Prestamo BuscarPrestamo(String id) {
 
-		 SessionFactory sessionFactory;
-
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
 	     session.beginTransaction();
 
 	     Prestamo prestamo = (Prestamo)session.createQuery("FROM Prestamo p where p.id = " + id + "").uniqueResult();
 
 	     session.close();
-
 	     return prestamo;
 	 }
 
 	public Object[] BuscarObjPrestamo(String idPrestamo) {
 
-		 SessionFactory sessionFactory;
-
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 
 	     Object[] listaObject = (Object[])session.createQuery("FROM Prestamo p where p.id = " + idPrestamo + "").uniqueResult();
 

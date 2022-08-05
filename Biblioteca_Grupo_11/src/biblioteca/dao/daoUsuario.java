@@ -10,28 +10,19 @@ public class daoUsuario {
 
 	public boolean ValidarUsuario(String nombre, String clave) {
 		Usuario usuarios = null;
-		 SessionFactory sessionFactory;
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	   	 session.beginTransaction();
+		
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 	   	 
 	   	usuarios = (Usuario)session.createQuery("FROM Usuario U WHERE U.nombre = '"+ nombre +"'").uniqueResult();
 	   	
 	   	session.close();		
 	   	
-	   	if (usuarios != null && usuarios.getClave().equals(clave)) {
-	   				
-	                return true;
-	            }
-	   			else {	
-	   				return false;
-	   			}
+	   	if (usuarios != null && usuarios.getClave().equals(clave))	   				
+	       return true;
+	   else 
+		   return false;
 	   			
     }
-
-	
 }
