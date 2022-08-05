@@ -58,6 +58,7 @@ public class ControladorInicio {
 	public ModelAndView eventoRedireccionarPostLogin(HttpServletRequest request,String txtUsuario,String txtClave)
 	{	
 		 String pagina = "";
+		 String Logeo = "";
 		 try {	
 			 if(busu.AltaUsuario(txtUsuario, txtClave)) {
 				 pagina = "PostLogin";
@@ -65,9 +66,12 @@ public class ControladorInicio {
 			 }
 			 else {
 				 pagina = "Login";
+				 Logeo = "no";
 			 }
 			 ModelAndView MV = new ModelAndView();
 				MV.addObject("usuario", txtUsuario);
+				MV.addObject("mostrarMensaje", true);
+				MV.addObject("Logeo", Logeo);
 				MV.addObject("contrasenia", txtClave);
 				MV.setViewName(pagina);
 				return MV;
