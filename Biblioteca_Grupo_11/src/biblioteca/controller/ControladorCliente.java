@@ -55,20 +55,23 @@ public class ControladorCliente {
 	{
 		try {
 			    
-				String Mensaje;
+				String Mensaje="";
 
-				String dato = "Ok";// nc.ValidarDatos(txtFecha.toString(), txtDni.toString(),txtMail.toString(),txtTelefono.toString());
+			/*	String dato =  nc.ValidarDatos(txtFecha.toString(), txtDni.toString(),txtMail.toString(),txtTelefono.toString());
 				
 				if(dato!="Ok") {
 					Mensaje="Error! "+ dato;
 					System.out.println(Mensaje);
 					return null;
-				}
+				}*/
+				
 				Clientes cl = new Clientes();
 	
 				System.out.println("Recibí el id: "+IdCliente);
 				System.out.println("Nacionalidad : "+txtNacionalidad);
 				Nacionalidad nacionalidad = new Nacionalidad();
+				
+				String NameCliente= txtNombre+" "+txtApellido;
 
 				cl.setNombres(txtNombre.toString());
 				cl.setApellidos(txtApellido.toString());
@@ -84,35 +87,43 @@ public class ControladorCliente {
 				
 				cl.setLocalidad(txtLocalidad);
 				cl.setEmail(txtMail);
-				//Solo números
 				cl.setTelefono(txtTelefono);
 				
-				
-				String NameCliente= txtNombre+" "+txtApellido;
 				int i = 0;
+	
 				if(IdCliente!="") {
 					
 					  cl.setId(Integer.parseInt(IdCliente));
 					  i  = nc.ModificarCliente(cl); 
 					
-					  Mensaje="Se actualizaron los datos del cliente ";
+					  Mensaje="Se actualizaron los datos del cliente.";
 					
 					if(i<0) {
-					  Mensaje = "Error! No pudo guardar los datos del cliente ";	
+					  Mensaje = "Error! No pudo guardar los datos del cliente.";	
 					}
 					
 				}else {
+					
+					int ExisteCliente = nc.ValidarExistencia(txtDni);
+
+					if(ExisteCliente < 1) {
+						
 					 i  = nc.AltaNuevoCliente(cl); 
 					
-					 Mensaje="Se agrego el nuevo cliente ";
+					 Mensaje="Se agrego el nuevo cliente.";
 					
-					if(i<0) {
-					  Mensaje = "Error! No pudo agregarse el nuevo cliente ";	
-					}				
+					 if(i<0) {
+					   Mensaje = "Error! No pudo agregarse el nuevo cliente.";	
+					 }
+					
+					}else {
+						Mensaje="Error! El cliente con este dni ya existe.";
+					}
+				
 				}
 				
-
-				Mensaje = Mensaje + NameCliente;
+			
+ 				Mensaje = Mensaje + NameCliente;
 				System.out.println(Mensaje);
 				ModelAndView MV = new ModelAndView();
 				MV.addObject("ListarClientes", nc.ListarClientes());

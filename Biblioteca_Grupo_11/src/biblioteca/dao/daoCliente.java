@@ -206,5 +206,33 @@ public class daoCliente {
 		 }	
 	}
 	
+	public int ExisteDNI(int dni) {
+		
+		try {
+			
+			 SessionFactory sessionFactory;
+			
+		   	 Configuration configuration = new Configuration();
+		   	 configuration.configure();	
+		   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+		   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+		   	 Session session = sessionFactory.openSession();
+
+		     session.beginTransaction();
+		     
+		     
+		     Long cantidad = (Long)session.createQuery("SELECT count(c.id) FROM Clientes c where c.dni = "+ dni ).uniqueResult();
+		     
+		     int existe = Math.toIntExact(cantidad);
+		     
+		     session.close();
+		     
+		     return existe;
+		 }catch(Exception ex) {
+				System.out.println("Error: " + ex.toString());
+
+			 return 0;
+		 }		 
+	}
 
 }

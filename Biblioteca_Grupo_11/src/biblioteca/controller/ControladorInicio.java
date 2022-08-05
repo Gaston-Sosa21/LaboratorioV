@@ -12,6 +12,7 @@ import biblioteca.dao.daoCliente;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
 import biblioteca.negocio.NegocioBiblioteca;
+import biblioteca.negocio.NegocioCliente;
 import biblioteca.negocio.NegocioPrestamos;
 import biblioteca.negocio.NegocioUsuario;
 import javax.servlet.http.HttpServletRequest;
@@ -83,11 +84,12 @@ public class ControladorInicio {
 	 
 	 @RequestMapping("Redireccionar_ListaClientes.html")
 	public ModelAndView eventoRedireccionarListaClientes(/*String txtUsuario,Integer txtContrasenia*/)
-	{			
+	{	NegocioCliente nc = new NegocioCliente();		
 		ModelAndView MV = new ModelAndView();
 	//	MV.addObject("usuario", txtUsuario);
 	//	MV.addObject("contrasenia", txtContrasenia);
 	//	MV.setViewName("ListaClientes");
+		MV.addObject("ListarClientes", nc.ListarClientes());
 		MV.setViewName("ListaClientes");
 		return MV;
 	}

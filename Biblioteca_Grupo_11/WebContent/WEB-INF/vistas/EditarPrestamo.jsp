@@ -80,9 +80,27 @@ function confirmarEditar(){
 </script>
 </head>
 <body>
+<nav class="navbar navbar-dark bg-dark">
+<form action ="Home.html" method="post">
+<a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" value="Home" name="btnSalir"> </a>
+</form>
+<div class="dropdown">
+<a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Session</a>
+<div class="dropdown-menu text-center">
+<a><img src="img/PerfilUsuario.png" height="80" width="80"></a><br>
+<a>Usuario: </a>
+<%=session.getAttribute("nombre")%>
+<div class="dropdown-divider"></div>
+<form action = "Redireccionar_Login.html" method="post">	
+<input type="submit" value="Salir" name="btnSalir"><br>
+</form>
+</div>
+</div>
+</nav>
 <div class="parteIzq">
-	<div class="titulo2">
-		<h2>Administrar: </h2>
+<div class="titulo2">
+		<img src="img/logo02.png" id="ImagenMenu" width="200" height="200">
+		
 	</div>
 	<div>	
 		<ul>

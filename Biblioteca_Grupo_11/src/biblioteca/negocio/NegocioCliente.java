@@ -98,16 +98,6 @@ public class NegocioCliente {
 		
 
 	}
-	public String ValidarDatos(String txtFecha,String txtDni, String txtMail, String txtTelefono) {
-		try {
-			  
-			  String DescNacionalidad;
-			  return "";
-		}catch(Exception ex) {
-			System.out.println("Error: " + ex.toString());
-			return null;	
-		}
-	}
 	
 	public List<String> ListaLocalidades(){
 		try {
@@ -127,5 +117,30 @@ public class NegocioCliente {
 			return null;
 		}
  
+	}
+	
+	public String ValidarDatos(String txtFecha,String txtDni, String txtMail, String txtTelefono) {
+		try {
+			  
+			  String Mensaje="";
+			  
+			  return "Ok";
+		}catch(Exception ex) {
+			System.out.println("Error: " + ex.toString());
+			return null;	
+		}
+	}
+	
+
+	
+	public int ValidarExistencia(String dni) {
+		try {
+			
+			return dc.ExisteDNI(Integer.parseInt(dni));
+			
+		}catch(Exception ex) {
+			System.out.println("Error: "+ ex.toString());
+			return 0;	
+		}
 	}
 }

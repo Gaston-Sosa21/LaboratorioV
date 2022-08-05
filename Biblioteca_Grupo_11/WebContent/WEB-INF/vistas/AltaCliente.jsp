@@ -19,6 +19,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 
 <!-- Filtros de Tabla -->
 <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script> 
@@ -26,6 +27,7 @@
 <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js" crossorigin="anonymous"></script>
 <script src="./js/FiltrosTheadTabla.js"></script>
 <script src="./js/datepicker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 
 <!-- Date Picker -->
 
@@ -33,18 +35,7 @@
 
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
-			function ConfirmDemo() {
-			//Ingresamos un mensaje a mostrar
-			var mensaje = confirm("Confirma");
-			//Detectamos si el usuario acepto el mensaje
-			if (mensaje) {
-			alert("Se ha dado de alta corectamente al Cliente");
-			}
-			//Detectamos si el usuario denegó el mensaje
-			else {
-			alert("¡No se ha dado de alta al cliente!");
-			}
-			}
+
 			
 			function AltaOrModification(){
 				var url = window.location.href;
@@ -62,12 +53,88 @@
 				   return false;
 			  }
 			}
+		   
+		   function confirmarGuardar(){
+				
+				event.preventDefault(); // prevent form submit
+		        var form = event.target.form;
+				Swal.fire({
+					  title: 'Estas seguro?',
+					  text: "",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Confirmar',
+					  cancelButtonText: 'Cancelar'
+					}).then(function(result){
+						
+						
+						var nombre = document.getElementById('inputNombre').value;
+						var apellido = document.getElementById('inputApellido').value;
+						var email = document.getElementById('inputEmail').value;
+						var clave = document.getElementById('inputDni').value;
+						var nacionalidad = document.getElementById('nacionalidad').value;
+						var fecha = document.getElementById('txtFecha').value;
+						
+						  if (clave.length < 7) {
+						    alert('Debe ingresar un DNI real');
+						    return;
+						  }
+						  if(email.length == 0) {
+						    alert('No has escrito nada en el campo mail');
+						    return;
+						  }
+						  if(nombre.length == 0 || apellido.lenght) {
+						    alert('Debe completar el nombre!');
+						    return;
+						  }
+						  if(fecha.length == 0) {
+							    alert('Debe seleccionar una fecha');
+							    return;
+							  }
+
+						
+					  if (result.value) {
+						var elem = document.getElementById("txtGuardar");
+						
+						elem.value = "si";
+						
+					
+						
+						form.submit();
+					  }
+					});
+			}
+		 
 		</script>
 </head>
 <body>
+
+<nav class="navbar navbar-dark bg-dark">
+<form action ="Home.html" method="post">
+<a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" value="Home" name="btnSalir"> </a>
+</form>
+<div class="dropdown">
+<a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Session</a>
+<div class="dropdown-menu text-center">
+<a><img src="img/PerfilUsuario.png" height="80" width="80"></a><br>
+<a>Usuario: </a>
+<%=session.getAttribute("nombre")%>
+<div class="dropdown-divider"></div>
+	<div class="titulo2">
+		<img src="img/biblioteca.jpg" id="ImagenMenu" width="200" height="200">
+	</div>
+<form action = "Redireccionar_Login.html" method="post">	
+<input type="submit" value="Salir" name="btnSalir"><br>
+</form>
+</div>
+</div>
+</nav>
 <div class="parteIzq">
 	<div class="titulo2">
-		<h2>Administrar: </h2>
+		<img src="img/logo02.png" id="ImagenMenu" width="200" height="200">
+		
 	</div>
 	<div>	
 	<br><br>
@@ -87,12 +154,12 @@
 
 <div class="parteDer" >
 
-
-	 <form action="GuardarCliente.html" method="post">
+	<a> DATOS DEL CLIENTE </a>
+	 <form action="GuardarCliente.html" method="post" id="formulario">
 	
 	
   <input type="hidden" id="txtID" class="form-control"  name="IdCliente" value="${DatosCliente.id}">
-	
+	<br>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNombre">Nombre</label>
@@ -122,7 +189,7 @@
     <input type="text" class="form-control" id="inputDirecccion" placeholder="" name="txtDireccion" value="${DatosCliente.direccion}">
   </div>
   
-  <div>
+  <div class="form-row">
   
  
            <div class="form-group col-md-6">       
@@ -163,20 +230,24 @@
       </select>
       </div>
    </div>
+     <div class="form-row">
     
-      <div class="form-group">
+      <div class="form-group col-md-6">
     <label for="inputEmail">Email</label>
-    <input type="text" class="form-control" id="inputEmail" placeholder="" name="txtMail" value="${DatosCliente.email}">
+    <input type="text" class="form-control" id="inputEmail" placeholder=""  name="txtMail" value="${DatosCliente.email}" required>
   </div>
   
-  <div class="form-group">
+  <div class="form-group col-md-6">
     <label for="inputTelefono">Telefono</label>
     <input type="text" class="form-control" id="inputTelefono" placeholder="" maxlength="10" name="txtTelefono" onkeypress="return valideKey(event);" value="${DatosCliente.telefono}">
   </div>
+  </div>
   
-  
-       <button type="submit" class="btn btn-primary" onclick="ConfirmDemo()" >Guardar</button>
- </form>
+  <div>
+  <button type="submit" class="btn btn-primary" onclick="confirmarGuardar()" >Guardar</button>
+       <input type="hidden" id="txtGuardar" name="txtGuardar" class="form-control" value="no">
+  </div>
+</form>
   
     </div>
     
