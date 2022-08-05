@@ -27,14 +27,11 @@ public Boolean AltaPrestamo(Biblioteca biblioteca, String fecha_prestamo, Intege
 	}
 
 	//TERMINAR!
-	public Boolean EditarPrestamo(int Id, Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias, Clientes cliente){
+	public Boolean EditarPrestamo(String IdPrestamo, int txtCantidadDias){
 
 		try {
 
-		    return true;
-
-		//	return pdao.ModificarPrestamo(biblioteca, fecha_prestamo, cantidad_dias,cliente);
-
+		    return pdao.ModificarPrestamo(IdPrestamo, txtCantidadDias);
 
 		}catch(Exception ex){
 

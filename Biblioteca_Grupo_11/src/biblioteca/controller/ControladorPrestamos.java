@@ -1,13 +1,6 @@
 package biblioteca.controller;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
+import biblioteca.entidad.Prestamo;
 import biblioteca.negocio.NegocioBiblioteca;
 import biblioteca.negocio.NegocioCliente;
 import biblioteca.negocio.NegocioPrestamos;
-import javassist.bytecode.Descriptor.Iterator;
+
 
 @Controller
 public class ControladorPrestamos {
@@ -40,12 +34,16 @@ public class ControladorPrestamos {
 			return MV;
 		}
 	 
-	 @RequestMapping("Redireccionar_EdicionPrestamos.html")
-		public ModelAndView eventoRedireccionarEdicionPrestamo(String IdPrestamo)
+	 @RequestMapping("Redireccionar_EditarPrestamo.html")
+		public ModelAndView eventoRedireccionarEdicionPrestamo(String txtEditar)
 		{			
 			ModelAndView MV = new ModelAndView();
-			MV.addObject("prestamo", pneg.ObtenerPrestamoPorId(IdPrestamo));
-			MV.addObject("listaLibros", bneg.ObtenerLibros());
+			Prestamo p = pneg.ObtenerPrestamoPorId(txtEditar);
+			MV.addObject("Prestamo", p);
+			MV.addObject("Cliente", p.getCliente());
+			MV.addObject("CantidadDias", p.getCantidad_dias());
+			MV.addObject("FechaAlta", p.getFecha_prestamo());
+			MV.addObject("Libro", bneg.ObtenerBibliotecaPorId(String.valueOf(p.getBiblioteca().getId()))[0]);
 			MV.setViewName("EditarPrestamo");
 			return MV;
 		}
@@ -85,21 +83,20 @@ public class ControladorPrestamos {
 		}
 	 
 	 @RequestMapping("EditarPrestamo.html")
-		public ModelAndView eventoEditarPrestamo(/*String ddlLibro, String ddlEstado, String txtVolver, String txtFecha, String txtId*/)
+		public ModelAndView eventoEditarPrestamo(String IdPrestamo, int txtCantidadDias)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
 					String edito= "no";
-				/*
-					if(ddlLibro != null && Integer.parseInt(ddlEstado) != -1) {		
-						if(bneg.EditarBiblioteca(txtId, ddlLibro, txtFecha, Integer.parseInt(ddlEstado))) {							
-							Object[] obj = bneg.ObtenerBibliotecaPorId(txtId);
-							Biblioteca bib = (Biblioteca)obj[1];
-							MV.addObject("Biblioteca", bib.getId());
+				
+					if(IdPrestamo != null ) {
+						
+						if(pneg.EditarPrestamo(IdPrestamo,txtCantidadDias)) {	
+							MV.addObject("Prestamo", IdPrestamo);
 							edito = "si";							
 						}
 					}		
-					*/
+					
 					
 					MV.addObject("mostrarMensaje", true);
 					MV.addObject("accion", "editar");

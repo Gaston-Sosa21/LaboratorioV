@@ -206,7 +206,7 @@
 	    <tr>
 	       <!-- <td><a class="btn btn-primary" href="#" role="button">Editar</a></td> -->
 	      <td style="text-align:center">
-		      <form action = "Redireccionar_EditarBiblioteca.html" method="post">	
+		      <form action = "Redireccionar_EditarPrestamo.html" method="post">	
 					<button type="submit" name="btnConfirmar"  class="btn btn-primary" >
 						<i class="fa fa-edit"></i>
 					</button>

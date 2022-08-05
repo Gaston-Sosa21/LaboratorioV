@@ -1,8 +1,12 @@
 package biblioteca.dao;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,8 +53,9 @@ public Boolean CargarPrestamo(Biblioteca biblioteca, String fecha_prestamo, Inte
 		}	
 
 	 }
-/*
-public Boolean ModificarBiblioteca(int Id, String ISBN, String FechaAlta, int Estado) {
+
+
+public Boolean ModificarPrestamo(String IdPrestamo, int CantidadDias) {
 	
 	try {
 		
@@ -65,26 +70,19 @@ public Boolean ModificarBiblioteca(int Id, String ISBN, String FechaAlta, int Es
 	     session.beginTransaction();
 	     
 	     
-	     Object[] obj = BuscarPrestamo(Id);
-	     Libro lib = BuscarLibro(ISBN);
-	     Biblioteca bbta = (Biblioteca)obj[1];
+	     Prestamo p = BuscarPrestamo(IdPrestamo);	     
+	     p.setCantidad_dias(CantidadDias);
 	     
+	     SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+	     Date date = new Date(System.currentTimeMillis());
 	     
-	     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
-	     bbta.setEstado(Estado);
+	     System.out.println(formatter.format(date));
 	     
-	     
-	     ArrayList<Biblioteca> lb= new ArrayList<Biblioteca>();
-	     lb.add(bbta);
-	
-	     lib.setBiblioteca(lb);
-	     
-	     session.update(lib);
-	
-	     session.getTransaction().commit();
-	     
-	     session.close();
-	     
+	     p.setFecha_prestamo(date);
+    
+	     session.update(p);	
+	     session.getTransaction().commit();	     
+	     session.close();	     
 	     return true;
 	     
 	}
@@ -95,7 +93,7 @@ public Boolean ModificarBiblioteca(int Id, String ISBN, String FechaAlta, int Es
 	}
 	 
  }
-*/
+
 public Boolean EliminarPrestamo(String idPrestamo) {
 
 	try {
@@ -269,5 +267,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 
 	     return listaObject;
 	 }
+	
+	
 
 }
