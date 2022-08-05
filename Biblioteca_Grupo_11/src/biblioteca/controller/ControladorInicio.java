@@ -14,6 +14,8 @@ import biblioteca.entidad.Nacionalidad;
 import biblioteca.negocio.NegocioBiblioteca;
 import biblioteca.negocio.NegocioPrestamos;
 import biblioteca.negocio.NegocioUsuario;
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class ControladorInicio {
@@ -43,13 +45,22 @@ public class ControladorInicio {
 	MV.addObject("contrasenia", txtContrasenia);
 		MV.setViewName("PostLogin");
 		return MV;*/
+	@RequestMapping("Home.html")
+	public ModelAndView eventoRedireccionarPrincipal()
+	{
+		ModelAndView MV = new ModelAndView();
+		MV.setViewName("PostLogin");
+		return MV;
+	}
+	
 	@RequestMapping("Redireccionar_PostLogin.html")
-	public ModelAndView eventoRedireccionarPostLogin(String txtUsuario,String txtClave)
+	public ModelAndView eventoRedireccionarPostLogin(HttpServletRequest request,String txtUsuario,String txtClave)
 	{	
 		 String pagina = "";
 		 try {	
 			 if(busu.AltaUsuario(txtUsuario, txtClave)) {
 				 pagina = "PostLogin";
+				 request.getSession().setAttribute("nombre",txtUsuario);
 			 }
 			 else {
 				 pagina = "Login";
@@ -59,13 +70,13 @@ public class ControladorInicio {
 				MV.addObject("contrasenia", txtClave);
 				MV.setViewName(pagina);
 				return MV;
-		
 		 }
 		 catch(Exception ex) {
 				
 			    System.out.println("Error: "+ ex.toString());
 			    return null;
-		}		
+		}	
+		
 	}
 	
 	 /* ********************* REDIRECCIONES POST LOGIN *********************** */
@@ -86,7 +97,6 @@ public class ControladorInicio {
 		public ModelAndView eventoListarBibliotecas2()
 		{
 			try {
-					
 					ModelAndView MV = new ModelAndView();
 					MV.addObject("listaBibliotecas", bneg.ObtenerBibliotecas());
 					MV.setViewName("ListaBiblioteca");
