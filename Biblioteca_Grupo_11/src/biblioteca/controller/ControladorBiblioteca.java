@@ -42,16 +42,16 @@ public class ControladorBiblioteca {
 		}
 	 
 	 @RequestMapping("AltaBiblioteca.html")
-		public ModelAndView eventoGuardarBiblioteca(String ddlLibro, String ddlEstado, String txtVolver)
+		public ModelAndView eventoGuardarBiblioteca(String ddlLibro, String txtVolver)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
 					String agrego= "no";
 				
-					if(ddlLibro != null && Integer.parseInt(ddlEstado) != -1) {
+					if(ddlLibro != null) {
 						
 																		
-						if(bneg.AltaBiblioteca(ddlLibro, LocalDate.now().toString(), Integer.parseInt(ddlEstado))) {
+						if(bneg.AltaBiblioteca(ddlLibro, LocalDate.now().toString(), 0)) {
 							
 							Libro lib = bneg.ObtenerLibroPorId(ddlLibro);
 							MV.addObject("Libro", lib.getTitulo());

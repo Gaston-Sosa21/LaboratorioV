@@ -19,7 +19,7 @@ function mostrarMensaje (){
 	if('${mostrarMensaje}'){
 		 
 		 if('${Logeo}' == "no"){
-			 swal("Oops!", "Usuario o contraseña incorrectas!", "error");
+			 swal("Error!", "Usuario o contraseña incorrectas!", "error");
 		 }
 	 }
 }

@@ -139,17 +139,20 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     
 	     daoBiblioteca dbib = new daoBiblioteca();	     
 	     Libro libro = new Libro();
+	     Biblioteca bib = new Biblioteca();
 	     int idLibro = -1;
 	 
 	     for (Prestamo prestamo : listaPrestamos) {
 
 	    	 idLibro = prestamo.getBiblioteca().getId();
 	    	 libro = (Libro)dbib.BuscarBiblioteca( String.valueOf(idLibro) )[0];
+	    	 bib = (Biblioteca)dbib.BuscarBiblioteca( String.valueOf(idLibro) )[1];
 	    	 
-	    	 Object[] o = new Object[2];
+	    	 Object[] o = new Object[3];
 
 	    	 o[0] = prestamo;
 	    	 o[1] = libro;
+	    	 o[2] = bib;
 	    	 
 	    	 listaCompuesta.add(o);  
 	     }
@@ -165,9 +168,11 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	 
 	    for (Object[] obj : listaCompuesta) {	     
 
-		    if ( ((Biblioteca)obj[1]).getEstado() == 0)
-		       listLibros.add((Libro)obj[0]);   
-	     }	    
+		    if ( ((Biblioteca)obj[1]).getEstado() == 0 && !listLibros.contains((Libro)obj[0]))
+		       listLibros.add((Libro)obj[0]);     
+	
+	     }	     
+
 	     
 	   return listLibros;	 
 	}

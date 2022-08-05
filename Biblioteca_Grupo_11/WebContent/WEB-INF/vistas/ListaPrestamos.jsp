@@ -213,6 +213,8 @@
 	    <tr>
 	      <th scope="col">Editar</th>
 	      <th scope="col">Eliminar</th>
+	      <th scope="col">ID Prestamo</th>
+	      <th scope="col">ID Biblioteca</th>
 	      <th scope="col">Libro</th>
 	      <th scope="col">Fecha</th>
 	      <th scope="col">Cantidad de Dias</th>
@@ -240,6 +242,8 @@
 				  	<input type="hidden" id="confirmarEliminar" name="confirmarEliminar" class="form-control" value="no">
 			  </form>
 		  </td>
+		 <td style="text-align:center">${item[0].id}</td>
+		 <td style="text-align:center">${item[2].id}</td>
 	     <td style="text-align:center">${item[1].titulo}</td>
 	     <td style="text-align:center">${item[0].fecha_prestamo}</td>
   		 <td style="text-align:center">${item[0].cantidad_dias}</td>

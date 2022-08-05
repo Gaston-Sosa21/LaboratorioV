@@ -108,7 +108,8 @@ public class daoBiblioteca {
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 		 
-	     List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca where l.ISBN ='"+ISBN+"'").list();
+		 List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca b where l.ISBN ='"+ISBN+"' and b.estado = 0 ").list();
+
 	     Biblioteca bib = (Biblioteca)listaObject.get(0)[1];
 	     
 	     session.close();	    
