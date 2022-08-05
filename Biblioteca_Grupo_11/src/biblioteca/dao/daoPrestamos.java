@@ -87,7 +87,6 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     session.close();
 
 	     return true;
-
 	}
 
 	catch(Exception e) {
@@ -100,6 +99,8 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 
 
 	public List<Object[]> ListarObjPrestamos() {
+		
+		try {
 
 		 DaoSession daoSession = new DaoSession();
 		 Session session = daoSession.AbrirSession();
@@ -111,9 +112,16 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     session.close();
 
 	     return listaObject;
+	     
+		}catch(Exception ex) {
+			System.out.println("Error: "+ ex.toString());
+		    return null;
+		}
 	 }
 
 	public List<Prestamo> ListarPrestamos() {
+		
+		try {
 
 		 DaoSession daoSession = new DaoSession();
 		 Session session = daoSession.AbrirSession();
@@ -123,9 +131,16 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     
 	     session.close();	    
 	     return listaPrestamos;
+	     
+		}catch(Exception ex) {			
+		    System.out.println("Error: "+ ex.toString());
+		    return null;
+		}
 	 }
 	
 	public List<Object[]> ListarPrestamosCompuestos() {
+		
+		try {
 		
 		 DaoSession daoSession = new DaoSession();
 		 Session session = daoSession.AbrirSession();
@@ -158,10 +173,17 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     }
 	     
 	     return listaCompuesta;
+	     
+		}catch(Exception ex) {			
+		    System.out.println("Error: "+ ex.toString());
+		    return null;
+		   }
 	 }
 	
-	public List<Libro> ObtenerLibrosDeBiblioteca()
-	{
+	public List<Libro> ObtenerLibrosDeBiblioteca()	{
+		
+		try {
+		
 		daoBiblioteca dbib = new daoBiblioteca();		
 		List<Object[]> listaCompuesta = dbib.ListarBibliotecas();	     	     
 	    List<Libro> listLibros = new ArrayList<Libro>();
@@ -171,15 +193,20 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 		    if ( ((Biblioteca)obj[1]).getEstado() == 0 && !listLibros.contains((Libro)obj[0]))
 		       listLibros.add((Libro)obj[0]);     
 	
-	     }	     
-
+	     }	 
 	     
-	   return listLibros;	 
+	   return listLibros;	
+	   
+		}catch(Exception ex) {			
+		    System.out.println("Error: "+ ex.toString());
+		    return null;
+		}
 	}
 	
 	
 
-	public Prestamo BuscarPrestamo(String id) {
+	public Prestamo BuscarPrestamo(String id) {		
+		try {
 
 		 DaoSession daoSession = new DaoSession();
 		 Session session = daoSession.AbrirSession();
@@ -189,9 +216,15 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 
 	     session.close();
 	     return prestamo;
+	     
+		}catch(Exception ex) {			
+		    System.out.println("Error: "+ ex.toString());
+		    return null;
+		}
 	 }
 
-	public Object[] BuscarObjPrestamo(String idPrestamo) {
+	public Object[] BuscarObjPrestamo(String idPrestamo) {		
+		try {
 
 		 DaoSession daoSession = new DaoSession();
 		 Session session = daoSession.AbrirSession();
@@ -200,10 +233,11 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     Object[] listaObject = (Object[])session.createQuery("FROM Prestamo p where p.id = " + idPrestamo + "").uniqueResult();
 
 	     session.close();
-
 	     return listaObject;
+	     
+		}catch(Exception ex) {			
+		    System.out.println("Error: "+ ex.toString());
+		    return null;
+		}
 	 }
-	
-	
-
 }

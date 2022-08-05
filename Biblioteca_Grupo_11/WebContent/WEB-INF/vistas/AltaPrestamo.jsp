@@ -153,7 +153,7 @@
   
 	  <div class="form-group col-md-6	">       
 	      <label for="txtCantidad">Cantidad de Dias</label>      
-	      <input type="number" class="form-control" name="txtCantidad" required>  
+	      <input type="number" class="form-control" name="txtCantidad" value="1" min="1" max="365" required>  
 	    </div>
 	    
 	  <div class="form-group col-md-6	">    

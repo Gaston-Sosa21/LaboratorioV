@@ -17,26 +17,34 @@ import biblioteca.negocio.NegocioPrestamos;
 @Controller
 public class ControladorPrestamos {
 
-	NegocioPrestamos pneg = new NegocioPrestamos();
-	NegocioBiblioteca bneg = new NegocioBiblioteca();
-	NegocioCliente cneg = new NegocioCliente();
+		NegocioPrestamos pneg = new NegocioPrestamos();
+		NegocioBiblioteca bneg = new NegocioBiblioteca();
+		NegocioCliente cneg = new NegocioCliente();
 
-	 @RequestMapping("Redireccionar_PrestamosAlta.html")
+	   @RequestMapping("Redireccionar_PrestamosAlta.html")
 		public ModelAndView eventoRedireccionarPrestamosAlta()
-		{			
+		{	
+		 
+		 try {
 			ModelAndView MV = new ModelAndView();	
 							
-		   MV.addObject("listaLibros", pneg.ObtenerLibrosDeBiblioteca());
+		    MV.addObject("listaLibros", pneg.ObtenerLibrosDeBiblioteca());
 			MV.addObject("listaClientes", cneg.ListarClientes());
 			MV.addObject("date", LocalDate.now().toString());
-
 			MV.setViewName("AltaPrestamo");
 			return MV;
+			
+		 }catch(Exception ex) {			
+			    System.out.println("Error: "+ ex.toString());
+			    return null;
+			}
 		}
 	 
 	 @RequestMapping("Redireccionar_EditarPrestamo.html")
 		public ModelAndView eventoRedireccionarEdicionPrestamo(String txtEditar)
-		{			
+		{	
+		 
+		 try {
 			ModelAndView MV = new ModelAndView();
 			Prestamo p = pneg.ObtenerPrestamoPorId(txtEditar);
 			MV.addObject("Prestamo", p);
@@ -46,6 +54,11 @@ public class ControladorPrestamos {
 			MV.addObject("Libro", bneg.ObtenerBibliotecaPorId(String.valueOf(p.getBiblioteca().getId()))[0]);
 			MV.setViewName("EditarPrestamo");
 			return MV;
+			
+		 }catch(Exception ex) {			
+			    System.out.println("Error: "+ ex.toString());
+			    return null;
+			}
 		}
 	 
 	 @RequestMapping("AltaPrestamo.html")
@@ -53,13 +66,12 @@ public class ControladorPrestamos {
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
-					String agrego= "no";				
-			
-					//List<Object[]> list_bteca = bneg.ObtenerBibliotecas();
+					String agrego= "no";	
+
 					Biblioteca biblio = bneg.ObtenerBibliotecaPorISBN(ddlLibro);
 					Clientes cte = cneg.ObtenerClientePorID(cliente);
 					 
-					if(ddlLibro != null ) {										
+					if( !ddlLibro.isEmpty() && !txtCantidad.isEmpty() && !cliente.isEmpty() ) {									
 								
 						if (pneg.AltaPrestamo(biblio,  LocalDate.now().toString(), Integer.parseInt(txtCantidad), cte)) {							
 							agrego = "si";
@@ -89,14 +101,13 @@ public class ControladorPrestamos {
 					ModelAndView MV = new ModelAndView();
 					String edito= "no";
 				
-					if(IdPrestamo != null ) {
+					if( !IdPrestamo.isEmpty() && txtCantidadDias > 0 ) {
 						
 						if(pneg.EditarPrestamo(IdPrestamo,txtCantidadDias)) {	
 							MV.addObject("Prestamo", IdPrestamo);
 							edito = "si";							
 						}
-					}		
-					
+					}	
 					
 					MV.addObject("mostrarMensaje", true);
 					MV.addObject("accion", "editar");
@@ -120,18 +131,15 @@ public class ControladorPrestamos {
 					ModelAndView MV = new ModelAndView();
 					String elimino= "no";
 						
-					//if(confirmarEliminar == "si") {
-					   
+					if( !txtEliminar.isEmpty() ) {
 					   //actualizamos el estado de la biblioteca
 						bneg.ActualizarEstadoBiblioteca(String.valueOf(pneg.ObtenerPrestamoPorId(txtEliminar).getBiblioteca().getId()), 0);
 						if(pneg.EliminarPrestamo(txtEliminar)) {
 							MV.addObject("Prestamo", txtEliminar);
-							elimino = "si";	
-														
-						}					
-						
-					//}
-
+							elimino = "si";															
+						}
+					}
+					
 					MV.addObject("mostrarMensaje", true);
 					MV.addObject("accion", "eliminar");
 					MV.addObject("Elimino", elimino);
@@ -147,6 +155,4 @@ public class ControladorPrestamos {
 			}
 		    	
 		}
-
-
 }

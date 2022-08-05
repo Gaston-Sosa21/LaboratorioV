@@ -140,7 +140,7 @@ function confirmarEditar(){
   
 	  <div class="form-group col-md-6	">       
 	      <label for="txtCantidad">Cantidad de Dias</label>      
-	      <input type="number" class="form-control" name="txtCantidadDias" value="${CantidadDias}">  
+	      <input type="number" class="form-control" name="txtCantidadDias" min="1" max="365" value="${CantidadDias}">  
 	    </div>
 	    
 	  <div class="form-group col-md-6	">    
