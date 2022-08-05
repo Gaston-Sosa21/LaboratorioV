@@ -155,8 +155,8 @@
     </div> 
      
     <div class="form-group col-md-6	"> 
-    <label for="txtEstado">Estado</label>
-    <input type="text" id="txtEstado" name="txtEstado" class="form-control" value="En biblioteca" disabled>         
+	    <label for="txtEstado">Estado</label>
+	    <input type="text" id="txtEstado" name="txtEstado" class="form-control" value="En biblioteca" disabled>         
     </div>       
   </div><!-- END DIV -->
   <div class="form-row">

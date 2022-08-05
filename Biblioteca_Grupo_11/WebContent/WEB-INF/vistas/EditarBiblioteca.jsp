@@ -168,9 +168,9 @@ function confirmarEditar(){
   </div><!-- END DIV -->
   <div class="form-row">
   
-	  <div class="form-group col-md-6	">    
-	      <label for="ddlEstado">Estado</label>      
-	       <select id="ddlEstado" name="ddlEstado" class="form-control">
+	  	<div class="form-group col-md-6	">    
+	     	<label for="ddlEstado">Estado</label>      
+	       <select id="ddlEstado" name="ddlEstado" class="form-control" disabled>
 		        <option value="-1" disabled selected>Seleccione...</option>
 		        
 		        <c:choose>
@@ -185,8 +185,8 @@ function confirmarEditar(){
 		            </c:otherwise>
 	    
 	       		</c:choose>   
-	       </select> 
-	    </div>    
+	       </select>
+	  	</div>    
 	     
 		<div class="form-group col-md-6">
         	  <label for="fechaNacimiento">Fecha de Alta</label>
