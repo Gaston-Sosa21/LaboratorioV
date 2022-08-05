@@ -142,9 +142,7 @@ function confirmarEliminar2(){
 			 <form action = "Redireccionar_ListaPrestamos.html" method="get">	
 				<input type="submit" value="PRESTAMOS" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
 			</form> 
-			<form action = "Redireccionar_Login.html" method="get">	
-				<input type="submit" value="CERRAR SESION" name="btnConfirmar" onclick="MsjCerrarSesion()"  class="btn btn-dark btn-Menu" ><br>
-			</form> 	
+		 	
 		</ul>
 	</div>
 </div>

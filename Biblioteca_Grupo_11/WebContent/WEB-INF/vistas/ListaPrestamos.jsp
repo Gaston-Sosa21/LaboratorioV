@@ -191,9 +191,7 @@
 			 <form action = "Redireccionar_ListaClientes.html" method="get">	
 				<input type="submit" value="CLIENTES" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
 			</form> 
-			<form action = "Redireccionar_Login.html" method="get">	
-				<input type="submit" value="CERRAR SESION" name="btnConfirmar" onclick="MsjCerrarSesion()"  class="btn btn-dark btn-Menu" ><br>
-			</form> 	
+			 	
 		</ul>
 	</div>
 </div>
