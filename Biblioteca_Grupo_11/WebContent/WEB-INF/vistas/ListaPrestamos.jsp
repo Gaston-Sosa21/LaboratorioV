@@ -245,7 +245,7 @@
 	     <td style="text-align:center">${item[1].titulo}</td>
 	     <td style="text-align:center">${item[0].fecha_prestamo}</td>
   		 <td style="text-align:center">${item[0].cantidad_dias}</td>
-  		 <td style="text-align:center">${item[0].cliente.nombres}</td>
+  		 <td style="text-align:center">${item[0].cliente.nombres} ${item[0].cliente.apellidos}</td>
 	    </tr>
 	    
 	</c:forEach>    	
