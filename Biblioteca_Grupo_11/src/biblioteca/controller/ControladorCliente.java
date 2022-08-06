@@ -90,17 +90,24 @@ public class ControladorCliente {
 				cl.setTelefono(txtTelefono);
 				
 				int i = 0;
-	
+				ModelAndView MV = new ModelAndView();
+
 				if(IdCliente!="") {
 					
 					  cl.setId(Integer.parseInt(IdCliente));
 					  i  = nc.ModificarCliente(cl); 
 					
-					  Mensaje="Se actualizaron los datos del cliente.";
+					  Mensaje="Se actualizaron los datos del cliente";
 					
 					if(i<0) {
-					  Mensaje = "Error! No pudo guardar los datos del cliente.";	
+					  Mensaje = "Error! No pudo guardar los datos del cliente ";
+						MV.addObject("Edito", 0);
+
+					}else {
+						MV.addObject("Edito", 1);
+
 					}
+					MV.addObject("accion", "editar");
 					
 				}else {
 					
@@ -110,22 +117,32 @@ public class ControladorCliente {
 						
 					 i  = nc.AltaNuevoCliente(cl); 
 					
-					 Mensaje="Se agrego el nuevo cliente.";
+					 Mensaje="Se agrego el nuevo cliente: ";
 					
-					 if(i<0) {
-					   Mensaje = "Error! No pudo agregarse el nuevo cliente.";	
-					 }
+					 	if(i<0) {
+					 		Mensaje = "Error! No pudo agregarse el cliente ";	
+							MV.addObject("Agrego", 0);
+
+					 	}else {
+							MV.addObject("Agrego", 1);
+
+					 	}
 					
 					}else {
 						Mensaje="Error! El cliente con este dni ya existe.";
+						NameCliente = " DNI :"+txtDni;
+						MV.addObject("Agrego", 0);
+
 					}
-				
+					
+					MV.addObject("accion", "agregar");				
 				}
 				
 			
  				Mensaje = Mensaje + NameCliente;
 				System.out.println(Mensaje);
-				ModelAndView MV = new ModelAndView();
+				MV.addObject("mostrarMensaje", true);
+				MV.addObject("Mensaje", Mensaje);
 				MV.addObject("ListarClientes", nc.ListarClientes());
 				MV.setViewName("ListaClientes");
 				return MV;
@@ -142,12 +159,31 @@ public class ControladorCliente {
 		try {
 			
 			ModelAndView MV = new ModelAndView();
+		    String Mensaje = "";
+	    if(nc.ClienteTienePrestamos(EliminarCliente) != 0) {
+	    	
+	    	Mensaje="No se pudo eliminar al cliente, este posee prestamos.";
+			MV.addObject("Elimino", 0);
+
+		}else {
+			
 			int i = nc.BorrarCliente(EliminarCliente);
-			String Mensaje="Se elimino al cliente ";// + nombrecompletoCliente();
+		    Mensaje="Se elimino al cliente ";// + nombrecompletoCliente();
+
+			
 			if(i<1) {
-				Mensaje="No se pudo eliminar al cliente";
+				
+				Mensaje="No se pudo eliminar al cliente.";
+				MV.addObject("Elimino", 0);
+
+			}else {
+				MV.addObject("Elimino", 1);
 			}
+
+		}
+			MV.addObject("mostrarMensaje", true);
 			MV.addObject("Mensaje", Mensaje);
+			MV.addObject("accion", "eliminar");
 			System.out.println(Mensaje);
 			MV.addObject("ListarClientes", nc.ListarClientes());
 			MV.setViewName("ListaClientes");

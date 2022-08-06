@@ -109,9 +109,86 @@ function confirmarEliminar2(){
 					alert("No se ha podido cerrar la sesiom");
 				}
 			 }
+			
+			 function mostrarMensaje (){
+				 
+				 if('${mostrarMensaje}'){
+				 
+					if('${accion}' == "agregar"){
+						
+						if('${Agrego}' == 1){
+						 	
+					 		Swal.fire(
+					 		  'Exito!',
+							  '${Mensaje}',
+							  'success'
+
+							)
+					 		
+					 	}
+					
+					 	else{
+					 	
+							Swal.fire(
+									  'Error!',
+									  '${Mensaje}',
+									  'error'
+							)				 	
+					 	}
+					
+					}
+					else if('${accion}' == "editar"){
+						
+						if('${Edito}' == 1){
+						 	
+					 		Swal.fire(
+							 		  'Exito!',
+									  '${Mensaje}',
+									  'success'
+							)
+					 		
+					 	}
+						
+					 	else{
+					 	
+							Swal.fire(
+									  'Error!',
+									  '${Mensaje}',
+									  'error'							)				 	
+					 	}
+					}
+					else{
+						
+						if('${Elimino}' == 1){
+						 	
+					 		Swal.fire(
+							  'Exito!',
+							  '${Mensaje}',
+							  'success'
+							)
+					 		
+					 	}
+						
+					 	else{
+					 	
+							Swal.fire(
+							  'Error!',
+							  '${Mensaje}',
+							  'error'
+							)				 	
+					 	}
+					}
+					 
+					 
+				 	
+					 	
+				 }
+											 
+			 }
+			 
 		</script>
 </head>
-<body>
+<body onLoad="mostrarMensaje()">
 <nav class="navbar navbar-dark bg-dark">
 <form action ="Home.html" method="post">
 <a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" value="Home" name="btnSalir"> </a>

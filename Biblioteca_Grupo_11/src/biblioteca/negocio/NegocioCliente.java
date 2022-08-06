@@ -143,4 +143,9 @@ public class NegocioCliente {
 			return 0;	
 		}
 	}
+	
+	public int ClienteTienePrestamos(String id) {
+		
+		return dc.ClienteConPrestamos(Integer.parseInt(id));
+	}
 }

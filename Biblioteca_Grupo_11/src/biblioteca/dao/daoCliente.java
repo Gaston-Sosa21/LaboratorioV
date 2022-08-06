@@ -177,5 +177,25 @@ public class daoCliente {
 			 return 0;
 		 }		 
 	}
+	
+	public int ClienteConPrestamos(int id) {
+		try {
+			
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
+		     
+		     Long cantidad = (Long)session.createQuery("SELECT count(*) FROM Prestamo p inner join p.cliente as c where c.id="+id ).uniqueResult();
+		     
+		     int existe = Math.toIntExact(cantidad);		     
+		     session.close();		     
+		     return existe;
+		     
+		 }catch(Exception ex) {
+				System.out.println("Error: " + ex.toString());
+
+			 return 0;
+		 }
+	}
 
 }
