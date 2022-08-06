@@ -66,7 +66,7 @@ INSERT INTO `biblioteca_grupo_11`.`autores`
 `nombre`,
 `idNacionalidad`)
 VALUES
-(3,
+(4,
 'Collins',
 'susy@gmail.com',
 'Suzanne',
