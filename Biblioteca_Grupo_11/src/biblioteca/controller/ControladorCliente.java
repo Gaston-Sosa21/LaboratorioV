@@ -92,32 +92,32 @@ public class ControladorCliente {
 				int i = 0;
 				ModelAndView MV = new ModelAndView();
 
-				if(IdCliente!="") {
+				if(IdCliente!="") { //Si es un cliente que se edita
 					
 					  cl.setId(Integer.parseInt(IdCliente));
 					  i  = nc.ModificarCliente(cl); 
-					
-					  Mensaje="Se actualizaron los datos del cliente ";
-					
-					if(i<0) {
-					  Mensaje = "Error! No pudo guardar los datos del cliente ";
-						MV.addObject("Edito", 0);
+										
+					  if(i<0) {					
+						  Mensaje = "Error! No pudo guardar los datos del cliente ";
+						  MV.addObject("Edito", 0);
 
-					}else {
-						MV.addObject("Edito", 1);
-
-					}
-					MV.addObject("accion", "editar");
+					  }else if(i==2) {
+						  Mensaje = "Error! Ya existe un cliente con el DNI ingresado, no se pudo editar al cliente ";
+						  MV.addObject("Edito", 0);
+					  }else {
+						  Mensaje="Se actualizaron los datos del cliente ";
+						  MV.addObject("Edito", 1);
+					  }
+					  	 
+					  MV.addObject("accion", "editar");		
+					  	  
+				}else { // Si es nuevo cliente:
 					
-				}else {
-					
-					int ExisteCliente = nc.ValidarExistencia(txtDni);
-
-					if(ExisteCliente < 1) {
+						if(nc.ValidarExistencia(txtDni) < 1) { //Corroboro que no existe el dni
 						
-					 i  = nc.AltaNuevoCliente(cl); 
+							i  = nc.AltaNuevoCliente(cl); 
 					
-					 Mensaje="Se agrego el nuevo cliente: ";
+							Mensaje="Se agrego el nuevo cliente: ";
 					
 					 	if(i<0) {
 					 		Mensaje = "Error! No pudo agregarse el cliente ";	
@@ -128,15 +128,16 @@ public class ControladorCliente {
 
 					 	}
 					
-					}else {
-						Mensaje="Error! El cliente con este dni ya existe.";
-						NameCliente = " DNI :"+txtDni;
-						MV.addObject("Agrego", 0);
+						}else { //Caso que ya exista el dni ingresado
+							Mensaje="Error! El cliente con este dni ya existe.";
+							NameCliente = " DNI :"+txtDni;
+							MV.addObject("Agrego", 0);
 
 					}
 					
-					MV.addObject("accion", "agregar");				
-				}
+					MV.addObject("accion", "agregar");		
+					
+				}// End del else del primer if
 				
 			
  				Mensaje = Mensaje + NameCliente;

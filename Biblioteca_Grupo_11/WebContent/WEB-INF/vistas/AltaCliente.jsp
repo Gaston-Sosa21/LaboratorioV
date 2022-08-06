@@ -54,6 +54,25 @@
 			  }
 			}
 		   
+		   function SoloLetras(e){
+			   let key =  e.keyCode || e.wich;
+			   
+			   let teclado =  String.fromCharCode(key).toLowerCase();
+			   let letras = "abcdefghijklmnñopqrstuvwxyz";
+			   let especiales=[8,37,38,46,164]; 
+			   let teclado_especial = false;
+			   for(let i in especiales){
+			      if (key==especiales[i]) {
+			        teclado_especial = true;
+			        break;
+			      }
+			      if (letras.indexOf(teclado) == -1 && !teclado_especial) {
+			        return false; 
+			      }
+			   }
+
+			 }
+		   
 		   function confirmarGuardar(){
 				
 				event.preventDefault(); // prevent form submit
@@ -174,11 +193,11 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputNombre">Nombre</label>
-      <input type="nombre" class="form-control" id="inputNombre" name="txtNombre" value="${DatosCliente.nombres}">
+      <input type="nombre" class="form-control" id="inputNombre" name="txtNombre" value="${DatosCliente.nombres}" maxlength="25"  onkeypress="return SoloLetras(event);">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Apellido</label>
-      <input type="apellido" class="form-control" id="inputApellido" name="txtApellido" value="${DatosCliente.apellidos}">
+      <input type="apellido" class="form-control" id="inputApellido" name="txtApellido" value="${DatosCliente.apellidos}" maxlength="25" onkeypress="return SoloLetras(event);">
     </div>
   </div>
    

@@ -178,6 +178,26 @@ public class daoCliente {
 		 }		 
 	}
 	
+	public int VerificarNuevoDNI(Clientes cli) {
+		try {
+			
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
+		     
+		     Long cantidad = (Long)session.createQuery("SELECT count(c.id) FROM Clientes c where c.dni = "+ cli.getDni() ).uniqueResult();
+		     
+		     int existe = Math.toIntExact(cantidad);		     
+		     session.close();		     
+		     return 1;
+		     
+		 }catch(Exception ex) {
+				System.out.println("Error: " + ex.toString());
+
+			 return 0;
+		 }
+	}
+	
 	public int ClienteConPrestamos(int id) {
 		try {
 			

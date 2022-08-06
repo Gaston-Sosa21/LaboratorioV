@@ -54,7 +54,13 @@ public class NegocioCliente {
 	
 	public int ModificarCliente(Clientes cli) {
 		try {
-			 return dc.ActualizarDatosCliente(cli);
+
+			if(dc.ExisteDNI(cli.getDni())<1) {
+				 return dc.ActualizarDatosCliente(cli);
+			}else {
+				return 2;
+			}
+			
 		}catch(Exception ex) {
 		System.out.println("Error: " + ex.toString());
 		return 0;
