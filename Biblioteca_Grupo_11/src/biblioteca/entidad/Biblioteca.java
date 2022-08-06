@@ -71,6 +71,16 @@ public class Biblioteca implements Serializable{
 		public String toString() {
 			return "Biblioteca [id=" + id + ", fecha_alta=" + fecha_alta + ", estado=" + estado + "]";
 		}
+		
+		//Metodos init y destroy
+		
+		public void initBiblioteca() {
+			System.out.println("Se inicializa una biblioteca");
+		}
+		
+		public void destroyBiblioteca() {
+			System.out.println("Se destruye una biblioteca");
+		}
 	
 
 }
