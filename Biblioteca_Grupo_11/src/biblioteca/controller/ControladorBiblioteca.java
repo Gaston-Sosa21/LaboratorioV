@@ -42,7 +42,7 @@ public class ControladorBiblioteca {
 		}
 	 
 	 @RequestMapping("AltaBiblioteca.html")
-		public ModelAndView eventoGuardarBiblioteca(String ddlLibro, String txtVolver)
+		public ModelAndView eventoGuardarBiblioteca(String ddlLibro)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
@@ -80,16 +80,16 @@ public class ControladorBiblioteca {
 		}
 	 
 	 @RequestMapping("EditarBiblioteca.html")
-		public ModelAndView eventoEditarBiblioteca(String ddlLibro, String ddlEstado, String txtVolver, String txtFecha, String txtId)
+		public ModelAndView eventoEditarBiblioteca(String ddlLibro, String txtFecha, String txtId)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
 					String edito= "no";
 				
-					if(ddlLibro != null && Integer.parseInt(ddlEstado) != -1) {
+					if(ddlLibro != null) {
 						
 																		
-						if(bneg.EditarBiblioteca(txtId, ddlLibro, txtFecha, Integer.parseInt(ddlEstado))) {
+						if(bneg.EditarBiblioteca(txtId, ddlLibro, txtFecha)) {
 							
 							Object[] obj = bneg.ObtenerBibliotecaPorId(txtId);
 							Biblioteca bib = (Biblioteca)obj[1];
@@ -119,7 +119,7 @@ public class ControladorBiblioteca {
 		}
 	 
 	 @RequestMapping("EliminarBiblioteca.html")
-		public ModelAndView eventoEliminarBiblioteca(String txtEliminar, String confirmarEliminar)
+		public ModelAndView eventoEliminarBiblioteca(String txtEliminar)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();

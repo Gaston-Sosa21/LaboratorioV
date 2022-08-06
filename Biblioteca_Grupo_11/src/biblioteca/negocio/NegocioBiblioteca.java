@@ -27,11 +27,11 @@ public class NegocioBiblioteca {
 		}
 	}
 	
-	public Boolean EditarBiblioteca(String id, String ISBN, String FechaAlta, int Estado) {
+	public Boolean EditarBiblioteca(String id, String ISBN, String FechaAlta) {
 		
 		try {
 		    
-			return bdao.ModificarBiblioteca(id, ISBN, FechaAlta, Estado);
+			return bdao.ModificarBiblioteca(id, ISBN, FechaAlta);
 		   
 			
 		}catch(Exception ex){

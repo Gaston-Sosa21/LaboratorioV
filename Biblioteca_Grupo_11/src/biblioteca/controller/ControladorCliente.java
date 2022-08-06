@@ -97,7 +97,7 @@ public class ControladorCliente {
 					  cl.setId(Integer.parseInt(IdCliente));
 					  i  = nc.ModificarCliente(cl); 
 					
-					  Mensaje="Se actualizaron los datos del cliente";
+					  Mensaje="Se actualizaron los datos del cliente ";
 					
 					if(i<0) {
 					  Mensaje = "Error! No pudo guardar los datos del cliente ";

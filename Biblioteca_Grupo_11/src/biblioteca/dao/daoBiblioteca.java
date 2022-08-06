@@ -40,7 +40,7 @@ public class daoBiblioteca {
 
 	 }
 	
-	public Boolean ModificarBiblioteca(String id, String ISBN, String FechaAlta, int Estado) {
+	public Boolean ModificarBiblioteca(String id, String ISBN, String FechaAlta) {
 		
 		try {
 			
@@ -52,8 +52,7 @@ public class daoBiblioteca {
 		     Libro lib = BuscarLibro(ISBN);
 		     Biblioteca bbta = (Biblioteca)obj[1];		     
 		     
-		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
-		     bbta.setEstado(Estado);		     
+		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));		     
 		     
 		     ArrayList<Biblioteca> lb= new ArrayList<Biblioteca>();
 		     lb.add(bbta);
