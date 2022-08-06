@@ -74,7 +74,7 @@
 						var apellido = document.getElementById('inputApellido').value;
 						var email = document.getElementById('inputEmail').value;
 						var clave = document.getElementById('inputDni').value;
-						var nacionalidad = document.getElementById('nacionalidad').value;
+						var nacionalidad = document.getElementById('nacionalidad').selectedIndex;
 						var fecha = document.getElementById('txtFecha').value;
 						
 						  if (clave.length < 7) {
@@ -92,8 +92,11 @@
 						  if(fecha.length == 0) {
 							    alert('Debe seleccionar una fecha');
 							    return;
-							  }
-
+						  }
+						  if(nacionalidad == null || nacionalidad == 0) {
+							    alert('Debe seleccionar una nacionalidad');
+							    return;
+						  }
 						
 					  if (result.value) {
 						var elem = document.getElementById("txtGuardar");
@@ -108,12 +111,20 @@
 			}
 		 
 		</script>
+		<style>
+		.botonHome{
+			webkit-appearance: button;
+    		background-color: #343a40!important;
+    		color: white;
+    		border: 0;
+		}
+		</style>
 </head>
 <body>
 
 <nav class="navbar navbar-dark bg-dark">
 <form action ="Home.html" method="post">
-<a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" value="Home" name="btnSalir"> </a>
+<a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" class="botonHome"  value="Home" name="btnSalir"> </a>
 </form>
 <div class="dropdown">
 <a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Session</a>
@@ -195,7 +206,7 @@
            <div class="form-group col-md-6">       
        <label for="txtNacionalidad">Nacionalidad</label>      
        <select id="nacionalidad" name="txtNacionalidad" class="form-control">
-       <option value="-1" disabled selected>Seleccione...</option>
+       <option value="" disabled selected>Seleccione...</option>
        <c:forEach items="${ListaNacionalidades}" var="item">     
            <c:choose>
        		<c:when test="${item.id eq IdNacionalidad}">    

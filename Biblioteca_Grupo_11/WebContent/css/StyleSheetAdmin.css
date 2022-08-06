@@ -158,5 +158,10 @@ thead input {
         width: 100%;
     }
    
-  
+.botonHome{
+	webkit-appearance: button;
+    background-color: #343a40!important;
+    color: white;
+    border: 0;
+}  
 

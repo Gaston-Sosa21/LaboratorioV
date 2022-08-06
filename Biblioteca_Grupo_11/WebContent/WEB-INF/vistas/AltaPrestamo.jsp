@@ -93,11 +93,19 @@
 		}
 
 </script>
+	<style>
+		.botonHome{
+			webkit-appearance: button;
+    		background-color: #343a40!important;
+    		color: white;
+    		border: 0;
+		}
+		</style>
 </head>
 <body onLoad="mostrarMensajeDeError()">
 <nav class="navbar navbar-dark bg-dark">
 <form action ="Home.html" method="post">
-<a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" value="Home" name="btnSalir"> </a>
+<a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" class="botonHome"  value="Home" name="btnSalir"> </a>
 </form>
 <div class="dropdown">
 <a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Session</a>
