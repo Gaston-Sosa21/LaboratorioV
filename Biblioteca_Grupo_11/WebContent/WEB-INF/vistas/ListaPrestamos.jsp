@@ -97,7 +97,7 @@
 						 	
 					 		Swal.fire(
 							  'Exito!',
-							  'Se realizo correctamente el prestamo del libro ' + '${Libro}',
+							  'Se realizo correctamente el prestamo del libro',
 							  'success'
 							)
 					 		

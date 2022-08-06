@@ -35,6 +35,12 @@
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
 
+	function mostrarMensajeDeError (){
+		if('${mostrarError}'){			
+				 swal("Error!:",'${MsjError}', "error");
+		 }
+	}
+
 		function confirmarVolver(){
 			
 			event.preventDefault(); // prevent form submit
@@ -74,20 +80,21 @@
 				  confirmButtonText: 'Confirmar',
 				  cancelButtonText: 'Cancelar'
 				}).then(function(result){
-					
 				  if (result.value) {
 					var elem = document.getElementById("txtAgregar");
 					elem.value = "si";
 					form.submit();
 				  }
 				});
+				
 			
+		 }
 				
 		}
 
 </script>
 </head>
-<body>
+<body onLoad="mostrarMensajeDeError()">
 <nav class="navbar navbar-dark bg-dark">
 <form action ="Home.html" method="post">
 <a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" value="Home" name="btnSalir"> </a>
@@ -134,8 +141,8 @@
    
     <div class="form-group col-md-6	">       
        <label for="ddlLibro">Libro</label>      
-       <select id="ddlLibro" name="ddlLibro" class="form-control">
-       <option disabled selected value=null required>Seleccione...</option>       
+       <select id="ddlLibro" name="ddlLibro" class="form-control" required>
+       <option disabled selected value=null >Seleccione...</option>       
        <c:forEach items="${listaLibros}" var="item">       
 	        <option value="${item.ISBN}">${item.titulo}</option>	        
 		</c:forEach>
@@ -159,8 +166,7 @@
 	  <div class="form-group col-md-6	">    
           <label for="cliente">Cliente</label>      
             <select id="cliente" name="cliente" class="form-control" required>
-	        <option selected>Seleccione...</option>
-	        
+	         <option disabled selected value=null >Seleccione...</option>
 	         <c:forEach items="${listaClientes}" var="item">       
 	        <option value="${item.id}">${item.nombres}</option>
 	        

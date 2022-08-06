@@ -67,24 +67,26 @@ public class ControladorPrestamos {
 			try {
 					ModelAndView MV = new ModelAndView();
 					String agrego= "no";	
-
-					Biblioteca biblio = bneg.ObtenerBibliotecaPorISBN(ddlLibro);
-					Clientes cte = cneg.ObtenerClientePorID(cliente);
 					 
-					if( !ddlLibro.isEmpty() && !txtCantidad.isEmpty() && !cliente.isEmpty() ) {									
+					if( ddlLibro != null && txtCantidad != null && cliente != null && cliente != "Seleccione...") {		
+						
+						Biblioteca biblio = bneg.ObtenerBibliotecaPorISBN(ddlLibro);
+						Clientes cte = cneg.ObtenerClientePorID(cliente);
 								
 						if (pneg.AltaPrestamo(biblio,  LocalDate.now().toString(), Integer.parseInt(txtCantidad), cte)) {							
 							agrego = "si";
 							//actualizar estado de biblioteca
 							bneg.ActualizarEstadoBiblioteca(String.valueOf(bneg.ObtenerBibliotecaPorISBN(ddlLibro).getId()), 1);							
 						}
-					}	
-														
+					}
+										
+					MV.setViewName("ListaPrestamos");
 					MV.addObject("mostrarMensaje", true);
 					MV.addObject("accion", "agregar");
 					MV.addObject("Agrego", agrego);
 					MV.addObject("listaPrestamos", pneg.ObtenerPrestamos());
-					MV.setViewName("ListaPrestamos");
+					MV.setViewName("ListaPrestamos");												
+		
 					return MV;
 					
 			}catch(Exception ex) {
