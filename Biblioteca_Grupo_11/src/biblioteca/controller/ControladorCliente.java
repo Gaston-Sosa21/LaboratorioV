@@ -4,6 +4,8 @@ package biblioteca.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
@@ -64,8 +66,9 @@ public class ControladorCliente {
 					System.out.println(Mensaje);
 					return null;
 				}*/
-				
-				Clientes cl = new Clientes();
+				ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+				Clientes cl = (Clientes)appContext.getBean("Cliente");
+				//Clientes cl = new Clientes();
 	
 				System.out.println("Recibí el id: "+IdCliente);
 				System.out.println("Nacionalidad : "+txtNacionalidad);

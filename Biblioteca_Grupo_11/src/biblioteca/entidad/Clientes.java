@@ -186,4 +186,17 @@ public class Clientes implements Serializable{
 					+ ", localidad=" + localidad + ", telefono=" + telefono + ", fecha_nacimiento=" + fecha_nacimiento
 					+ "]";
 		}
+		
+		
+		
+		//Desarrollo métodos init y destroy
+		public void initPersona() {
+			System.out.println("Se inicializa el bean Cliente");
+		}
+		public void destroyPersona() {
+			System.out.println("Se destruye el bean Cliente");
+		}
+		
+		
+		
 }
