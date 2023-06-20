@@ -13,7 +13,7 @@ public class DaoSession {
 	 private Configuration configuration;
 	 private ServiceRegistry serviceRegistry;
 	 
-	 DaoSession()
+	 public DaoSession()
 	 {
 		  	this.configuration = new Configuration();
 		  	this.configuration.configure();	

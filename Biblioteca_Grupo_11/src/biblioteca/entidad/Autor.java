@@ -88,4 +88,12 @@ public class Autor implements Serializable{
 		return "Autor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", nacionalidad=" + nacionalidad
 				+ ", email=" + email + "]";
 	}	
+	
+	public void initAutor() {
+		System.out.println("Se inicializa un autor");
+	}
+	
+	public void destroyAutor() {
+		System.out.println("Se destruye un autor");
+	}
 }

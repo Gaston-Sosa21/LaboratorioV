@@ -50,4 +50,12 @@ public class Genero implements Serializable{
 			return "Genero [id=" + id + ", descripcion=" + descripcion + "]";
 		}	
 		
+		public void initGenero() {
+			System.out.println("Se inicializa un genero");
+		}
+		
+		public void destroyGenero() {
+			System.out.println("Se destruye un genero");
+		}
+		
 }

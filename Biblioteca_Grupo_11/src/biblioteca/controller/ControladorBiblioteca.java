@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,11 +16,14 @@ import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Libro;
 import biblioteca.entidad.Nacionalidad;
 import biblioteca.negocio.NegocioBiblioteca;
+import resources.ConfigBiblioteca;
 
 @Controller
 public class ControladorBiblioteca {
 
-	NegocioBiblioteca bneg = new NegocioBiblioteca();
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(ConfigBiblioteca.class);
+	
+	NegocioBiblioteca bneg = (NegocioBiblioteca)appContext.getBean("nuevoNegocioBiblioteca");
 	
 	 @RequestMapping("Redireccionar_BibliotecaAlta.html")
 		public ModelAndView eventoRedireccionarBibliotecaAlta()

@@ -9,7 +9,12 @@ import biblioteca.entidad.Libro;
 
 public class NegocioBiblioteca {
 
-	daoBiblioteca bdao = new daoBiblioteca();
+	daoBiblioteca bdao;
+	
+	public NegocioBiblioteca(daoBiblioteca dao){
+		
+		this.bdao = dao;
+	}
 	
 	public Boolean AltaBiblioteca(String ISBN, String FechaAlta, int Estado) {
 		

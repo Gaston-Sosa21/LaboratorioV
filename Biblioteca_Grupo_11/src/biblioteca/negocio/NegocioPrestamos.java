@@ -11,9 +11,14 @@ import biblioteca.entidad.Prestamo;
 
 public class NegocioPrestamos {
 
-	daoPrestamos pdao = new daoPrestamos();
+	daoPrestamos pdao;
 
-public Boolean AltaPrestamo(Biblioteca biblioteca, String fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
+	public NegocioPrestamos(daoPrestamos dao) {
+		this.pdao = dao;
+	}
+	
+	
+	public Boolean AltaPrestamo(Biblioteca biblioteca, String fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
 
 		try {	    
 

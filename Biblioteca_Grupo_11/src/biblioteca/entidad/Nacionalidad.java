@@ -51,6 +51,12 @@ public class Nacionalidad implements Serializable{
 			return "Nacionalidad [id=" + id + ", descripcion=" + descripcion + "]";
 		}
 		
+		public void initNacionalidad() {
+			System.out.println("Se inicializa una nacionalidad");
+		}
 		
+		public void destroyNacionalidad() {
+			System.out.println("Se destruye una nacionalidad");
+		}
 		
 }

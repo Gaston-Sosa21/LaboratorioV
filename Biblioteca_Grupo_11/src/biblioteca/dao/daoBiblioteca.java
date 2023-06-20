@@ -3,26 +3,33 @@ package biblioteca.dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Libro;
+import resources.ConfigBiblioteca;
+import resources.ConfigDaoSession;
 
 public class daoBiblioteca {
 
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(ConfigBiblioteca.class, ConfigDaoSession.class);
+	
 	public Boolean CargarBiblioteca(String ISBN, String FechaAlta, int Estado) {
 		
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();
 		     
-		     Biblioteca bbta = new Biblioteca();
+		     Biblioteca bbta = (Biblioteca)appContext.getBean("nuevaBiblioteca");
 		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
 		     bbta.setEstado(Estado);		     
 		     
 		     Libro lib = (Libro)session.get(Libro.class, ISBN);
 		     
-		     ArrayList<Biblioteca> lb= new ArrayList<Biblioteca>();
+		     ArrayList<Biblioteca> lb= (ArrayList<Biblioteca>)appContext.getBean("nuevaListaBibliotecas");
 		     lb.add(bbta);
 		
 		     lib.setBiblioteca(lb);		     
@@ -44,7 +51,7 @@ public class daoBiblioteca {
 		
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();		     
 		     
@@ -54,7 +61,7 @@ public class daoBiblioteca {
 		     
 		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));		     
 		     
-		     ArrayList<Biblioteca> lb= new ArrayList<Biblioteca>();
+		     ArrayList<Biblioteca> lb= (ArrayList<Biblioteca>)appContext.getBean("nuevaListaBibliotecas");
 		     lb.add(bbta);
 		
 		     lib.setBiblioteca(lb);		     
@@ -77,7 +84,7 @@ public class daoBiblioteca {
 		
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();		     
 		     
@@ -103,7 +110,7 @@ public class daoBiblioteca {
 		
 		try {
 		
-	 	 DaoSession daoSession = new DaoSession();
+	 	 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 		 
@@ -124,7 +131,7 @@ public class daoBiblioteca {
 	
 	public List<Object[]> ListarBibliotecas() {
 		 
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 	     
@@ -148,7 +155,7 @@ public class daoBiblioteca {
 	
 	public Libro BuscarLibro(String ISBN) {
 		 
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 	     
@@ -162,7 +169,7 @@ public class daoBiblioteca {
 	
 	public Object[] BuscarBiblioteca(String id) {
 		 
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 	     
@@ -175,7 +182,7 @@ public class daoBiblioteca {
 	public boolean ActualizarEstadoBiblioteca(String idBiblioteca, int estado) {
 		 // estado --> 0 : en biblioteca y 1 : prestado
 		
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 
