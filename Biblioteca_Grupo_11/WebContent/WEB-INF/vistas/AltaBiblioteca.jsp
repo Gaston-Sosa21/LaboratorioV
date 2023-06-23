@@ -85,12 +85,37 @@
 
 </script>
 
-
+	<style>
+		.botonHome{
+			webkit-appearance: button;
+    		background-color: #343a40!important;
+    		color: white;
+    		border: 0;
+		}
+		</style>
 </head>
 <body>
+<nav class="navbar navbar-dark bg-dark">
+<form action ="Home.html" method="post">
+<a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" class="botonHome"  value="Home" name="btnSalir"> </a>
+</form>
+<div class="dropdown">
+<a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Session</a>
+<div class="dropdown-menu text-center">
+<a><img src="img/PerfilUsuario.png" height="80" width="80"></a><br>
+<a>Usuario: </a>
+<%=session.getAttribute("nombre")%>
+<div class="dropdown-divider"></div>
+<form action = "Redireccionar_Login.html" method="post">	
+<input type="submit" value="Salir" name="btnSalir"><br>
+</form>
+</div>
+</div>
+</nav>
 <div class="parteIzq">
-	<div class="titulo2">
-		<h2>Administrar: </h2>
+<div class="titulo2">
+		<img src="img/logo02.png" id="ImagenMenu" width="200" height="200">
+		
 	</div>
 	<div>	
 		<ul>
@@ -136,13 +161,9 @@
 	   </select>   
     </div> 
      
-    <div class="form-group col-md-6	">    
-      <label for="ddlEstado">Estado</label>      
-       <select id="ddlEstado" name="ddlEstado" class="form-control">
-	        <option value="-1" disabled selected>Seleccione...</option>
-	        <option value="0">En biblioteca</option>
-	        <option value="1">Prestado</option>
-       </select> 
+    <div class="form-group col-md-6	"> 
+	    <label for="txtEstado">Estado</label>
+	    <input type="text" id="txtEstado" name="txtEstado" class="form-control" value="En biblioteca" disabled>         
     </div>       
   </div><!-- END DIV -->
   <div class="form-row">

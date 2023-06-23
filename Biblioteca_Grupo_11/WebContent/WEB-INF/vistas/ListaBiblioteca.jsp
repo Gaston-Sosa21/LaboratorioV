@@ -109,7 +109,7 @@
 							Swal.fire(
 							  'Error!',
 							  'No se pudo agregar la nueva biblioteca',
-							  'error',
+							  'error'
 							)				 	
 					 	}
 					
@@ -131,7 +131,7 @@
 							Swal.fire(
 							  'Error!',
 							  'No se pudo editar la biblioteca',
-							  'error',
+							  'error'
 							)				 	
 					 	}
 					}
@@ -152,7 +152,7 @@
 							Swal.fire(
 							  'Error!',
 							  'No se pudo eliminar la biblioteca',
-							  'error',
+							  'error'
 							)				 	
 					 	}
 					}
@@ -166,11 +166,38 @@
 			 
 			 
 		</script>
+		
+	<style>
+		.botonHome{
+			webkit-appearance: button;
+    		background-color: #343a40!important;
+    		color: white;
+    		border: 0;
+		}
+		</style>
 </head>
 <body onLoad="mostrarMensaje()">
+<nav class="navbar navbar-dark bg-dark">
+<form action ="Home.html" method="post">
+<a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" class="botonHome"  value="Home" name="btnSalir"> </a>
+</form>
+<div class="dropdown">
+<a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Session</a>
+<div class="dropdown-menu text-center">
+<a><img src="img/PerfilUsuario.png" height="80" width="80"></a><br>
+<a>Usuario: </a>
+<%=session.getAttribute("nombre")%>
+<div class="dropdown-divider"></div>
+<form action = "Redireccionar_Login.html" method="post">	
+<input type="submit" value="Salir" name="btnSalir"><br>
+</form>
+</div>
+</div>
+</nav>
 <div class="parteIzq">
-	<div class="titulo2">
-		<h2>Administrar: </h2>
+<div class="titulo2">
+		<img src="img/logo02.png" id="ImagenMenu" width="200" height="200">
+		
 	</div>
 	<div>	
 		<ul>			
@@ -180,9 +207,7 @@
 			 <form action = "Redireccionar_ListaPrestamos.html" method="get">	
 				<input type="submit" value="PRESTAMOS" name="btnConfirmar"  class="btn btn-dark btn-Menu" ><br>
 			</form> 	
-			 <form action = "Redireccionar_Login.html" method="get">	
-				<input type="submit" value="CERRAR SESION" name="btnConfirmar" onclick="MsjCerrarSesion()"  class="btn btn-dark btn-Menu" ><br>
-			</form> 	
+		
 		</ul>
 	</div>
 </div>

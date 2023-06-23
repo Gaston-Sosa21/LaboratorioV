@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Clientes")
-public class Cliente implements Serializable{
+public class Clientes implements Serializable{
 	
 		//Implementar serializable
 		private static final long serialVersionUID = 1L;
@@ -53,12 +53,12 @@ public class Cliente implements Serializable{
 		@Column(name ="fecha_nacimiento")
 		private java.sql.Date fecha_nacimiento;				
 
-		public Cliente() {
+		public Clientes() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
 
-		public Cliente(int id, int dni, String nombres, String apellidos, Nacionalidad nacionalidad, String email,
+		public Clientes(int id, int dni, String nombres, String apellidos, Nacionalidad nacionalidad, String email,
 				String direccion, String localidad, String telefono, Date fecha_nacimiento) {
 			super();
 			this.id = id;
@@ -186,4 +186,17 @@ public class Cliente implements Serializable{
 					+ ", localidad=" + localidad + ", telefono=" + telefono + ", fecha_nacimiento=" + fecha_nacimiento
 					+ "]";
 		}
+		
+		
+		
+		//Desarrollo métodos init y destroy
+		public void initPersona() {
+			System.out.println("Se inicializa el bean Cliente");
+		}
+		public void destroyPersona() {
+			System.out.println("Se destruye el bean Cliente");
+		}
+		
+		
+		
 }

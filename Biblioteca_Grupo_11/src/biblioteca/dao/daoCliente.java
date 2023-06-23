@@ -10,7 +10,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import biblioteca.entidad.Biblioteca;
-import biblioteca.entidad.Cliente;
+import biblioteca.entidad.Clientes;
 import biblioteca.dao.daoHibernate;
 
 import biblioteca.entidad.Nacionalidad;
@@ -19,28 +19,20 @@ public class daoCliente {
 
 	
 	
-	public int CargarCliente(Cliente clientedatos) {
+	public int CargarCliente(Clientes clientedatos) {
 		 
 		try {
 			
-			SessionFactory sessionFactory;
-	    	
-	    	Configuration configuration = new Configuration();
-	    	configuration.configure();	
-	    	ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    	sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    	Session session = sessionFactory.openSession();
-	 
-	    	session.beginTransaction();
-			
-		     
-		    System.out.println("Recibí datos del cliente " + clientedatos.getApellidos() + " " + clientedatos.getNombres());
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();
+					     
+		     System.out.println("Recibí datos del cliente " + clientedatos.getApellidos() + " " + clientedatos.getNombres());
 		    
-		    session.save(clientedatos);
-		    
-		    session.getTransaction().commit();
-
-		    return 1;
+		     session.save(clientedatos);		    
+		     session.getTransaction().commit();
+		     session.close();
+		     return 1;
 		    
 		}catch(Exception ex) {
 			System.out.println("Error: " + ex.toString());
@@ -54,69 +46,48 @@ public class daoCliente {
 		
 	 try {
 		
-		 SessionFactory sessionFactory;
-	    	
-	    	Configuration configuration = new Configuration();
-	    	configuration.configure();	
-	    	ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    	sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    	Session session = sessionFactory.openSession();
-	 
-	    	session.beginTransaction();
+		 DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 			
-		    List<Object[]> CL = (List<Object[]>) session.createQuery("FROM Cliente").list();
-		    
-		    session.close();
-		    return CL;
+	     List<Object[]> CL = (List<Object[]>) session.createQuery("FROM Clientes").list();
+	    
+	     session.close();
+	     return CL;
 
 	 }catch(Exception ex) {
 			System.out.println("Error: " + ex.toString());
-
 		 return null;
-	 }
-				
+	 }				
 	}
 	
 	
-	public Cliente BuscarClienteID(String ID) {
+	public Clientes BuscarClienteID(String ID) {
 		
 		try {
 			
-			 SessionFactory sessionFactory;
-			
-		   	 Configuration configuration = new Configuration();
-		   	 configuration.configure();	
-		   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-		   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-		   	 Session session = sessionFactory.openSession();
-
-		     session.beginTransaction();
+		 	DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
 		     
+		     Clientes Cli = (Clientes)session.createQuery("FROM Clientes c where c.id = '" + ID + "'").uniqueResult();
 		     
-		     Cliente Cli = (Cliente)session.createQuery("FROM Cliente c where c.id = '" + ID + "'").uniqueResult();
-		     
-		     session.close();
-		     
+		     session.close();		     
 		     return Cli;
+		     
 		 }catch(Exception ex) {
 				System.out.println("Error: " + ex.toString());
-
 			 return null;
 		 }		 
 	}
 	
 	
-	public int ActualizarDatosCliente(Cliente cli) {
+	public int ActualizarDatosCliente(Clientes cli) {
+		
 		try {
-			 SessionFactory sessionFactory;
-				
-		   	 Configuration configuration = new Configuration();
-		   	 configuration.configure();	
-		   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-		   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-		   	 Session session = sessionFactory.openSession();
-
-		     session.beginTransaction();
+			DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();
 		     
 		     session.update(cli);
 		     session.getTransaction().commit();
@@ -125,30 +96,24 @@ public class daoCliente {
 		     return 1;
 		}catch(Exception ex) {
 			System.out.println("Error: " + ex.toString());
-
 			return 0;
 		}
 	}
 
-	public int BorrarCliente(Cliente cli) {
+	public int BorrarCliente(Clientes cli) {
 		try {
 			
-		   	 SessionFactory sessionFactory;
-	    	
-	    	 Configuration configuration = new Configuration();
-	    	 configuration.configure();	
-	    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    	 Session session = sessionFactory.openSession();
+			DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();
 	 
-	    	 cli.setNacionalidad(null);
-		     session.beginTransaction();
+	    	 cli.setNacionalidad(null);	
 		     
 		     session.delete(cli);
 		     session.getTransaction().commit();  
-		     session.close();
-		     
+		     session.close();		     
 			 return 1;
+			 
 		}catch(Exception ex) {
 			return 0;
 		}
@@ -156,23 +121,16 @@ public class daoCliente {
 	
 	public List<Object[]> ListarNacionalidades() {
 		try {
-			SessionFactory sessionFactory;
-	    	
-	    	Configuration configuration = new Configuration();
-	    	configuration.configure();	
-	    	ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    	sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    	Session session = sessionFactory.openSession();
-	 
-	    	session.beginTransaction();
+			
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();
 			
 		    List<Object[]> LN = (List<Object[]>) session.createQuery("FROM Nacionalidad n order by n.descripcion").list();
 		  
 		    session.close();
- 
 		    return LN;
 		    
-		   //sessionFactory.close();
 		}catch(Exception ex) {
 			System.out.println("Error en daocliente: " + ex.toString());
 			return null;
@@ -183,22 +141,15 @@ public class daoCliente {
 	public Nacionalidad BuscarIdNacionalidad(int Naci) {
 		try {
 			
-			 SessionFactory sessionFactory;
-			
-		   	 Configuration configuration = new Configuration();
-		   	 configuration.configure();	
-		   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-		   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-		   	 Session session = sessionFactory.openSession();
-
-		     session.beginTransaction();
-		     
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
 		     
 		     Nacionalidad ND = (Nacionalidad)session.createQuery("SELECT c FROM Nacionalidad c where c.id = '"+Naci+"'").uniqueResult();
 		     
 		     session.close();
-		     
 		     return ND;
+		     
 		 }catch(Exception ex) {
 				System.out.println("Error: " + ex.toString());
 
@@ -206,5 +157,65 @@ public class daoCliente {
 		 }	
 	}
 	
+	public int ExisteDNI(int dni) {
+		
+		try {
+			
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
+		     
+		     Long cantidad = (Long)session.createQuery("SELECT count(c.id) FROM Clientes c where c.dni = "+ dni ).uniqueResult();
+		     
+		     int existe = Math.toIntExact(cantidad);		     
+		     session.close();		     
+		     return existe;
+		     
+		 }catch(Exception ex) {
+				System.out.println("Error: " + ex.toString());
+
+			 return 0;
+		 }		 
+	}
+	
+	public int VerificarNuevoDNI(Clientes cli) {
+		try {
+			
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
+		     
+		     Long cantidad = (Long)session.createQuery("SELECT count(c.id) FROM Clientes c where c.dni = "+ cli.getDni() ).uniqueResult();
+		     
+		     int existe = Math.toIntExact(cantidad);		     
+		     session.close();		     
+		     return 1;
+		     
+		 }catch(Exception ex) {
+				System.out.println("Error: " + ex.toString());
+
+			 return 0;
+		 }
+	}
+	
+	public int ClienteConPrestamos(int id) {
+		try {
+			
+			 DaoSession daoSession = new DaoSession();
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
+		     
+		     Long cantidad = (Long)session.createQuery("SELECT count(*) FROM Prestamo p inner join p.cliente as c where c.id="+id ).uniqueResult();
+		     
+		     int existe = Math.toIntExact(cantidad);		     
+		     session.close();		     
+		     return existe;
+		     
+		 }catch(Exception ex) {
+				System.out.println("Error: " + ex.toString());
+
+			 return 0;
+		 }
+	}
 
 }

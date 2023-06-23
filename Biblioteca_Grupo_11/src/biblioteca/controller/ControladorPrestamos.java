@@ -1,73 +1,126 @@
 package biblioteca.controller;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import biblioteca.entidad.Biblioteca;
-import biblioteca.entidad.Cliente;
-import biblioteca.entidad.Libro;
+import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Prestamo;
 import biblioteca.negocio.NegocioBiblioteca;
 import biblioteca.negocio.NegocioCliente;
 import biblioteca.negocio.NegocioPrestamos;
+import resources.ConfigBiblioteca;
+
 
 @Controller
 public class ControladorPrestamos {
 
-	NegocioPrestamos pneg = new NegocioPrestamos();
-	NegocioBiblioteca bneg = new NegocioBiblioteca();
-	NegocioCliente cneg = new NegocioCliente();
-	 
-	 @RequestMapping("Redireccionar_PrestamosAlta.html")
+		ApplicationContext appContext = new AnnotationConfigApplicationContext(ConfigBiblioteca.class);
+	
+		NegocioBiblioteca bneg = (NegocioBiblioteca)appContext.getBean("nuevoNegocioBiblioteca");
+		NegocioPrestamos pneg = (NegocioPrestamos)appContext.getBean("nuevoNegocioPrestamo");
+		NegocioCliente cneg = new NegocioCliente();
+
+	   @RequestMapping("Redireccionar_PrestamosAlta.html")
 		public ModelAndView eventoRedireccionarPrestamosAlta()
 		{	
-		 	
-		 	ModelAndView MV = new ModelAndView();
 		 
-			MV.addObject("listaLibros", bneg.ObtenerLibros());
+		 try {
+			ModelAndView MV = new ModelAndView();	
+							
+		    MV.addObject("listaLibros", pneg.ObtenerLibrosDeBiblioteca());
 			MV.addObject("listaClientes", cneg.ListarClientes());
 			MV.addObject("date", LocalDate.now().toString());
+			MV.setViewName("AltaPrestamo");
+			return MV;
 			
-			MV.setViewName("AltaPrestamo");
-			return MV;
+		 }catch(Exception ex) {			
+			    System.out.println("Error: "+ ex.toString());
+			    return null;
+			}
 		}
 	 
-	 @RequestMapping("Redireccionar_EdicionPrestamos.html")
-		public ModelAndView eventoRedireccionarEdicionPrestamo()
-		{			
+	 @RequestMapping("Redireccionar_EditarPrestamo.html")
+		public ModelAndView eventoRedireccionarEdicionPrestamo(String txtEditar)
+		{	
+		 
+		 try {
 			ModelAndView MV = new ModelAndView();
-			MV.setViewName("AltaPrestamo");
+			Prestamo p = pneg.ObtenerPrestamoPorId(txtEditar);
+			MV.addObject("Prestamo", p);
+			MV.addObject("Cliente", p.getCliente());
+			MV.addObject("CantidadDias", p.getCantidad_dias());
+			MV.addObject("FechaAlta", p.getFecha_prestamo());
+			MV.addObject("Libro", bneg.ObtenerBibliotecaPorId(String.valueOf(p.getBiblioteca().getId()))[0]);
+			MV.setViewName("EditarPrestamo");
 			return MV;
+			
+		 }catch(Exception ex) {			
+			    System.out.println("Error: "+ ex.toString());
+			    return null;
+			}
 		}
 	 
-	 /*
-	 @RequestMapping("Redireccionar_ListaClientes.html")
-		public ModelAndView eventoGuardarPrestamo(String ddlLibro, String cte, String txtFecha, String txtCantidad)
+	 @RequestMapping("AltaPrestamo.html")
+		public ModelAndView eventoGuardarPrestamo(String ddlLibro, String txtFecha, String txtCantidad, String cliente)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
-					String agrego= "no";
-				
-					
-					if(ddlLibro != null && cte != null && txtFecha != null && txtCantidad != null ) {						
-						//Integer.parseInt(ddlEstado) != -1	
+					String agrego= "no";	
+					 
+					if( ddlLibro != null && txtCantidad != null && cliente != null && cliente != "Seleccione...") {		
 						
-						if(pneg.AltaPrestamo(Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias, Cliente cliente)) {		
-							agrego = "si";							
+						Biblioteca biblio = bneg.ObtenerBibliotecaPorISBN(ddlLibro);
+						Clientes cte = cneg.ObtenerClientePorID(cliente);
+								
+						if (pneg.AltaPrestamo(biblio,  LocalDate.now().toString(), Integer.parseInt(txtCantidad), cte)) {							
+							agrego = "si";
+							//actualizar estado de biblioteca
+							bneg.ActualizarEstadoBiblioteca(String.valueOf(bneg.ObtenerBibliotecaPorISBN(ddlLibro).getId()), 1);							
 						}
-						
 					}
-					
-					MV.setViewName("ListaBiblioteca");
+										
+					MV.setViewName("ListaPrestamos");
 					MV.addObject("mostrarMensaje", true);
 					MV.addObject("accion", "agregar");
 					MV.addObject("Agrego", agrego);
 					MV.addObject("listaPrestamos", pneg.ObtenerPrestamos());
-					MV.setViewName("ListaBiblioteca");
+					MV.setViewName("ListaPrestamos");												
+		
+					return MV;
+					
+			}catch(Exception ex) {
+					
+				    System.out.println("Error: "+ ex.toString());
+				    return null;
+			}		    	
+		}
+	 
+	 @RequestMapping("EditarPrestamo.html")
+		public ModelAndView eventoEditarPrestamo(String IdPrestamo, int txtCantidadDias)
+		{
+			try {
+					ModelAndView MV = new ModelAndView();
+					String edito= "no";
+				
+					if( !IdPrestamo.isEmpty() && txtCantidadDias > 0 ) {
+						
+						if(pneg.EditarPrestamo(IdPrestamo,txtCantidadDias)) {	
+							MV.addObject("Prestamo", IdPrestamo);
+							edito = "si";							
+						}
+					}	
+					
+					MV.addObject("mostrarMensaje", true);
+					MV.addObject("accion", "editar");
+					MV.addObject("Edito", edito);
+					MV.addObject("listaPrestamos", pneg.ObtenerPrestamos());
+					MV.setViewName("ListaPrestamos");
 					return MV;
 					
 			}catch(Exception ex) {
@@ -77,6 +130,36 @@ public class ControladorPrestamos {
 			}
 		    	
 		}
-	 */
 	 
+	 @RequestMapping("EliminarPrestamo.html")
+		public ModelAndView eventoEliminarPrestamo(String txtEliminar)
+		{
+			try {
+					ModelAndView MV = new ModelAndView();
+					String elimino= "no";
+						
+					if( !txtEliminar.isEmpty() ) {
+					   //actualizamos el estado de la biblioteca
+						bneg.ActualizarEstadoBiblioteca(String.valueOf(pneg.ObtenerPrestamoPorId(txtEliminar).getBiblioteca().getId()), 0);
+						if(pneg.EliminarPrestamo(txtEliminar)) {
+							MV.addObject("Prestamo", txtEliminar);
+							elimino = "si";															
+						}
+					}
+					
+					MV.addObject("mostrarMensaje", true);
+					MV.addObject("accion", "eliminar");
+					MV.addObject("Elimino", elimino);
+					MV.addObject("listaPrestamos", pneg.ObtenerPrestamos());
+					MV.setViewName("ListaPrestamos");
+					return MV;
+					
+					
+			}catch(Exception ex) {
+					
+				    System.out.println("Error: "+ ex.toString());
+				    return null;
+			}
+		    	
+		}
 }

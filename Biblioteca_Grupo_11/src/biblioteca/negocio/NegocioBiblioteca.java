@@ -9,7 +9,12 @@ import biblioteca.entidad.Libro;
 
 public class NegocioBiblioteca {
 
-	daoBiblioteca bdao = new daoBiblioteca();
+	daoBiblioteca bdao;
+	
+	public NegocioBiblioteca(daoBiblioteca dao){
+		
+		this.bdao = dao;
+	}
 	
 	public Boolean AltaBiblioteca(String ISBN, String FechaAlta, int Estado) {
 		
@@ -27,13 +32,11 @@ public class NegocioBiblioteca {
 		}
 	}
 	
-	public Boolean EditarBiblioteca(String id, String ISBN, String FechaAlta, int Estado) {
+	public Boolean EditarBiblioteca(String id, String ISBN, String FechaAlta) {
 		
 		try {
-			
 		    
-		    
-			return bdao.ModificarBiblioteca(id, ISBN, FechaAlta, Estado);
+			return bdao.ModificarBiblioteca(id, ISBN, FechaAlta);
 		   
 			
 		}catch(Exception ex){
@@ -45,12 +48,22 @@ public class NegocioBiblioteca {
 	
 	public Boolean EliminarBiblioteca(String id) {
 		
-		try {
+		try {		    
+		    
+			return bdao.EliminarBiblioteca(id);		   
 			
+		}catch(Exception ex){
+			
+			System.out.println("Error: " + ex.toString());
+			return false;
+		}
+	}
+	
+public Boolean ActualizarEstadoBiblioteca(String idBiblioteca, int estado) {
+		
+		try {	    
 		    
-		    
-			return bdao.EliminarBiblioteca(id);
-		   
+			return bdao.ActualizarEstadoBiblioteca(idBiblioteca, estado );		   
 			
 		}catch(Exception ex){
 			
@@ -102,16 +115,22 @@ public class NegocioBiblioteca {
 		}
 	}
 	
-	public Object[] ObtenerBibliotecaPorId(String id){
-		
-		try {
-			
+	public Object[] ObtenerBibliotecaPorId(String id){		
+		try {			
 			return bdao.BuscarBiblioteca(id);
 		}
-		catch(Exception e) {
-			
-			System.out.println("Error: " + e.toString());
-			
+		catch(Exception e) {			
+			System.out.println("Error: " + e.toString());			
+			return null;
+		}
+	}
+	
+	public Biblioteca ObtenerBibliotecaPorISBN(String ISBN){		
+		try {			
+			return bdao.ObtenerBiblioteca(ISBN);
+		}
+		catch(Exception e) {			
+			System.out.println("Error: " + e.toString());			
 			return null;
 		}
 	}

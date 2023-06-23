@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import biblioteca.dao.daoCliente;
-import biblioteca.entidad.Cliente;
+import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
 
 public class NegocioCliente {
 
 	daoCliente dc = new daoCliente();
 	
-	public int AltaNuevoCliente(Cliente cli)
+	public int AltaNuevoCliente(Clientes cli)
 	{
 		try {
 		   
@@ -39,10 +39,10 @@ public class NegocioCliente {
 		}
 	}
 	
-	public Cliente ObtenerClientePorID(String ID)
+	public Clientes ObtenerClientePorID(String ID)
 	{
 		try {
-			Cliente Clients = dc.BuscarClienteID(ID); 
+			Clientes Clients = dc.BuscarClienteID(ID); 
 			return Clients;
 			
 			}catch(Exception ex) {
@@ -52,9 +52,15 @@ public class NegocioCliente {
 		}
 	}
 	
-	public int ModificarCliente(Cliente cli) {
+	public int ModificarCliente(Clientes cli) {
 		try {
-			 return dc.ActualizarDatosCliente(cli);
+
+			if(dc.ExisteDNI(cli.getDni())<1) {
+				 return dc.ActualizarDatosCliente(cli);
+			}else {
+				return 2;
+			}
+			
 		}catch(Exception ex) {
 		System.out.println("Error: " + ex.toString());
 		return 0;
@@ -63,7 +69,7 @@ public class NegocioCliente {
 	
 	public int BorrarCliente(String idCliente) {
 		try {
-			  Cliente Cliente = dc.BuscarClienteID(idCliente);
+			  Clientes Cliente = dc.BuscarClienteID(idCliente);
 			  int i = dc.BorrarCliente(Cliente);
 			  return i;
 		}catch(Exception ex) {
@@ -98,16 +104,6 @@ public class NegocioCliente {
 		
 
 	}
-	public String ValidarDatos(String txtFecha,String txtDni, String txtMail, String txtTelefono) {
-		try {
-			  
-			  String DescNacionalidad;
-			  return "";
-		}catch(Exception ex) {
-			System.out.println("Error: " + ex.toString());
-			return null;	
-		}
-	}
 	
 	public List<String> ListaLocalidades(){
 		try {
@@ -127,5 +123,35 @@ public class NegocioCliente {
 			return null;
 		}
  
+	}
+	
+	public String ValidarDatos(String txtFecha,String txtDni, String txtMail, String txtTelefono) {
+		try {
+			  
+			  String Mensaje="";
+			  
+			  return "Ok";
+		}catch(Exception ex) {
+			System.out.println("Error: " + ex.toString());
+			return null;	
+		}
+	}
+	
+
+	
+	public int ValidarExistencia(String dni) {
+		try {
+			
+			return dc.ExisteDNI(Integer.parseInt(dni));
+			
+		}catch(Exception ex) {
+			System.out.println("Error: "+ ex.toString());
+			return 0;	
+		}
+	}
+	
+	public int ClienteTienePrestamos(String id) {
+		
+		return dc.ClienteConPrestamos(Integer.parseInt(id));
 	}
 }

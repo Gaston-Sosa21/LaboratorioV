@@ -2,52 +2,41 @@ package biblioteca.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Libro;
+import resources.ConfigBiblioteca;
+import resources.ConfigDaoSession;
 
 public class daoBiblioteca {
 
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(ConfigBiblioteca.class, ConfigDaoSession.class);
+	
 	public Boolean CargarBiblioteca(String ISBN, String FechaAlta, int Estado) {
 		
 		try {
 			
-			SessionFactory sessionFactory;
-	    	
-	    	 Configuration configuration = new Configuration();
-	    	 configuration.configure();	
-	    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    	 Session session = sessionFactory.openSession();
-	 
-		     session.beginTransaction();
+			 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();
 		     
-		     Biblioteca bbta = new Biblioteca();
+		     Biblioteca bbta = (Biblioteca)appContext.getBean("nuevaBiblioteca");
 		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
-		     bbta.setEstado(Estado);
-		     
+		     bbta.setEstado(Estado);		     
 		     
 		     Libro lib = (Libro)session.get(Libro.class, ISBN);
 		     
-		     ArrayList<Biblioteca> lb= new ArrayList<Biblioteca>();
+		     ArrayList<Biblioteca> lb= (ArrayList<Biblioteca>)appContext.getBean("nuevaListaBibliotecas");
 		     lb.add(bbta);
 		
-		     lib.setBiblioteca(lb);
-		     
-		     session.save(lib);
-		
-		     session.getTransaction().commit();
-		     
-		     session.close();
-		     
-		     return true;
-		     
+		     lib.setBiblioteca(lb);		     
+		     session.save(lib);		
+		     session.getTransaction().commit();		     
+		     session.close();		     
+		     return true;		     
 		}
 		
 		catch(Exception e) {
@@ -58,41 +47,27 @@ public class daoBiblioteca {
 
 	 }
 	
-	public Boolean ModificarBiblioteca(String id, String ISBN, String FechaAlta, int Estado) {
+	public Boolean ModificarBiblioteca(String id, String ISBN, String FechaAlta) {
 		
 		try {
 			
-			SessionFactory sessionFactory;
-	    	
-	    	 Configuration configuration = new Configuration();
-	    	 configuration.configure();	
-	    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    	 Session session = sessionFactory.openSession();
-	 
-		     session.beginTransaction();
-		     
+			 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
 		     
 		     Object[] obj = BuscarBiblioteca(id);
 		     Libro lib = BuscarLibro(ISBN);
-		     Biblioteca bbta = (Biblioteca)obj[1];
+		     Biblioteca bbta = (Biblioteca)obj[1];		     
 		     
+		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));		     
 		     
-		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
-		     bbta.setEstado(Estado);
-		     
-		     
-		     ArrayList<Biblioteca> lb= new ArrayList<Biblioteca>();
+		     ArrayList<Biblioteca> lb= (ArrayList<Biblioteca>)appContext.getBean("nuevaListaBibliotecas");
 		     lb.add(bbta);
 		
-		     lib.setBiblioteca(lb);
-		     
-		     session.update(lib);
-		
-		     session.getTransaction().commit();
-		     
-		     session.close();
-		     
+		     lib.setBiblioteca(lb);		     
+		     session.update(lib);		
+		     session.getTransaction().commit();		     
+		     session.close();		     
 		     return true;
 		     
 		}
@@ -109,26 +84,16 @@ public class daoBiblioteca {
 		
 		try {
 			
-			SessionFactory sessionFactory;
-	    	
-	    	 Configuration configuration = new Configuration();
-	    	 configuration.configure();	
-	    	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    	 Session session = sessionFactory.openSession();
-	 
-		     session.beginTransaction();
-		     
+			 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();		     
 		     
 		     Object[] obj = BuscarBiblioteca(id);
 		     Biblioteca bbta = (Biblioteca)obj[1];
 
-		     session.delete(bbta);
-		
-		     session.getTransaction().commit();
-		     
-		     session.close();
-		     
+		     session.delete(bbta);		
+		     session.getTransaction().commit();		     
+		     session.close();		     
 		     return true;
 		     
 		}
@@ -141,80 +106,96 @@ public class daoBiblioteca {
 
 	 }
 	
+	public Biblioteca ObtenerBiblioteca(String ISBN) {
+		
+		try {
+		
+	 	 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
+		 
+		 List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca b where l.ISBN ='"+ISBN+"' and b.estado = 0 ").list();
+
+	     Biblioteca bib = (Biblioteca)listaObject.get(0)[1];
+	     
+	     session.close();	    
+	     return bib;
+		
+		}catch(Exception ex) {
+		
+	    System.out.println("Error: "+ ex.toString());
+	    return null;
+		}
+	}
+	
 	
 	public List<Object[]> ListarBibliotecas() {
 		 
-		 SessionFactory sessionFactory;
-    	
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
+		 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 	     
 	     List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca").list();
 	     
-	     session.close();
-	     
+	     session.close();	     
 	     return listaObject;
 	 }
 	
 	public List<Libro> ListarLibros() {
 		 
-		 SessionFactory sessionFactory;
-   	
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
+	 	DaoSession daoSession = new DaoSession();
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 	     
 	     List<Libro> listaLibros = (List<Libro>)session.createQuery("FROM Libro l").list();
 	     
-	     session.close();
-	     
+	     session.close();	     
 	     return listaLibros;
 	 }
 	
 	public Libro BuscarLibro(String ISBN) {
 		 
-		 SessionFactory sessionFactory;
-  	
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
+		 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 	     
 	     Libro lib = (Libro)session.createQuery("FROM Libro l where l.ISBN = '" + ISBN + "'").uniqueResult();
 	     
-	     session.close();
-	     
+	     session.close();	     
 	     return lib;
 	 }
 	
+
+	
 	public Object[] BuscarBiblioteca(String id) {
 		 
-		 SessionFactory sessionFactory;
- 	
-	   	 Configuration configuration = new Configuration();
-	   	 configuration.configure();	
-	   	 ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	   	 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	   	 Session session = sessionFactory.openSession();
-
-	     session.beginTransaction();
+		 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
 	     
 	     Object[] listaObject = (Object[])session.createQuery("FROM Libro l inner join l.biblioteca b where b.id = '" + id + "'").uniqueResult();
 	     
+	     session.close();	     
+	     return listaObject;
+	 }
+	
+	public boolean ActualizarEstadoBiblioteca(String idBiblioteca, int estado) {
+		 // estado --> 0 : en biblioteca y 1 : prestado
+		
+		 DaoSession daoSession = (DaoSession)appContext.getBean("nuevoDaoSession");
+		 Session session = daoSession.AbrirSession();
+		 session.beginTransaction();
+
+	     Object[] obj = BuscarBiblioteca(idBiblioteca);
+	     Biblioteca bbta = (Biblioteca)obj[1];	
+	     
+	     //bbta.setFecha_alta(java.sql.Date.valueOf(  ));
+	     
+	     bbta.setEstado(estado);
+	     session.update(bbta);
+	     session.getTransaction().commit();	     
 	     session.close();
 	     
-	     return listaObject;
+	     return true;
 	 }
 }

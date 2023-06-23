@@ -6,6 +6,20 @@ VALUES
 (1,
 'Argentina');
 
+INSERT INTO `biblioteca_grupo_11`.`nacionalidades`
+(`id`,
+`descripcion`)
+VALUES
+(2,
+'Brasil');
+
+INSERT INTO `biblioteca_grupo_11`.`nacionalidades`
+(`id`,
+`descripcion`)
+VALUES
+(3,
+'Uruguay');
+
 INSERT INTO `biblioteca_grupo_11`.`autores`
 (`id`,
 `apellido`,
@@ -14,10 +28,49 @@ INSERT INTO `biblioteca_grupo_11`.`autores`
 `idNacionalidad`)
 VALUES
 (1,
-'Lopez',
-'lopez@gmail.com',
-'Pepe',
+'Rowling',
+'jkrowling@gmail.com',
+'J.K',
 1);
+
+INSERT INTO `biblioteca_grupo_11`.`autores`
+(`id`,
+`apellido`,
+`email`,
+`nombre`,
+`idNacionalidad`)
+VALUES
+(2,
+'Cervantes',
+'migue@gmail.com',
+'Miguel',
+1);
+
+INSERT INTO `biblioteca_grupo_11`.`autores`
+(`id`,
+`apellido`,
+`email`,
+`nombre`,
+`idNacionalidad`)
+VALUES
+(3,
+'Simpson',
+'meromero@gmail.com',
+'Homero',
+1);
+
+INSERT INTO `biblioteca_grupo_11`.`autores`
+(`id`,
+`apellido`,
+`email`,
+`nombre`,
+`idNacionalidad`)
+VALUES
+(4,
+'Collins',
+'susy@gmail.com',
+'Suzanne',
+3);
 
 INSERT INTO `biblioteca_grupo_11`.`libros`
 (`ISBN`,
@@ -28,13 +81,13 @@ INSERT INTO `biblioteca_grupo_11`.`libros`
 `titulo`,
 `idAutor`)
 VALUES
-('TIT_123',
+('DONQ_123',
 100,
-'Se hunde',
+'De la mancha',
 curdate(),
 'Espaniol',
-'Titanic',
-1);
+'Don Quijote',
+2);
 
 INSERT INTO `biblioteca_grupo_11`.`libros`
 (`ISBN`,
@@ -47,7 +100,7 @@ INSERT INTO `biblioteca_grupo_11`.`libros`
 VALUES
 ('HRRY_111',
 100,
-'MAgo',
+'La piedra filosofal',
 curdate(),
 'Espaniol',
 'Harry Potter 1',
@@ -64,47 +117,56 @@ INSERT INTO `biblioteca_grupo_11`.`libros`
 VALUES
 ('HRRY_222',
 100,
-'MAgo',
+'La camara secreta',
 curdate(),
 'Espaniol',
 'Harry Potter 2',
 1);
 
-
-
-
-INSERT INTO `biblioteca_grupo_11`.`bibliotecas`
-(`id`,
-`estado`,
-`fecha_alta`,
-`ISBN_Libro`)
+INSERT INTO `biblioteca_grupo_11`.`libros`
+(`ISBN`,
+`cantidad_paginas`,
+`descripcion`,
+`fecha_lanzamiento`,
+`idioma`,
+`titulo`,
+`idAutor`)
 VALUES
-(1,
-0,
+('ODI_777',
+100,
+'Odisea',
 curdate(),
-'TIT_123');
+'Espaniol',
+'La Odisea',
+3);
 
-INSERT INTO `biblioteca_grupo_11`.`bibliotecas`
-(`id`,
-`estado`,
-`fecha_alta`,
-`ISBN_Libro`)
+INSERT INTO `biblioteca_grupo_11`.`libros`
+(`ISBN`,
+`cantidad_paginas`,
+`descripcion`,
+`fecha_lanzamiento`,
+`idioma`,
+`titulo`,
+`idAutor`)
 VALUES
-(2,
-1,
-DATE_ADD(NOW(),INTERVAL 20 DAY),
-'TIT_123');
+('JHAM_555',
+100,
+'Un hambre',
+curdate(),
+'Espaniol',
+'Los juegos del hambre',
+4);
 
-INSERT INTO `biblioteca_grupo_11`.`bibliotecas`
-(`id`,
-`estado`,
-`fecha_alta`,
-`ISBN_Libro`)
+INSERT INTO `biblioteca_grupo_11`.`usuario`
+(`idusuario`,
+`nombre`,
+`clave`)
 VALUES
-(3,
-1,
-DATE_ADD(NOW(),INTERVAL 65 DAY),
-'TIT_123');
+('1',
+'admin',
+'admin');
+
+
 
 
 

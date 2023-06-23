@@ -26,8 +26,8 @@ public class Prestamo implements Serializable{
 			private int id;
 			
 			@ManyToOne(cascade = {CascadeType.ALL})
-			@JoinColumn(name= "idLibro")
-			private Libro libro;
+			@JoinColumn(name= "idBiblioteca")
+			private Biblioteca biblioteca;
 			
 			@Column(name ="fecha_prestamo")
 			private java.sql.Date  fecha_prestamo;
@@ -35,28 +35,28 @@ public class Prestamo implements Serializable{
 			@Column(name="cantidad_dias")
 			private Integer cantidad_dias;
 			
-			@ManyToOne(cascade = {CascadeType.ALL})
+			@ManyToOne(cascade = { CascadeType.ALL})
 			@JoinColumn(name= "idCliente")
-			private Cliente cliente;
+			private Clientes cliente;
 
 			public Prestamo() {
 				super();
 				// TODO Auto-generated constructor stub
 			}
 
-			public Prestamo(int id, Libro libro, Date fecha_prestamo, Integer cantidad_dias,
-					Cliente cliente) {
+			public Prestamo(int id, Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias,
+					Clientes cliente) {
 				super();
 				this.id = id;
-				this.libro = libro;
+				this.biblioteca = biblioteca;
 				this.fecha_prestamo = fecha_prestamo;
 				this.cantidad_dias = cantidad_dias;
 				this.cliente = cliente;
 			}
 			
-			public Prestamo( Libro libro, Date fecha_prestamo, Integer cantidad_dias,	Cliente cliente) {
+			public Prestamo( Biblioteca biblioteca, Date fecha_prestamo, Integer cantidad_dias,	Clientes cliente) {
 				super();
-				this.libro = libro;
+				this.biblioteca = biblioteca;
 				this.fecha_prestamo = fecha_prestamo;
 				this.cantidad_dias = cantidad_dias;
 				this.cliente = cliente;
@@ -70,12 +70,12 @@ public class Prestamo implements Serializable{
 				this.id = id;
 			}
 
-			public Libro getLibro() {
-				return libro;
+			public Biblioteca getBiblioteca() {
+				return biblioteca;
 			}
 
-			public void setLibro(Libro libro) {
-				this.libro = libro;
+			public void setBiblioteca(Biblioteca biblioteca) {
+				this.biblioteca = biblioteca;
 			}
 
 			public java.sql.Date getFecha_prestamo() {
@@ -94,11 +94,11 @@ public class Prestamo implements Serializable{
 				this.cantidad_dias = cantidad_dias;
 			}
 
-			public Cliente getCliente() {
+			public Clientes getCliente() {
 				return cliente;
 			}
 
-			public void setCliente(Cliente cliente) {
+			public void setCliente(Clientes cliente) {
 				this.cliente = cliente;
 			}
 
@@ -108,7 +108,7 @@ public class Prestamo implements Serializable{
 
 			@Override
 			public String toString() {
-				return "Prestamo [id=" + id + ", libro=" + libro + ", fecha_prestamo=" + fecha_prestamo
+				return "Prestamo [id=" + id + ", biblioteca=" + biblioteca + ", fecha_prestamo=" + fecha_prestamo
 						+ ", cantidad_dias=" + cantidad_dias + ", cliente=" + cliente + "]";
 			}			
 			

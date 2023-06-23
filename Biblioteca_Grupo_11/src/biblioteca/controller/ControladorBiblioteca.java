@@ -5,20 +5,25 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import biblioteca.entidad.Biblioteca;
-import biblioteca.entidad.Cliente;
+import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Libro;
 import biblioteca.entidad.Nacionalidad;
 import biblioteca.negocio.NegocioBiblioteca;
+import resources.ConfigBiblioteca;
 
 @Controller
 public class ControladorBiblioteca {
 
-	NegocioBiblioteca bneg = new NegocioBiblioteca();
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(ConfigBiblioteca.class);
+	
+	NegocioBiblioteca bneg = (NegocioBiblioteca)appContext.getBean("nuevoNegocioBiblioteca");
 	
 	 @RequestMapping("Redireccionar_BibliotecaAlta.html")
 		public ModelAndView eventoRedireccionarBibliotecaAlta()
@@ -42,16 +47,16 @@ public class ControladorBiblioteca {
 		}
 	 
 	 @RequestMapping("AltaBiblioteca.html")
-		public ModelAndView eventoGuardarBiblioteca(String ddlLibro, String ddlEstado, String txtVolver)
+		public ModelAndView eventoGuardarBiblioteca(String ddlLibro)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
 					String agrego= "no";
 				
-					if(ddlLibro != null && Integer.parseInt(ddlEstado) != -1) {
+					if(ddlLibro != null) {
 						
 																		
-						if(bneg.AltaBiblioteca(ddlLibro, LocalDate.now().toString(), Integer.parseInt(ddlEstado))) {
+						if(bneg.AltaBiblioteca(ddlLibro, LocalDate.now().toString(), 0)) {
 							
 							Libro lib = bneg.ObtenerLibroPorId(ddlLibro);
 							MV.addObject("Libro", lib.getTitulo());
@@ -80,16 +85,16 @@ public class ControladorBiblioteca {
 		}
 	 
 	 @RequestMapping("EditarBiblioteca.html")
-		public ModelAndView eventoEditarBiblioteca(String ddlLibro, String ddlEstado, String txtVolver, String txtFecha, String txtId)
+		public ModelAndView eventoEditarBiblioteca(String ddlLibro, String txtFecha, String txtId)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
 					String edito= "no";
 				
-					if(ddlLibro != null && Integer.parseInt(ddlEstado) != -1) {
+					if(ddlLibro != null) {
 						
 																		
-						if(bneg.EditarBiblioteca(txtId, ddlLibro, txtFecha, Integer.parseInt(ddlEstado))) {
+						if(bneg.EditarBiblioteca(txtId, ddlLibro, txtFecha)) {
 							
 							Object[] obj = bneg.ObtenerBibliotecaPorId(txtId);
 							Biblioteca bib = (Biblioteca)obj[1];
@@ -119,7 +124,7 @@ public class ControladorBiblioteca {
 		}
 	 
 	 @RequestMapping("EliminarBiblioteca.html")
-		public ModelAndView eventoEliminarBiblioteca(String txtEliminar, String confirmarEliminar)
+		public ModelAndView eventoEliminarBiblioteca(String txtEliminar)
 		{
 			try {
 					ModelAndView MV = new ModelAndView();

@@ -28,8 +28,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
 <!-- Date Picker -->
 
-
-
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
 
@@ -76,13 +74,10 @@ function confirmarEditar(){
 			elem.value = "si";
 			form.submit();
 		  }
-		});
-	
-		
+		});		
 }
 
 </script>
-
 	<style>
 		.botonHome{
 			webkit-appearance: button;
@@ -132,76 +127,39 @@ function confirmarEditar(){
 
 <div class="parteDer" >
 <div style="margin:auto; height: 500px; widht:480px; background-color:#acd">
-
-<form id="volver" action="ListaBiblioteca.html" method="post" >
-
-	<button type="submit" class="btn btn-primary float-right" onclick="confirmarVolver()">Volver</button>
-	<input type="hidden" id="txtVolver" name="txtVolver" class="form-control" value="no">
-	
-</form>
-
-<form action="EditarBiblioteca.html" method="post" >
+<form id="volver" action="EditarPrestamo.html" method="post" >
 		
-<h3>Editar biblioteca:</h3>
+<h3>Administrar Prestamo:</h3>
   <div class="form-row">
-  
-	<div class="form-group col-md-6">
-        	  <label for="txtId">ID</label>
-        	  <input type="text" id="txtId" name="txtId" class="form-control" value="${biblioteca[1].id}" readonly>
-    </div>
    
     <div class="form-group col-md-6	">       
        <label for="ddlLibro">Libro</label>      
-       <select id="ddlLibro" name="ddlLibro" class="form-control">
-       <option value=null disabled>Seleccione...</option>
-       
-       <c:forEach items="${listaLibros}" var="item">
-       	<c:choose>
-       		<c:when test="${item.ISBN eq biblioteca[0].ISBN}">
-	    
-	        	<option value="${item.ISBN}" selected>${item.titulo}</option>
-	        
-	    	</c:when>
-	    	<c:otherwise>
-                <option value="${item.ISBN}">${item.titulo}</option>
-            </c:otherwise>
-	    
-	       </c:choose>   
-		</c:forEach>
-	   </select>   
+       <input type="text" class="form-control" name="txtCliente" value="${Libro.titulo}" disabled> 
     </div> 
-     
-      
+    
+    <div class="form-group col-md-6">
+        	  <label for="txtFecha">Fecha de Alta</label>
+        	  <input type="date" id="txtFecha" name="txtFecha" class="form-control datepicker" value="${FechaAlta}" disabled>
+    </div>      
+       
+          
   </div><!-- END DIV -->
   <div class="form-row">
   
-	  	<div class="form-group col-md-6	">    
-	     	<label for="ddlEstado">Estado</label>      
-	       <select id="ddlEstado" name="ddlEstado" class="form-control" disabled>
-		        <option value="-1" disabled selected>Seleccione...</option>
-		        
-		        <c:choose>
-		       		<c:when test="${biblioteca[1].estado eq 0}">
-			    
-			        	<option value="0" selected>En biblioteca</option>
-			        	<option value="1" >Prestado</option>
-			    	</c:when>
-			    	<c:otherwise>
-			    		<option value="0">En biblioteca</option>
-		                <option value="1" selected>Prestado</option>
-		            </c:otherwise>
+	  <div class="form-group col-md-6	">       
+	      <label for="txtCantidad">Cantidad de Dias</label>      
+	      <input type="number" class="form-control" name="txtCantidadDias" min="1" max="365" value="${CantidadDias}">  
+	    </div>
 	    
-	       		</c:choose>   
-	       </select>
-	  	</div>    
-	     
-		<div class="form-group col-md-6">
-        	  <label for="fechaNacimiento">Fecha de Alta</label>
-        	  <input type="date" id="txtFecha" name="txtFecha" class="form-control" value="${biblioteca[1].fecha_alta}">
-        </div>       
+	  <div class="form-group col-md-6	">    
+          <label for="cliente">Cliente</label>  
+          <input type="text" class="form-control" name="txtCliente" value="${Cliente.nombres}" disabled>   
+    </div> 
+    
    </div> 
-  <button type="submit" class="btn btn-primary" onclick="confirmarEditar()" >Confirmar</button>
+   <button type="submit" class="btn btn-primary" onclick="confirmarAgregar()" >Guardar</button>
   <input type="hidden" id="txtAgregar" name="txtAgregar" class="form-control" value="no">
+   <input type="hidden" id="IdPrestamo" name="IdPrestamo" class="form-control" value="${Prestamo.id}">
   </form>
 </div>  
  </div>

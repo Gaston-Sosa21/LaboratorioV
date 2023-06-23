@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.password">root</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Biblioteca_Grupo_11?createDatabaseIfNotExist=true</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hbm2ddl.auto">update</property>
-        <property name="show sql">true</property>
- 	
- 	    <property name="format_sql">true</property>
-    	<property name="use_sql_comments">true</property>
-        <!--  MAPEO -->
-        
-        <mapping class="biblioteca.entidad.Autor"/>
-        <mapping class="biblioteca.entidad.Biblioteca"/>
-        <mapping class="biblioteca.entidad.Genero"/>
-        <mapping class="biblioteca.entidad.Libro"/>
-        <mapping class="biblioteca.entidad.Nacionalidad"/>       
-        
-         <mapping class="biblioteca.entidad.Cliente"/>   
-         <mapping class="biblioteca.entidad.Prestamo"/>   
-  
-    </session-factory>
-    
-
-    
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Biblioteca_Grupo_11?createDatabaseIfNotExist=true</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hbm2ddl.auto">update</property>
+  <property name="show sql">true</property>
+  <property name="format_sql">true</property>
+  <property name="use_sql_comments">true</property>
+  <!--  MAPEO -->
+  <mapping class="biblioteca.entidad.Autor"/>
+  <mapping class="biblioteca.entidad.Biblioteca"/>
+  <mapping class="biblioteca.entidad.Genero"/>
+  <mapping class="biblioteca.entidad.Libro"/>
+  <mapping class="biblioteca.entidad.Nacionalidad"/>
+  <mapping class="biblioteca.entidad.Clientes"/>
+  <mapping class="biblioteca.entidad.Prestamo"/>
+  <mapping class="biblioteca.entidad.Usuario"/>
+ </session-factory>
 </hibernate-configuration>
-
-  
