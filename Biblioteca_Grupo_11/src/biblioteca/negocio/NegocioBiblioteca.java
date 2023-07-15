@@ -3,13 +3,21 @@ package biblioteca.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
+
 import biblioteca.dao.daoBiblioteca;
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Libro;
+import resources.Config;
 
+@Component
 public class NegocioBiblioteca {
 
-	daoBiblioteca bdao = new daoBiblioteca();
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	
+	daoBiblioteca bdao = new daoBiblioteca();// (daoBiblioteca) appContext.getBean("daoBibliotecabean");
 	
 	public Boolean AltaBiblioteca(String ISBN, String FechaAlta, int Estado) {
 		

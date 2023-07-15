@@ -6,25 +6,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Libro;
 import biblioteca.entidad.Prestamo;
+import resources.Config;
 
 public class daoPrestamos {
 
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	
 public Boolean CargarPrestamo(Biblioteca biblioteca, String fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
 
 		try {
 
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();
-
+			 // ACA NO ESTOY SEGURO COMO HACER EL LLAMDO CON EL CONSTRUCTOR
+             //(DaoSession) appContext.getBean("daoSession");
 		     Prestamo prestamo = new Prestamo(biblioteca,java.sql.Date.valueOf(fecha_prestamo),cantidad_dias,cliente);	
-
-		     session.save(prestamo);
+			 //Cargo con constructor vacio y seteo las propiedades
+			 /*Prestamo prestamo = (Prestamo) appContext.getBean("prestamobean");
+			 prestamo.setBiblioteca(biblioteca);
+			 prestamo.setFecha_prestamo(java.sql.Date.valueOf(fecha_prestamo));
+			 prestamo.setCantidad_dias(cantidad_dias);
+			 prestamo.setCliente(cliente);
+		     session.save(prestamo);*/
 		     session.getTransaction().commit();
 		     session.close();
 
@@ -42,7 +53,7 @@ public Boolean ModificarPrestamo(String IdPrestamo, int CantidadDias) {
 	
 	try {
 		
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 	     
@@ -74,7 +85,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 
 	try {
 
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 	    
@@ -102,7 +113,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 		
 		try {
 
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 
@@ -123,7 +134,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 		
 		try {
 
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 
@@ -142,7 +153,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 		
 		try {
 		
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 
@@ -152,9 +163,9 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     
 	     List<Object[]> listaCompuesta = new ArrayList<Object[]>();
 	     
-	     daoBiblioteca dbib = new daoBiblioteca();	     
+	     daoBiblioteca dbib = new daoBiblioteca();//(daoBiblioteca) appContext.getBean("daoBibliotecabean");	     
 	     Libro libro = new Libro();
-	     Biblioteca bib = new Biblioteca();
+	     Biblioteca bib = (Biblioteca) appContext.getBean("biblioteca");
 	     int idLibro = -1;
 	 
 	     for (Prestamo prestamo : listaPrestamos) {
@@ -184,7 +195,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 		
 		try {
 		
-		daoBiblioteca dbib = new daoBiblioteca();		
+		daoBiblioteca dbib = new daoBiblioteca();//(daoBiblioteca) appContext.getBean("daoBibliotecabean");		
 		List<Object[]> listaCompuesta = dbib.ListarBibliotecas();	     	     
 	    List<Libro> listLibros = new ArrayList<Libro>();
 	 
@@ -208,7 +219,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	public Prestamo BuscarPrestamo(String id) {		
 		try {
 
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 	     session.beginTransaction();
 
@@ -226,7 +237,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	public Object[] BuscarObjPrestamo(String idPrestamo) {		
 		try {
 
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 

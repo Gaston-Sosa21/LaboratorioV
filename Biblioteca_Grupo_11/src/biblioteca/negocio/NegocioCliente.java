@@ -3,13 +3,20 @@ package biblioteca.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import biblioteca.dao.DaoSession;
 import biblioteca.dao.daoCliente;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
+import resources.Config;
 
 public class NegocioCliente {
 
-	daoCliente dc = new daoCliente();
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	
+	daoCliente dc = new daoCliente();//(daoCliente) appContext.getBean("daoClientebean");
 	
 	public int AltaNuevoCliente(Clientes cli)
 	{

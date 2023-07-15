@@ -4,69 +4,14 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!-- Creación de objetos -->
-<!--
-Debe ser estatico siempre y no declarado en cada parte de un mismo archivo.
-ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-
-
-Etiquetas:
-	init-method: Acción que hará al iniciar.
-	destroy-method: Acción que hará al destruirse.
-	scope: es la duración que tiene la instancia en el contenedor.(https://www.youtube.com/watch?v=2o4DK64F4rk)
-	     - singleton: Siempre devuelve la misma intancia (previamente definida dentro del bean o en el código)
-	     - prototype: Siempre devuelve una instancia nueva (Si inicializas de nuevo el objeto no lo pisa con el contenido del objeto anterior).
-	 
- 
- -->
-<bean id="BeanNacionalidad" class="biblioteca.entidad.Nacionalidad">
-<property name="descripcion" value="Argentino"></property>
-</bean>
-
-<bean id="Cliente" class="biblioteca.entidad.Clientes" init-method="initPersona" 
-destroy-method="destroyPersona" scope="prototype">
-
-<!-- 
-
-//Podemos crear distintos beans sin problemas (nos podemos organizar para lo creado automaticamente)
-
-Esto para cargar por defecto:
- <property name="nombres" value="Joaquin"></property
- <property name="apellido" value="Cordoba"></property>
- <property name="email" value="JoaquinCordoba@gmail.com"></property>
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- Para cargar el constructor y no el objeto
- <constructor-arg index="0" type="int" value="1"></constructor-arg>
- <constructor-arg index="1" type="int" value="42605877"></constructor-arg>
- <constructor-arg index="2" type="String" value="Joaquin"></constructor-arg>
- <constructor-arg index="3" type="String" value="Cordoba"></constructor-arg>
- <constructor-arg index="5" type="String" value="JoaquinCordoba@gmail.com"></constructor-arg>
- <constructor-arg index="6" type="String" value="Av.Corredor"></constructor-arg>
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
- Para referencia a otro objeto, donde cambiamos el value por "ref"
- <property name="nacionalidad" value="BeanNacionalidad"></property>
- 
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- 
- En este video explicar como utilizar los beans con List<>
-" https://www.youtube.com/watch?v=8R-mWlfeGxY "
-
-Inyección de dependencias: https://www.youtube.com/watch?v=iCUSLsWjG3Q&feature=youtu.be
-(no se puede instanciar como bean una interfaz)
- -->
-
-
-</bean>
-
-
-<bean id="Libro" class="biblioteca.entidad.Libro">
-<property name="titulo" value="Cementerio de animales"></property>
-</bean>
-     
-     
-     
-     
-     
-     
+   <bean id="bibliotecabean" class="biblioteca.entidad.Biblioteca"/>
+   <bean id="daoSessionbean" class="biblioteca.dao.DaoSession"/>
+   
+   <!-- COMENTADO
+   <bean id="Prestamobean" class="biblioteca.entidad.Prestamo"/>
+   <bean id="daoUsuariobean" class="biblioteca.dao.daoUsuario"/>
+   <bean id="daoPrestamosbean" class="biblioteca.dao.daoPrestamos"/>
+   <bean id="daoBibliotecabean" class="biblioteca.dao.daoBiblioteca"/>
+   <bean id="daoClientebean" class="biblioteca.entidad.daoCliente"/>
+    COMENTADO -->
 </beans>

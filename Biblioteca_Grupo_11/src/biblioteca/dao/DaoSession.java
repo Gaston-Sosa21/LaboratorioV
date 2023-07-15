@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+import org.springframework.stereotype.Component;
 
 public class DaoSession {
 	
@@ -13,8 +14,9 @@ public class DaoSession {
 	 private Configuration configuration;
 	 private ServiceRegistry serviceRegistry;
 	 
-	 DaoSession()
+	 public DaoSession()
 	 {
+		//Aca hay que usar?
 		  	this.configuration = new Configuration();
 		  	this.configuration.configure();	
 		  	this.serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();

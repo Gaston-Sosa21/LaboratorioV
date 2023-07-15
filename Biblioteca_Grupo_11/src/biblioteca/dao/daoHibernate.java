@@ -7,9 +7,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Libro;
+import resources.Config;
 
 public class daoHibernate {
 
@@ -30,12 +33,14 @@ public class daoHibernate {
 	     session.beginTransaction();
 	}*/
 	
+	
+	
 	public static void InsertBiblioteca(String ISBN, String FechaAlta, int Estado, Session session) {
 		 
-
+		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	     session.beginTransaction();
 	     
-	     Biblioteca bbta = new Biblioteca();
+	     Biblioteca bbta = (Biblioteca) appContext.getBean("biblioteca");
 	     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
 	     bbta.setEstado(Estado);
 	     

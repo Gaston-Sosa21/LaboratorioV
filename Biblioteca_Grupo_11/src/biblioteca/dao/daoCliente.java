@@ -8,26 +8,29 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
 import biblioteca.dao.daoHibernate;
 
 import biblioteca.entidad.Nacionalidad;
+import resources.Config;
 
 public class daoCliente {
 
-	
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	
 	public int CargarCliente(Clientes clientedatos) {
 		 
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();
 					     
-		     System.out.println("Recibí datos del cliente " + clientedatos.getApellidos() + " " + clientedatos.getNombres());
+		     System.out.println("Recibï¿½ datos del cliente " + clientedatos.getApellidos() + " " + clientedatos.getNombres());
 		    
 		     session.save(clientedatos);		    
 		     session.getTransaction().commit();
@@ -46,7 +49,7 @@ public class daoCliente {
 		
 	 try {
 		
-		 DaoSession daoSession = new DaoSession();
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 			
@@ -66,7 +69,7 @@ public class daoCliente {
 		
 		try {
 			
-		 	DaoSession daoSession = new DaoSession();
+		 	DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();		     
 		     
@@ -85,7 +88,7 @@ public class daoCliente {
 	public int ActualizarDatosCliente(Clientes cli) {
 		
 		try {
-			DaoSession daoSession = new DaoSession();
+			DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();
 		     
@@ -103,7 +106,7 @@ public class daoCliente {
 	public int BorrarCliente(Clientes cli) {
 		try {
 			
-			DaoSession daoSession = new DaoSession();
+			DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();
 	 
@@ -122,7 +125,7 @@ public class daoCliente {
 	public List<Object[]> ListarNacionalidades() {
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();
 			
@@ -141,7 +144,7 @@ public class daoCliente {
 	public Nacionalidad BuscarIdNacionalidad(int Naci) {
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();		     
 		     
@@ -161,7 +164,7 @@ public class daoCliente {
 		
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();		     
 		     
@@ -181,7 +184,7 @@ public class daoCliente {
 	public int VerificarNuevoDNI(Clientes cli) {
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();		     
 		     
@@ -201,7 +204,7 @@ public class daoCliente {
 	public int ClienteConPrestamos(int id) {
 		try {
 			
-			 DaoSession daoSession = new DaoSession();
+			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();		     
 		     

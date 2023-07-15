@@ -3,15 +3,21 @@ package biblioteca.negocio;
 import java.sql.Date;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import biblioteca.dao.daoPrestamos;
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Libro;
 import biblioteca.entidad.Prestamo;
+import resources.Config;
 
 public class NegocioPrestamos {
 
-	daoPrestamos pdao = new daoPrestamos();
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	
+	daoPrestamos pdao = new daoPrestamos();// (daoPrestamos) appContext.getBean("daoPrestamosbean");
 
 public Boolean AltaPrestamo(Biblioteca biblioteca, String fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
 
