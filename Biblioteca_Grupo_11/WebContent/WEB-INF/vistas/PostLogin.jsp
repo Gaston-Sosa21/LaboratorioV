@@ -22,14 +22,14 @@
 		}
 		</style>
 </head>
-<body class="noOverflow">
+<body class="noOverflow postLogin">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <nav class="navbar navbar-dark bg-dark">
 <a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" class="botonHome"  value="Home" name="btnSalir"> </a>
 <div class="dropdown">
-<a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Session</a>
+<a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Sesión</a>
 <div class="dropdown-menu text-center">
 <a><img src="img/PerfilUsuario.png" height="80" width="80"></a><br>
 <a>Usuario: </a>
@@ -41,13 +41,13 @@
 </div>
 </div>
 </nav>
-<div class="tittle-header"> <br><br>
-	<h2 class="text-center">Administrar de Biblioteca</h2>
-</div>
-<br>
-<br>
-<br>
-<div class="text-center">
+ <div class="tittle-header"> <br><br>
+    	<h2 class="text-center">Administración de Biblioteca</h2>
+ </div>
+ <br>
+ <br>
+ <br>
+ <div class="text-center">
 		<div class="base">
 		     	<form action = "Redireccionar_ListaClientes.html" method="get">	
 					<input type="submit" value="Clientes" name="btnConfirmar"  class="cuadrado "><br>
@@ -61,7 +61,7 @@
 					<input type="submit" value="Prestamos" name="btnConfirmar"  class="cuadrado "><br>
 				</form>  
 		</div>	
-</div>	
+ </div>	
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer class="footerIndex">

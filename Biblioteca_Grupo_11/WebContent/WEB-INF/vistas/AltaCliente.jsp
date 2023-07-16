@@ -146,7 +146,7 @@
 <a style="color:white" class="navbar-toggler"><img src="img/casa.png" height="40" width="40"> <input type="submit" class="botonHome"  value="Home" name="btnSalir"> </a>
 </form>
 <div class="dropdown">
-<a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Session</a>
+<a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cerrar Sesión</a>
 <div class="dropdown-menu text-center">
 <a><img src="img/PerfilUsuario.png" height="80" width="80"></a><br>
 <a>Usuario: </a>
