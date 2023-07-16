@@ -29,12 +29,12 @@ public class Config {
     }
 	
 	
-    /*
+
 	@Bean
     public Prestamo prestamobean() {
         return new Prestamo();
     }
-	
+    /*	
     @Bean
     public daoBiblioteca daoBibliotecabean() {
         return new daoBiblioteca();

@@ -28,21 +28,22 @@ public Boolean CargarPrestamo(Biblioteca biblioteca, String fecha_prestamo, Inte
 			 session.beginTransaction();
 			 // ACA NO ESTOY SEGURO COMO HACER EL LLAMDO CON EL CONSTRUCTOR
              //(DaoSession) appContext.getBean("daoSession");
-		     Prestamo prestamo = new Prestamo(biblioteca,java.sql.Date.valueOf(fecha_prestamo),cantidad_dias,cliente);	
-			 //Cargo con constructor vacio y seteo las propiedades
-			 /*Prestamo prestamo = (Prestamo) appContext.getBean("prestamobean");
+		   //  Prestamo prestamo = new Prestamo(biblioteca,java.sql.Date.valueOf(fecha_prestamo),cantidad_dias,cliente);	
+		     //Cargo con constructor vacio y seteo las propiedades
+			 Prestamo prestamo = (Prestamo)appContext.getBean("prestamobean");			
+			 
 			 prestamo.setBiblioteca(biblioteca);
 			 prestamo.setFecha_prestamo(java.sql.Date.valueOf(fecha_prestamo));
 			 prestamo.setCantidad_dias(cantidad_dias);
 			 prestamo.setCliente(cliente);
-		     session.save(prestamo);*/
+		     session.save(prestamo);
 		     session.getTransaction().commit();
 		     session.close();
 
 		     return true;		     
 		}		
 		catch(Exception e) {
-			System.out.println("Error: " + e.toString());
+			System.out.println("Error: " + e.getMessage().toString());
 			return false;
 		}	
 

@@ -4,11 +4,21 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-   <bean id="bibliotecabean" class="biblioteca.entidad.Biblioteca"/>
+<!-- DAO -->
+ 
    <bean id="daoSessionbean" class="biblioteca.dao.DaoSession"/>
-   
+  
+<!-- ENTIDADES -->   
+  
+   <bean id="bibliotecabean" class="biblioteca.entidad.Biblioteca"/>
+   <bean id="prestamobean" class="biblioteca.entidad.Prestamo"/>
+   <bean id="BeanNacionalidad" class="biblioteca.entidad.Nacionalidad">
+   <property name="descripcion" value="Argentino"></property>
+   </bean>
+
+   <bean id="Cliente" class="biblioteca.entidad.Clientes" init-method="initPersona" 
+   destroy-method="destroyPersona" scope="prototype"></bean>
    <!-- COMENTADO
-   <bean id="Prestamobean" class="biblioteca.entidad.Prestamo"/>
    <bean id="daoUsuariobean" class="biblioteca.dao.daoUsuario"/>
    <bean id="daoPrestamosbean" class="biblioteca.dao.daoPrestamos"/>
    <bean id="daoBibliotecabean" class="biblioteca.dao.daoBiblioteca"/>
