@@ -62,8 +62,15 @@ public class NegocioCliente {
 	public int ModificarCliente(Clientes cli) {
 		try {
 
-			if(dc.ExisteDNI(cli.getDni())<1) {
-				 return dc.ActualizarDatosCliente(cli);
+			String IDActual = String.valueOf(cli.getId());
+			
+			if(dc.BuscarClienteID(IDActual).getDni()==cli.getDni()) {
+				return dc.ActualizarDatosCliente(cli);
+				
+			}else if(dc.ExisteDNI(cli.getDni())<1) {
+
+				return dc.ActualizarDatosCliente(cli);
+			
 			}else {
 				return 2;
 			}

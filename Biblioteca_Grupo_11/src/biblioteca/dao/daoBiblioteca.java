@@ -133,14 +133,21 @@ public class daoBiblioteca {
 	
 	public List<Object[]> ListarBibliotecas() {
 		 
-		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
-		 Session session = daoSession.AbrirSession();
-		 session.beginTransaction();
-	     
-	     List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca").list();
-	     
-	     session.close();	     
-	     return listaObject;
+		try {
+			ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+
+			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
+			 Session session = daoSession.AbrirSession();
+			 session.beginTransaction();
+		     
+		     List<Object[]> listaObject = (List<Object[]>)session.createQuery("FROM Libro l inner join l.biblioteca").list();
+		     
+		     session.close();	     
+		     return listaObject;	
+		}catch(Exception ex) {
+		    System.out.println("Error: "+ ex.toString());	
+			return null;
+		}
 	 }
 	
 	public List<Libro> ListarLibros() {

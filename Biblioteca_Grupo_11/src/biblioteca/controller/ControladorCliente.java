@@ -68,7 +68,6 @@ public class ControladorCliente {
 				}*/
 				ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 				Clientes cl = (Clientes)appContext.getBean("Cliente");
-				//Clientes cl = new Clientes();
 	
 				System.out.println("Recibí el id: "+IdCliente);
 				System.out.println("Nacionalidad : "+txtNacionalidad);

@@ -6,7 +6,7 @@
 
 <!-- DAO -->
  
-   <bean id="daoSessionbean" class="biblioteca.dao.DaoSession"/>
+   <bean id="daoSessionbean" class="biblioteca.dao.DaoSession" scope="session"/>
   
 <!-- ENTIDADES -->   
   
