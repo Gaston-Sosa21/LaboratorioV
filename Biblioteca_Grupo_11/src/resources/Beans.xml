@@ -43,6 +43,6 @@
 	 <bean id="daoUsuarioBean" class="biblioteca.dao.daoUsuario"/> 
 	 <bean id="daoPrestamosBean" class="biblioteca.dao.daoPrestamos"/> 
 	 <bean id="daoBibliotecaBean" class="biblioteca.dao.daoBiblioteca"/>  	
-	 <bean id="daoClienteBean" class="biblioteca.entidad.daoCliente"/> 	
+	 <bean id="daoClienteBean" class="biblioteca.dao.daoCliente"/> 	
 		 
 </beans>
