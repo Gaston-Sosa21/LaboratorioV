@@ -1,9 +1,7 @@
-
-.dataTables_filter >label{
-	float:right;
+.dataTables_filter>label {
+	float: right;
 }
 
-.dataTables_length > label{
-	float:left;
+.dataTables_length>label {
+	float: left;
 }
-

@@ -13,7 +13,9 @@ import biblioteca.entidad.Nacionalidad;
 import resources.Config;
 
 public class NegocioCliente {
-
+	
+	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
+	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
 	daoCliente dc = (daoCliente) appContext.getBean("daoClienteBean");
 	

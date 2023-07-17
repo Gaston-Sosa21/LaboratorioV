@@ -17,7 +17,8 @@ import org.springframework.stereotype.Component;
 
 public class daoBiblioteca {
 	
-
+	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
+	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 
 	public Boolean CargarBiblioteca(String ISBN, String FechaAlta, int Estado) {
@@ -137,8 +138,7 @@ public class daoBiblioteca {
 	public List<Object[]> ListarBibliotecas() {
 		 
 		try {
-			ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-
+			
 			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();

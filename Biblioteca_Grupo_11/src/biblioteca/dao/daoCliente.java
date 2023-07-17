@@ -20,6 +20,8 @@ import resources.Config;
 
 public class daoCliente {
 
+	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
+	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	
 	public int CargarCliente(Clientes clientedatos) {

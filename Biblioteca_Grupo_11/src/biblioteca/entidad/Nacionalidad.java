@@ -51,6 +51,12 @@ public class Nacionalidad implements Serializable{
 			return "Nacionalidad [id=" + id + ", descripcion=" + descripcion + "]";
 		}
 		
-		
+		//Desarrollo métodos init y destroy
+		public void initNacionalidad() {
+			System.out.println("Se inicializa el bean Nacionalidad");
+		}
+		public void destroyNacionalidad() {
+			System.out.println("Se destruye el bean Nacionalidad");
+		}
 		
 }

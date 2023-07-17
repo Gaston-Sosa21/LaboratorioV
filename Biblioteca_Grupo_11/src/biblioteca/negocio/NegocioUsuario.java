@@ -14,6 +14,8 @@ import resources.Config;
 
 public class NegocioUsuario {
 	
+	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
+	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
 	daoUsuario udao = (daoUsuario) appContext.getBean("daoUsuarioBean");
 

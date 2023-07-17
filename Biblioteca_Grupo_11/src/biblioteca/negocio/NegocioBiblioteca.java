@@ -14,7 +14,9 @@ import resources.Config;
 
 @Component
 public class NegocioBiblioteca {
-
+	
+	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
+	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
 	daoBiblioteca bdao = (daoBiblioteca) appContext.getBean("daoBibliotecaBean");
 	

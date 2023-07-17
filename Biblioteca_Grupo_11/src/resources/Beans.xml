@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">    
-    
-    <!-- 
-    <bean id="daoSession" class="biblioteca.dao.DaoSession"></bean>
-    
-    <bean id="Prestamo" class="biblioteca.entidad.Prestamo" init-method="initPrestamo" 
-    destroy-method="destroyPrestamo" scope="prototype"/>
- 
- 
-   <bean id="BeanNacionalidad" class="biblioteca.entidad.Nacionalidad">
-   		<property name="descripcion" value="Argentino"></property>
-   </bean>   
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--  *********************************************************************************** 
+	    SE DEBE USAR ESTE ARCHIVO Ó EL OTRO, INTENTAR NO USAR AMBOS
+	    
+		Comentario importante. Hay dos formas de usar los BEANS:
 
-   <bean id="Cliente" class="biblioteca.entidad.Clientes" init-method="initPersona" 
-   destroy-method="destroyPersona" scope="prototype"></bean>   
-   -->
-   <!-- COMENTADO
-   <bean id="daoUsuariobean" class="biblioteca.dao.daoUsuario"/>
-   <bean id="daoPrestamosbean" class="biblioteca.dao.daoPrestamos"/>
-   <bean id="daoBibliotecabean" class="biblioteca.dao.daoBiblioteca"/>
-   <bean id="daoClientebean" class="biblioteca.entidad.daoCliente"/>
-    COMENTADO -->
+		Si se declara previamente el 
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+		se debe usar el BEAN del "Beans.xml"
+		
+		Si se declara previamente el 
+		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+		se debe usar el BEAN del Config.java
+	 
+	  ************************************************************************************* -->
+
+    <!-- BEANS DE ENTIDADES -->
+    
+	 <!--
+	<bean id="BibliotecaBean" class="biblioteca.entidad.Biblioteca" init-method="initBiblioteca" 
+		destroy-method="destroyBiblioteca" scope="prototype"/> 
+	 
+	<bean id="PrestamoBean" class="biblioteca.entidad.Prestamo" init-method="initPrestamo" 
+		destroy-method="destroyPrestamo" scope="prototype"/> 
+		
+	<bean id="ClienteBean" class="biblioteca.entidad.Clientes" init-method="initPersona" 
+		destroy-method="destroyPersona" scope="prototype"></bean>
+			
+	<bean id="NacionalidadBean" class="biblioteca.entidad.Nacionalidad" init-method="initNacionalidad" 
+		destroy-method="destroyNacionalidad" scope="prototype"> 
+		<property name="descripcion" value="Argentino"></property> 
+	</bean> 
+	-->
+	
+	<!-- BEANS DE DAOS -->		
+	 <!--  
+	 <bean id="daoSession" class="biblioteca.dao.DaoSession"></bean> 		
+	 <bean id="daoUsuarioBean" class="biblioteca.dao.daoUsuario"/> 
+	 <bean id="daoPrestamosBean" class="biblioteca.dao.daoPrestamos"/> 
+	 <bean id="daoBibliotecaBean" class="biblioteca.dao.daoBiblioteca"/> 
+	 <bean id="daoClienteBean" class="biblioteca.entidad.daoCliente"/> 
+	-->	 
 </beans>
