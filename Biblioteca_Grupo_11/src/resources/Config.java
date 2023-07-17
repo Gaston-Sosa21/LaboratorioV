@@ -12,11 +12,25 @@ import biblioteca.dao.daoUsuario;
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Prestamo;
 import biblioteca.entidad.Clientes;
+import biblioteca.entidad.Nacionalidad;
 import biblioteca.dao.daoBiblioteca;
 import biblioteca.dao.daoPrestamos;
 import biblioteca.dao.daoCliente;
 
-//Aca dejo los beans de las entidades y por xml los beans de los dao
+/**  *********************************************************************************** 
+SE DEBE USAR ESTE ARCHIVO Ó EL OTRO, INTENTAR NO USAR AMBOS
+
+Comentario importante. Hay dos formas de usar los BEANS:
+
+Si se declara previamente el 
+ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+se debe usar el BEAN del "Beans.xml"
+
+Si se declara previamente el 
+ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+se debe usar el BEAN del Config.java
+
+*************************************************************************************/
 
 @Configuration
 public class Config {
@@ -40,7 +54,12 @@ public class Config {
     public Clientes ClienteBean() {
         return new Clientes();
     }
-		
+	
+	@Bean(initMethod = "initNacionalidad", destroyMethod = "destroyNacionalidad")
+	@Scope("prototype")
+    public Nacionalidad NacionalidadBean() {
+        return new Nacionalidad();
+    }		
 	
     //Beans de daos
     

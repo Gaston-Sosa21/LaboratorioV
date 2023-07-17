@@ -69,9 +69,8 @@ public class ControladorCliente {
 					return null;
 				}*/
 				
-				//PREVIA MODIFICACION AL USO DE BEANS EN Config.JAVA
+				//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
 				//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-				//Clientes cl = (Clientes)appContext.getBean("Cliente")
 				
 				ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 				Clientes cl = (Clientes)appContext.getBean("ClienteBean");

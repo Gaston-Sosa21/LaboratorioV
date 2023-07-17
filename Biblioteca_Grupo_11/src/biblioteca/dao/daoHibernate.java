@@ -33,7 +33,10 @@ public class daoHibernate {
 	     session.beginTransaction();
 	}*/
 	public static void InsertBiblioteca(String ISBN, String FechaAlta, int Estado, Session session) {
+		//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
+		//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+		
 	     session.beginTransaction();	     
 	     Biblioteca bbta = (Biblioteca) appContext.getBean("BibliotecaBean");
 	     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
