@@ -36,7 +36,7 @@ se debe usar el BEAN del Config.java
 public class Config {
 	
 	//Beans de entidades 
-	
+	/*
 	@Bean(initMethod = "initBiblioteca", destroyMethod = "destroyBiblioteca")
 	@Scope("prototype")
     public Biblioteca BibliotecaBean() {
@@ -87,5 +87,5 @@ public class Config {
     public daoUsuario daoUsuarioBean() {
         return new daoUsuario();
     }
-	
+	*/
 }

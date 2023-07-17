@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import biblioteca.dao.daoBiblioteca;
@@ -16,8 +17,8 @@ import resources.Config;
 public class NegocioBiblioteca {
 	
 	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
+	ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
 	daoBiblioteca bdao = (daoBiblioteca) appContext.getBean("daoBibliotecaBean");
 	
 	public Boolean AltaBiblioteca(String ISBN, String FechaAlta, int Estado) {

@@ -21,7 +21,7 @@
 
     <!-- BEANS DE ENTIDADES -->
     
-	 <!--
+	 
 	<bean id="BibliotecaBean" class="biblioteca.entidad.Biblioteca" init-method="initBiblioteca" 
 		destroy-method="destroyBiblioteca" scope="prototype"/> 
 	 
@@ -35,14 +35,14 @@
 		destroy-method="destroyNacionalidad" scope="prototype"> 
 		<property name="descripcion" value="Argentino"></property> 
 	</bean> 
-	-->
+	
 	
 	<!-- BEANS DE DAOS -->		
-	 <!--  
-	 <bean id="daoSession" class="biblioteca.dao.DaoSession"></bean> 		
+	   
+	 <bean id="daoSession" class="biblioteca.dao.DaoSession"/> 		
 	 <bean id="daoUsuarioBean" class="biblioteca.dao.daoUsuario"/> 
 	 <bean id="daoPrestamosBean" class="biblioteca.dao.daoPrestamos"/> 
-	 <bean id="daoBibliotecaBean" class="biblioteca.dao.daoBiblioteca"/> 
-	 <bean id="daoClienteBean" class="biblioteca.entidad.daoCliente"/> 
-	-->	 
+	 <bean id="daoBibliotecaBean" class="biblioteca.dao.daoBiblioteca"/>  	
+	 <bean id="daoClienteBean" class="biblioteca.entidad.daoCliente"/> 	
+		 
 </beans>

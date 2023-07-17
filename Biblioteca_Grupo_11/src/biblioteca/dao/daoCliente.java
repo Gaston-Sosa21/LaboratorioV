@@ -10,6 +10,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Clientes;
@@ -21,8 +22,8 @@ import resources.Config;
 public class daoCliente {
 
 	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	
 	public int CargarCliente(Clientes clientedatos) {
 		 

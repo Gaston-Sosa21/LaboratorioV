@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import biblioteca.dao.DaoSession;
 import biblioteca.dao.daoCliente;
@@ -15,8 +16,8 @@ import resources.Config;
 public class NegocioCliente {
 	
 	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
+	ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
 	daoCliente dc = (daoCliente) appContext.getBean("daoClienteBean");
 	
 	public int AltaNuevoCliente(Clientes cli)
