@@ -2,25 +2,22 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    http://www.springframework.org/schema/beans/spring-beans.xsd">    
     
-    
-    <!--
+    <!-- 
     <bean id="daoSession" class="biblioteca.dao.DaoSession"></bean>
-  -->
+    
+    <bean id="Prestamo" class="biblioteca.entidad.Prestamo" init-method="initPrestamo" 
+    destroy-method="destroyPrestamo" scope="prototype"/>
+ 
+ 
    <bean id="BeanNacionalidad" class="biblioteca.entidad.Nacionalidad">
    		<property name="descripcion" value="Argentino"></property>
    </bean>   
 
    <bean id="Cliente" class="biblioteca.entidad.Clientes" init-method="initPersona" 
    destroy-method="destroyPersona" scope="prototype"></bean>   
-
-   <!-- 
-   <bean id="Prestamo" class="biblioteca.entidad.Prestamo" init-method="initPrestamo" 
-   destroy-method="destroyPrestamo" scope="prototype"/>
    -->
-   
-   
    <!-- COMENTADO
    <bean id="daoUsuariobean" class="biblioteca.dao.daoUsuario"/>
    <bean id="daoPrestamosbean" class="biblioteca.dao.daoPrestamos"/>

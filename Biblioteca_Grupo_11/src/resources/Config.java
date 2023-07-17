@@ -11,6 +11,7 @@ import biblioteca.dao.DaoSession;
 import biblioteca.dao.daoUsuario;
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Prestamo;
+import biblioteca.entidad.Clientes;
 import biblioteca.dao.daoBiblioteca;
 import biblioteca.dao.daoPrestamos;
 import biblioteca.dao.daoCliente;
@@ -33,6 +34,12 @@ public class Config {
     public Prestamo PrestamoBean() {
         return new Prestamo();
     }
+	
+	@Bean(initMethod = "initPersona", destroyMethod = "destroyPersona")
+	@Scope("prototype")
+    public Clientes ClienteBean() {
+        return new Clientes();
+    }
 		
 	
     //Beans de daos
@@ -45,22 +52,21 @@ public class Config {
     @Bean
     public daoPrestamos daoPrestamosBean() {
         return new daoPrestamos();
-    }
-	
-    /*	
+    }	
+    	
     @Bean
-    public daoBiblioteca daoBibliotecabean() {
+    public daoBiblioteca daoBibliotecaBean() {
         return new daoBiblioteca();
-    }
+    }    
     
     @Bean
-    public daoCliente daoClientebean() {
+    public daoCliente daoClienteBean() {
         return new daoCliente();
-    }
+    }    
     
     @Bean
-    public daoUsuario daoUsuariobean() {
+    public daoUsuario daoUsuarioBean() {
         return new daoUsuario();
     }
-	*/
+	
 }

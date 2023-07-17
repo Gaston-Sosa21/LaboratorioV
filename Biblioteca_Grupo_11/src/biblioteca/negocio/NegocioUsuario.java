@@ -14,14 +14,12 @@ import resources.Config;
 
 public class NegocioUsuario {
 	
-	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-	
-	daoUsuario udao = new daoUsuario();//(daoUsuario) appContext.getBean("daoUsuariobean");
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
+	daoUsuario udao = (daoUsuario) appContext.getBean("daoUsuarioBean");
 
 	public Boolean AltaUsuario(String nombre,String clave) {	
 		
-   try {	    
-		    
+   try {    
 			return udao.ValidarUsuario(nombre, clave);
 			
 		}catch(Exception ex){

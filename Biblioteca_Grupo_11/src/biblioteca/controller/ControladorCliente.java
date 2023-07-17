@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
 import biblioteca.negocio.NegocioCliente;
+import resources.Config;
 
 @Controller
 public class ControladorCliente {
@@ -66,8 +68,13 @@ public class ControladorCliente {
 					System.out.println(Mensaje);
 					return null;
 				}*/
-				ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-				Clientes cl = (Clientes)appContext.getBean("Cliente");
+				
+				//PREVIA MODIFICACION AL USO DE BEANS EN Config.JAVA
+				//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+				//Clientes cl = (Clientes)appContext.getBean("Cliente")
+				
+				ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+				Clientes cl = (Clientes)appContext.getBean("ClienteBean");
 	
 				System.out.println("Recibí el id: "+IdCliente);
 				System.out.println("Nacionalidad : "+txtNacionalidad);

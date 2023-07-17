@@ -62,32 +62,32 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-annotations-api</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-catalina-ant</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-catalina-ha</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-storeconfig</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-tribes</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-catalina</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jdt</groupId>
@@ -97,114 +97,115 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-el-api</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jasper-el</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jasper</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jaspic-api</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jsp-api</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-servlet-api</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-api</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-coyote</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-dbcp</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-i18n-de</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-i18n-es</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-i18n-fr</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-i18n-ja</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-i18n-ko</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-i18n-ru</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-i18n-zh-CN</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jdbc</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jni</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-util-scan</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-util</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-websocket</artifactId>
-			<version>8.5.53</version>
+			<version>8.5.72</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-websocket-api</artifactId>
-			<version>8.5.53</version>
-		</dependency>
-	
+			<version>8.5.72</version>
+		</dependency>		
+		
+					
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
