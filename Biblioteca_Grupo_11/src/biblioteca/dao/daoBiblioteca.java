@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import biblioteca.entidad.Biblioteca;
+import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Libro;
 import resources.Config;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 public class daoBiblioteca {
@@ -25,7 +28,7 @@ public class daoBiblioteca {
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();
 		     
-		     Biblioteca bbta = (Biblioteca) appContext.getBean("biblioteca");
+		     Biblioteca bbta = (Biblioteca) appContext.getBean("BibliotecaBean");
 		     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
 		     bbta.setEstado(Estado);		     
 		     

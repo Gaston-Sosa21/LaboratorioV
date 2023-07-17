@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+
 import biblioteca.dao.DaoSession;
 import biblioteca.dao.daoUsuario;
 import biblioteca.entidad.Biblioteca;
@@ -14,35 +15,42 @@ import biblioteca.dao.daoBiblioteca;
 import biblioteca.dao.daoPrestamos;
 import biblioteca.dao.daoCliente;
 
+//Aca dejo los beans de las entidades y por xml los beans de los dao
 
 @Configuration
 public class Config {
-
-	@Bean
-    public Biblioteca biblioteca() {
+	
+	//Beans de entidades 
+	
+	@Bean(initMethod = "initBiblioteca", destroyMethod = "destroyBiblioteca")
+	@Scope("prototype")
+    public Biblioteca BibliotecaBean() {
         return new Biblioteca();
     }
-
-	@Bean
+	
+	@Bean(initMethod = "initPrestamo", destroyMethod = "destroyPrestamo")
+	@Scope("prototype")
+    public Prestamo PrestamoBean() {
+        return new Prestamo();
+    }
+		
+	
+    //Beans de daos
+    
+    @Bean
     public DaoSession daoSession() {
         return new DaoSession();
     }
-	
-	
-
-	@Bean
-    public Prestamo prestamobean() {
-        return new Prestamo();
+    
+    @Bean
+    public daoPrestamos daoPrestamosBean() {
+        return new daoPrestamos();
     }
+	
     /*	
     @Bean
     public daoBiblioteca daoBibliotecabean() {
         return new daoBiblioteca();
-    }
-    
-    @Bean
-    public daoPrestamos daoPrestamosbean() {
-        return new daoPrestamos();
     }
     
     @Bean

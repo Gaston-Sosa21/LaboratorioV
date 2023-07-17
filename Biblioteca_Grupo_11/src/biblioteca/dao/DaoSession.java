@@ -16,7 +16,6 @@ public class DaoSession {
 	 
 	 public DaoSession()
 	 {
-		//Aca hay que usar?
 		  	this.configuration = new Configuration();
 		  	this.configuration.configure();	
 		  	this.serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
@@ -26,6 +25,23 @@ public class DaoSession {
 	 public Session AbrirSession()
 	 {
 	  	return sessionFactory.openSession();
-	 }	  
+	 }
+	 
+	 public void CerrarSession()
+	 {
+	  	sessionFactory.close();
+	  	return; 
+	 }
+		  
+	//Metodos init y destroy
+		
+	public void initDaoSession() {
+		System.out.println("Se inicializa una DaoSession");
+	}
+	
+	public void destroyDaoSession() {
+		System.out.println("Se destruye una DaoSession");
+	}
+	 
 
 }

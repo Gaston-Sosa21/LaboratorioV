@@ -3,21 +3,24 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-<!-- DAO -->
- 
-   <bean id="daoSessionbean" class="biblioteca.dao.DaoSession" scope="session"/>
-  
-<!-- ENTIDADES -->   
-  
-   <bean id="bibliotecabean" class="biblioteca.entidad.Biblioteca"/>
-   <bean id="prestamobean" class="biblioteca.entidad.Prestamo"/>
+    
+    
+    <!--
+    <bean id="daoSession" class="biblioteca.dao.DaoSession"></bean>
+  -->
    <bean id="BeanNacionalidad" class="biblioteca.entidad.Nacionalidad">
-   <property name="descripcion" value="Argentino"></property>
-   </bean>
+   		<property name="descripcion" value="Argentino"></property>
+   </bean>   
 
    <bean id="Cliente" class="biblioteca.entidad.Clientes" init-method="initPersona" 
-   destroy-method="destroyPersona" scope="prototype"></bean>
+   destroy-method="destroyPersona" scope="prototype"></bean>   
+
+   <!-- 
+   <bean id="Prestamo" class="biblioteca.entidad.Prestamo" init-method="initPrestamo" 
+   destroy-method="destroyPrestamo" scope="prototype"/>
+   -->
+   
+   
    <!-- COMENTADO
    <bean id="daoUsuariobean" class="biblioteca.dao.daoUsuario"/>
    <bean id="daoPrestamosbean" class="biblioteca.dao.daoPrestamos"/>

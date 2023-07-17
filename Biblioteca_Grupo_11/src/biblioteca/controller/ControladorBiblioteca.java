@@ -58,10 +58,7 @@ public class ControladorBiblioteca {
 							agrego = "si";
 							
 						}
-					}
-					
-					
-					
+					}					
 					
 					MV.setViewName("ListaBiblioteca");
 					MV.addObject("mostrarMensaje", true);
@@ -99,9 +96,6 @@ public class ControladorBiblioteca {
 						}
 					}
 					
-					
-					
-					
 					MV.setViewName("ListaBiblioteca");
 					MV.addObject("mostrarMensaje", true);
 					MV.addObject("accion", "editar");
@@ -130,8 +124,7 @@ public class ControladorBiblioteca {
 						if(bneg.EliminarBiblioteca(txtEliminar)) {
 
 							MV.addObject("Biblioteca", txtEliminar);
-							elimino = "si";
-							
+							elimino = "si";							
 						}					
 						
 					//}
@@ -142,8 +135,7 @@ public class ControladorBiblioteca {
 					MV.addObject("Elimino", elimino);
 					MV.addObject("listaBibliotecas", bneg.ObtenerBibliotecas());
 					MV.setViewName("ListaBiblioteca");
-					return MV;
-					
+					return MV;					
 					
 			}catch(Exception ex) {
 					
@@ -152,5 +144,4 @@ public class ControladorBiblioteca {
 			}
 		    	
 		}
-
 }

@@ -110,7 +110,17 @@ public class Prestamo implements Serializable{
 			public String toString() {
 				return "Prestamo [id=" + id + ", biblioteca=" + biblioteca + ", fecha_prestamo=" + fecha_prestamo
 						+ ", cantidad_dias=" + cantidad_dias + ", cliente=" + cliente + "]";
-			}			
+			}		
+			
+			//Metodos init y destroy
+			
+			public void initPrestamo() {
+				System.out.println("Se inicializa un prestamo");
+			}
+			
+			public void destroyPrestamo() {
+				System.out.println("Se destruye un prestamo");
+			}
 			
 
 }

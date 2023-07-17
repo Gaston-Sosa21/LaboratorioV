@@ -32,15 +32,12 @@ public class daoHibernate {
 	     
 	     session.beginTransaction();
 	}*/
-	
-	
-	
 	public static void InsertBiblioteca(String ISBN, String FechaAlta, int Estado, Session session) {
 		 
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	     session.beginTransaction();
 	     
-	     Biblioteca bbta = (Biblioteca) appContext.getBean("biblioteca");
+	     Biblioteca bbta = (Biblioteca) appContext.getBean("BibliotecaBean");
 	     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
 	     bbta.setEstado(Estado);
 	     

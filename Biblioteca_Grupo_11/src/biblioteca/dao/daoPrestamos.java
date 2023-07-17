@@ -26,12 +26,7 @@ public Boolean CargarPrestamo(Biblioteca biblioteca, String fecha_prestamo, Inte
 			 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 			 Session session = daoSession.AbrirSession();
 			 session.beginTransaction();
-			 // ACA NO ESTOY SEGURO COMO HACER EL LLAMDO CON EL CONSTRUCTOR
-             //(DaoSession) appContext.getBean("daoSession");
-		   //  Prestamo prestamo = new Prestamo(biblioteca,java.sql.Date.valueOf(fecha_prestamo),cantidad_dias,cliente);	
-		     //Cargo con constructor vacio y seteo las propiedades
-			 Prestamo prestamo = (Prestamo)appContext.getBean("prestamobean");			
-			 
+			 Prestamo prestamo = (Prestamo)appContext.getBean("PrestamoBean");		
 			 prestamo.setBiblioteca(biblioteca);
 			 prestamo.setFecha_prestamo(java.sql.Date.valueOf(fecha_prestamo));
 			 prestamo.setCantidad_dias(cantidad_dias);
@@ -166,7 +161,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     
 	     daoBiblioteca dbib = new daoBiblioteca();//(daoBiblioteca) appContext.getBean("daoBibliotecabean");	     
 	     Libro libro = new Libro();
-	     Biblioteca bib = (Biblioteca) appContext.getBean("biblioteca");
+	     Biblioteca bib = (Biblioteca) appContext.getBean("BibliotecaBean");
 	     int idLibro = -1;
 	 
 	     for (Prestamo prestamo : listaPrestamos) {
