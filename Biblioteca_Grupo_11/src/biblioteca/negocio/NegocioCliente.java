@@ -14,9 +14,8 @@ import resources.Config;
 
 public class NegocioCliente {
 
-	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-	
-	daoCliente dc = new daoCliente();//(daoCliente) appContext.getBean("daoClientebean");
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
+	daoCliente dc = (daoCliente) appContext.getBean("daoClienteBean");
 	
 	public int AltaNuevoCliente(Clientes cli)
 	{
@@ -24,9 +23,7 @@ public class NegocioCliente {
 		   
 			int valor = dc.CargarCliente(cli);
 		    return valor;
-			
 			}catch(Exception ex){
-				
 			System.out.println("Error: " + ex.toString());
 			return 0;
 		}	

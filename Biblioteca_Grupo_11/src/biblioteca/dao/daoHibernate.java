@@ -33,54 +33,35 @@ public class daoHibernate {
 	     session.beginTransaction();
 	}*/
 	public static void InsertBiblioteca(String ISBN, String FechaAlta, int Estado, Session session) {
-		 
 		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-	     session.beginTransaction();
-	     
+	     session.beginTransaction();	     
 	     Biblioteca bbta = (Biblioteca) appContext.getBean("BibliotecaBean");
 	     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
-	     bbta.setEstado(Estado);
-	     
-	     
-	     Libro lib = (Libro)session.get(Libro.class, ISBN);
-	     
+	     bbta.setEstado(Estado);  
+	     Libro lib = (Libro)session.get(Libro.class, ISBN);	     
 	     ArrayList<Biblioteca> lb= new ArrayList<Biblioteca>();
-	     lb.add(bbta);
-    	
-	     lib.setBiblioteca(lb);
-	     
+	     lb.add(bbta);    	
+	     lib.setBiblioteca(lb);	     
 	     session.save(lib);
-
 	     session.getTransaction().commit();
-
 	 }
 	
-	public static void DeleteBiblioteca(Biblioteca biblio, ArrayList<Biblioteca> listaBibliotecas4, Session session) {
-		 
+	public static void DeleteBiblioteca(Biblioteca biblio, ArrayList<Biblioteca> listaBibliotecas4, Session session) {		 
 		session.beginTransaction();
 		listaBibliotecas4.remove(biblio);
 		session.delete(biblio);
 	    session.getTransaction().commit();
-	    
-	    
 	 }
 	
-	public static Biblioteca ListarBiblioteca(Biblioteca biblioteca, Session session) {
-		 
-	     
-	     Biblioteca bib = (Biblioteca)session.get(Biblioteca.class, biblioteca.getId());
-	     
+	public static Biblioteca ListarBiblioteca(Biblioteca biblioteca, Session session) { 
+	     Biblioteca bib = (Biblioteca)session.get(Biblioteca.class, biblioteca.getId());	     
 	     return bib;
 	 }
 	
 	 public static void UpdateBiblioteca(Biblioteca biblioteca, Session session) {
-		 
-		
-    
 	     session.beginTransaction();
 	     session.update(biblioteca);
 	     session.getTransaction().commit();
-
 	 }
 
 

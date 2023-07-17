@@ -15,8 +15,7 @@ import resources.Config;
 
 public class NegocioPrestamos {
 
-	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-	
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
 	daoPrestamos pdao = (daoPrestamos) appContext.getBean("daoPrestamosBean");
 
 public Boolean AltaPrestamo(Biblioteca biblioteca, String fecha_prestamo, Integer cantidad_dias, Clientes cliente) {

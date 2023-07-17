@@ -159,7 +159,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 	     
 	     List<Object[]> listaCompuesta = new ArrayList<Object[]>();
 	     
-	     daoBiblioteca dbib = new daoBiblioteca();//(daoBiblioteca) appContext.getBean("daoBibliotecabean");	     
+	     daoBiblioteca dbib = (daoBiblioteca) appContext.getBean("daoBibliotecaBean");	     
 	     Libro libro = new Libro();
 	     Biblioteca bib = (Biblioteca) appContext.getBean("BibliotecaBean");
 	     int idLibro = -1;
@@ -191,7 +191,7 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 		
 		try {
 		
-		daoBiblioteca dbib = new daoBiblioteca();//(daoBiblioteca) appContext.getBean("daoBibliotecabean");		
+		daoBiblioteca dbib = (daoBiblioteca) appContext.getBean("daoBibliotecaBean");		
 		List<Object[]> listaCompuesta = dbib.ListarBibliotecas();	     	     
 	    List<Libro> listLibros = new ArrayList<Libro>();
 	 
