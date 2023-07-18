@@ -20,9 +20,8 @@
 	  ************************************************************************************* -->
 
     <!-- BEANS DE ENTIDADES -->
-    
-	 
-	<bean id="BibliotecaBean" class="biblioteca.entidad.Biblioteca" init-method="initBiblioteca" 
+    <!--  
+    <bean id="BibliotecaBean" class="biblioteca.entidad.Biblioteca" init-method="initBiblioteca" 
 		destroy-method="destroyBiblioteca" scope="prototype"/> 
 	 
 	<bean id="PrestamoBean" class="biblioteca.entidad.Prestamo" init-method="initPrestamo" 
@@ -36,10 +35,22 @@
 		<property name="descripcion" value="Argentino"></property> 
 	</bean> 
 	
+	-->	 
+	<bean id="BibliotecaBean" class="biblioteca.entidad.Biblioteca"  scope="prototype"/> 
+	 
+	<bean id="PrestamoBean" class="biblioteca.entidad.Prestamo" scope="prototype"/> 
+		
+	<bean id="ClienteBean" class="biblioteca.entidad.Clientes" scope="prototype"></bean>
+			
+	<bean id="NacionalidadBean" class="biblioteca.entidad.Nacionalidad" scope="prototype"> 
+		<property name="descripcion" value="Argentino"></property> 
+	</bean> 
+	
 	
 	<!-- BEANS DE DAOS -->		
-	   
+	 <!--    
 	 <bean id="daoSession" class="biblioteca.dao.DaoSession"/> 		
+	 -->
 	 <bean id="daoUsuarioBean" class="biblioteca.dao.daoUsuario"/> 
 	 <bean id="daoPrestamosBean" class="biblioteca.dao.daoPrestamos"/> 
 	 <bean id="daoBibliotecaBean" class="biblioteca.dao.daoBiblioteca"/>  	

@@ -14,13 +14,14 @@ import resources.Config;
 public class daoUsuario {
 
 	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-	ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	
 	public boolean ValidarUsuario(String nombre, String clave) {
 		Usuario usuarios = null;
 		
-		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
+		 DaoSession daoSession = new DaoSession(); // (DaoSession) appContext.getBean("daoSession");
+		 
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 	   	 

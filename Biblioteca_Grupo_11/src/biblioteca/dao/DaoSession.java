@@ -31,17 +31,6 @@ public class DaoSession {
 	 {
 	  	sessionFactory.close();
 	  	return; 
-	 }
-		  
-	//Metodos init y destroy
-		
-	public void initDaoSession() {
-		System.out.println("Se inicializa una DaoSession");
-	}
-	
-	public void destroyDaoSession() {
-		System.out.println("Se destruye una DaoSession");
-	}
-	 
+	 }	 
 
 }

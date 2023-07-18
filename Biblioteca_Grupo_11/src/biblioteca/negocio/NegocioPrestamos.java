@@ -17,9 +17,9 @@ import resources.Config;
 public class NegocioPrestamos {
 
 	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-	ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
-	daoPrestamos pdao = (daoPrestamos) appContext.getBean("daoPrestamosBean");
+	daoPrestamos pdao = new daoPrestamos(); //(daoPrestamos) appContext.getBean("daoPrestamosBean");
 
 public Boolean AltaPrestamo(Biblioteca biblioteca, String fecha_prestamo, Integer cantidad_dias, Clientes cliente) {
 

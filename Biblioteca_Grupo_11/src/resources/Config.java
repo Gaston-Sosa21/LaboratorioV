@@ -88,4 +88,9 @@ public class Config {
         return new daoUsuario();
     }
 	*/
+	
+	@Bean
+    public DaoSession daoSession() {
+        return new DaoSession();
+    }
 }

@@ -16,9 +16,9 @@ import resources.Config;
 public class NegocioCliente {
 	
 	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-	ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
-	daoCliente dc = (daoCliente) appContext.getBean("daoClienteBean");
+	daoCliente dc = new daoCliente(); //(daoCliente) appContext.getBean("daoClienteBean");
 	
 	public int AltaNuevoCliente(Clientes cli)
 	{
