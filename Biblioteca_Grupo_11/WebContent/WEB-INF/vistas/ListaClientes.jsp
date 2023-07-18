@@ -67,7 +67,8 @@
 <!-- Mensaje de confirmacion -->
 <script type="text/javascript">
 
-function confirmarEliminar2(){
+function confirmarEliminar2(){	
+			
 				event.preventDefault(); // prevent form submit
 		        var form = event.target.form;
 				Swal.fire({
