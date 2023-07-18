@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Convert;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,15 +17,19 @@ import biblioteca.negocio.NegocioBiblioteca;
 import biblioteca.negocio.NegocioCliente;
 import biblioteca.negocio.NegocioPrestamos;
 import biblioteca.negocio.NegocioUsuario;
+import resources.Config;
+
 import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
 public class ControladorInicio {
 
-	NegocioBiblioteca bneg = new NegocioBiblioteca();
-	NegocioUsuario busu = new NegocioUsuario();
-	NegocioPrestamos pneg = new NegocioPrestamos();
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	
+	NegocioBiblioteca bneg = (NegocioBiblioteca) appContext.getBean("NegocioBibliotecaBean");
+	NegocioUsuario busu = (NegocioUsuario) appContext.getBean("NegocioUsuarioBean");
+	NegocioPrestamos pneg = (NegocioPrestamos) appContext.getBean("NegocioPrestamosBean");
 	
 	/*@RequestMapping("Redireccionar_index.html")
 	public ModelAndView eventoRedireccionarPag1()
@@ -88,7 +94,8 @@ public class ControladorInicio {
 	 
 	 @RequestMapping("Redireccionar_ListaClientes.html")
 	public ModelAndView eventoRedireccionarListaClientes(/*String txtUsuario,Integer txtContrasenia*/)
-	{	NegocioCliente nc = new NegocioCliente();		
+	{	
+		NegocioCliente nc = (NegocioCliente) appContext.getBean("NegocioClienteBean");	
 		ModelAndView MV = new ModelAndView();
 	//	MV.addObject("usuario", txtUsuario);
 	//	MV.addObject("contrasenia", txtContrasenia);

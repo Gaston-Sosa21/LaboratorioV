@@ -14,6 +14,8 @@ import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Prestamo;
 import biblioteca.negocio.NegocioBiblioteca;
 import biblioteca.negocio.NegocioCliente;
+import biblioteca.negocio.NegocioPrestamos;
+import biblioteca.negocio.NegocioUsuario;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Libro;
 import biblioteca.entidad.Nacionalidad;
@@ -111,5 +113,18 @@ public class Config {
     public NegocioCliente NegocioClienteBean() {
         return new NegocioCliente();
     }  
+    
+    @Bean
+    public NegocioUsuario NegocioUsuarioBean() {
+        return new NegocioUsuario();
+    } 
+    
+    @Bean
+    public NegocioPrestamos NegocioPrestamosBean() {
+        return new NegocioPrestamos();    
+    }
+    
+   
+    
 	
 }

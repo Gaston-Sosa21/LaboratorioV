@@ -2,6 +2,8 @@ package biblioteca.controller;
 
 import java.time.LocalDate;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,14 +14,18 @@ import biblioteca.entidad.Prestamo;
 import biblioteca.negocio.NegocioBiblioteca;
 import biblioteca.negocio.NegocioCliente;
 import biblioteca.negocio.NegocioPrestamos;
+import biblioteca.negocio.NegocioUsuario;
+import resources.Config;
 
 
 @Controller
 public class ControladorPrestamos {
+	
+     ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 
-		NegocioPrestamos pneg = new NegocioPrestamos();
-		NegocioBiblioteca bneg = new NegocioBiblioteca();
-		NegocioCliente cneg = new NegocioCliente();
+	 NegocioPrestamos pneg = (NegocioPrestamos) appContext.getBean("NegocioPrestamosBean");
+	 NegocioBiblioteca bneg = (NegocioBiblioteca) appContext.getBean("NegocioBibliotecaBean");
+	 NegocioCliente cneg = (NegocioCliente) appContext.getBean("NegocioClienteBean");
 
 	   @RequestMapping("Redireccionar_PrestamosAlta.html")
 		public ModelAndView eventoRedireccionarPrestamosAlta()
