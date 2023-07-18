@@ -20,9 +20,6 @@ public class daoHibernate {
 	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	
 	public void InsertBiblioteca(String ISBN, String FechaAlta, int Estado, Session session) {
-		//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-		//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-		//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 		
 	     session.beginTransaction();	     
 	     Biblioteca bbta = (Biblioteca) appContext.getBean("BibliotecaBean");
@@ -53,7 +50,4 @@ public class daoHibernate {
 	     session.update(biblioteca);
 	     session.getTransaction().commit();
 	 }
-
-
-	 
 }

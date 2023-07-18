@@ -13,6 +13,7 @@ import biblioteca.dao.daoUsuario;
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Prestamo;
 import biblioteca.entidad.Clientes;
+import biblioteca.entidad.Libro;
 import biblioteca.entidad.Nacionalidad;
 import biblioteca.dao.daoBiblioteca;
 import biblioteca.dao.daoPrestamos;
@@ -60,7 +61,13 @@ public class Config {
 	@Scope("prototype")
     public Nacionalidad NacionalidadBean() {
         return new Nacionalidad();
-    }		
+    }	
+	
+	@Bean(initMethod = "initLibro", destroyMethod = "destroyLibro")
+	@Scope("prototype")
+    public Libro LibroBean() {
+        return new Libro();
+    }
 	
     //Beans de daos  
 	

@@ -148,7 +148,15 @@ public class Libro implements Serializable{
 					+ "]";
 		}
 
-	
+		//Metodos init y destroy
+		
+		public void initLibro() {
+			System.out.println("Se inicializa un Libro");
+		}
+		
+		public void destroyLibro() {
+			System.out.println("Se destruye un Libro");
+		}
 		
 		
 		
