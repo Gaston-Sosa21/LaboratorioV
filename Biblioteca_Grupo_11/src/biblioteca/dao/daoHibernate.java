@@ -17,29 +17,15 @@ import resources.Config;
 
 public class daoHibernate {
 
-	/*
-	private SessionFactory sessionFactory;
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	
-	public static void abrirConexion() {
-		
-		
-    	
-	    Configuration configuration = new Configuration();
-	    configuration.configure();	
-	    ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	  
-	     Session session = sessionFactory.openSession();
-	     
-	     session.beginTransaction();
-	}*/
-	public static void InsertBiblioteca(String ISBN, String FechaAlta, int Estado, Session session) {
+	public void InsertBiblioteca(String ISBN, String FechaAlta, int Estado, Session session) {
 		//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
 		//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 		//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 		
 	     session.beginTransaction();	     
-	     Biblioteca bbta = new Biblioteca(); //(Biblioteca) appContext.getBean("BibliotecaBean");
+	     Biblioteca bbta = (Biblioteca) appContext.getBean("BibliotecaBean");
 	     bbta.setFecha_alta(java.sql.Date.valueOf(FechaAlta.toString()));
 	     bbta.setEstado(Estado);  
 	     Libro lib = (Libro)session.get(Libro.class, ISBN);	     
@@ -50,19 +36,19 @@ public class daoHibernate {
 	     session.getTransaction().commit();
 	 }
 	
-	public static void DeleteBiblioteca(Biblioteca biblio, ArrayList<Biblioteca> listaBibliotecas4, Session session) {		 
+	public void DeleteBiblioteca(Biblioteca biblio, ArrayList<Biblioteca> listaBibliotecas4, Session session) {		 
 		session.beginTransaction();
 		listaBibliotecas4.remove(biblio);
 		session.delete(biblio);
 	    session.getTransaction().commit();
 	 }
 	
-	public static Biblioteca ListarBiblioteca(Biblioteca biblioteca, Session session) { 
+	public Biblioteca ListarBiblioteca(Biblioteca biblioteca, Session session) { 
 	     Biblioteca bib = (Biblioteca)session.get(Biblioteca.class, biblioteca.getId());	     
 	     return bib;
 	 }
 	
-	 public static void UpdateBiblioteca(Biblioteca biblioteca, Session session) {
+	 public void UpdateBiblioteca(Biblioteca biblioteca, Session session) {
 	     session.beginTransaction();
 	     session.update(biblioteca);
 	     session.getTransaction().commit();
