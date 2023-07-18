@@ -6,22 +6,18 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import biblioteca.entidad.Usuario;
 import resources.Config;
 
 public class daoUsuario {
 
-	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	
 	public boolean ValidarUsuario(String nombre, String clave) {
 		Usuario usuarios = null;
 		
-		 DaoSession daoSession = new DaoSession(); // (DaoSession) appContext.getBean("daoSession");
-		 
+		 DaoSession daoSession = (DaoSession) appContext.getBean("daoSession");
 		 Session session = daoSession.AbrirSession();
 		 session.beginTransaction();
 	   	 

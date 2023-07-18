@@ -18,15 +18,16 @@ public class NegocioUsuario {
 	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
 	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
 	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
-	daoUsuario udao = new daoUsuario(); //(daoUsuario) appContext.getBean("daoUsuarioBean");
+	//daoUsuario udao = new daoUsuario(); //(daoUsuario) appContext.getBean("daoUsuarioBean");
 
-	public Boolean AltaUsuario(String nombre,String clave) {	
+	public Boolean AltaUsuario(String nombre,String clave) {
+		
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
+		daoUsuario udao = (daoUsuario) appContext.getBean("daoUsuarioBean");
 		
    try {    
-			return udao.ValidarUsuario(nombre, clave);
-			
-		}catch(Exception ex){
-			
+		 return udao.ValidarUsuario(nombre, clave);			
+		}catch(Exception ex){			
 			System.out.println("Error: " + ex.toString());
 			return false;
 		}
