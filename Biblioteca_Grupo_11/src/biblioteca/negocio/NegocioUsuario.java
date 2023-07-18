@@ -13,20 +13,13 @@ import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Usuario;
 import resources.Config;
 
-public class NegocioUsuario {
+public class NegocioUsuario {	
 	
-	//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-	//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);	
-	//daoUsuario udao = new daoUsuario(); //(daoUsuario) appContext.getBean("daoUsuarioBean");
-	
-	//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 	
 	public Boolean AltaUsuario(String nombre,String clave) {		
-    try {    
-    	
-	   
-	     daoUsuario udao = new daoUsuario(); //(daoUsuario) appContext.getBean("daoUsuarioBean");
+    try { 
+	     daoUsuario udao = (daoUsuario) appContext.getBean("daoUsuarioBean");
 		 return udao.ValidarUsuario(nombre, clave);		
 		 
 		}catch(Exception ex){			
