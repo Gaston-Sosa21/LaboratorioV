@@ -18,8 +18,10 @@
 		se debe usar el BEAN del Config.java
 	 
 	  ************************************************************************************* -->
-
+	
     <!-- BEANS DE ENTIDADES -->
+    <!--
+      
       
     <bean id="BibliotecaBean" class="biblioteca.entidad.Biblioteca" init-method="initBiblioteca" 
 		destroy-method="destroyBiblioteca" scope="prototype"/> 
@@ -34,15 +36,15 @@
 		destroy-method="destroyNacionalidad" scope="prototype"> 
 		<property name="descripcion" value="Argentino"></property> 
 	</bean>  
-	
+	-->
 	<!-- BEANS DE DAOS 
+	<bean id="daoSession" class="biblioteca.dao.DaoSession" scope="session"/> 
+			    
 	
-	-->		    
-	
-	 <bean id="daoSession" class="biblioteca.dao.DaoSession" scope="session"/> 
+	 
 	 <bean id="daoUsuarioBean" class="biblioteca.dao.daoUsuario" scope="prototype"/> 
 	 <bean id="daoPrestamosBean" class="biblioteca.dao.daoPrestamos"/> 
 	 <bean id="daoBibliotecaBean" class="biblioteca.dao.daoBiblioteca"/>  	
 	 <bean id="daoClienteBean" class="biblioteca.dao.daoCliente"/> 	
-		 
+	-->	 
 </beans>

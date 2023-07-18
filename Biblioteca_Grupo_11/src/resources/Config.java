@@ -5,7 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.WebApplicationContext;
 
 import biblioteca.dao.DaoSession;
 import biblioteca.dao.daoUsuario;
@@ -36,8 +37,8 @@ se debe usar el BEAN del Config.java
 public class Config {
 	
 	//Beans de entidades 
-	/*
-	@Bean(initMethod = "initBiblioteca", destroyMethod = "destroyBiblioteca")
+	
+	@Bean//(initMethod = "initBiblioteca", destroyMethod = "destroyBiblioteca")
 	@Scope("prototype")
     public Biblioteca BibliotecaBean() {
         return new Biblioteca();
@@ -61,9 +62,10 @@ public class Config {
         return new Nacionalidad();
     }		
 	
-    //Beans de daos
-    
-    @Bean
+    //Beans de daos  
+	
+	@Bean
+	//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public DaoSession daoSession() {
         return new DaoSession();
     }
@@ -84,13 +86,9 @@ public class Config {
     }    
     
     @Bean
+    @Scope("prototype")
     public daoUsuario daoUsuarioBean() {
         return new daoUsuario();
     }
-	*/
 	
-	@Bean
-    public DaoSession daoSession() {
-        return new DaoSession();
-    }
 }

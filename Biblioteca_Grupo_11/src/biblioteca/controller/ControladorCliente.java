@@ -71,9 +71,9 @@ public class ControladorCliente {
 				
 				//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
 				
-				ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");				
+				//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");				
 				//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-				Clientes cl = (Clientes)appContext.getBean("ClienteBean");
+				Clientes cl = new Clientes(); //(Clientes)appContext.getBean("ClienteBean");
 				
 				System.out.println("Se creo el CLIENTE usando Bean desde el XML");
 				System.out.println("Recibí el id: "+IdCliente);
