@@ -12,6 +12,8 @@ import biblioteca.dao.DaoSession;
 import biblioteca.dao.daoUsuario;
 import biblioteca.entidad.Biblioteca;
 import biblioteca.entidad.Prestamo;
+import biblioteca.negocio.NegocioBiblioteca;
+import biblioteca.negocio.NegocioCliente;
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Libro;
 import biblioteca.entidad.Nacionalidad;
@@ -97,5 +99,17 @@ public class Config {
     public daoUsuario daoUsuarioBean() {
         return new daoUsuario();
     }
+    
+    //Beans Negocios
+    
+    @Bean
+    public NegocioBiblioteca NegocioBibliotecaBean() {
+        return new NegocioBiblioteca();
+    }
+    
+    @Bean
+    public NegocioCliente NegocioClienteBean() {
+        return new NegocioCliente();
+    }  
 	
 }

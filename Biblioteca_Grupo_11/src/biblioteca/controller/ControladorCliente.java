@@ -10,13 +10,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import biblioteca.entidad.Clientes;
 import biblioteca.entidad.Nacionalidad;
+import biblioteca.negocio.NegocioBiblioteca;
 import biblioteca.negocio.NegocioCliente;
 import resources.Config;
 
 @Controller
 public class ControladorCliente {
 
-	NegocioCliente nc = new NegocioCliente();
+	ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+	NegocioCliente nc = (NegocioCliente) appContext.getBean("NegocioClienteBean");
 	
 	/* ********************* REDIRECCIONES CLIENTE *********************** */
 	 
@@ -57,10 +59,8 @@ public class ControladorCliente {
     @RequestMapping("GuardarCliente.html")
 	public ModelAndView eventoGuardarCliente(String IdCliente,String txtNombre,String txtApellido,String txtFecha,String txtDni , String txtDireccion,String txtNacionalidad, String txtLocalidad, String txtMail, String txtTelefono )
 	{
-		try {
-			    
+		try {			    
 				String Mensaje="";
-
 			/*	String dato =  nc.ValidarDatos(txtFecha.toString(), txtDni.toString(),txtMail.toString(),txtTelefono.toString());
 				
 				if(dato!="Ok") {
@@ -69,16 +69,13 @@ public class ControladorCliente {
 					return null;
 				}*/
 				
-				//SI NO ANDAN LOS BEANS DEL Config.JAVA dejar esta de abajo y borrar el otro context
-				
-				//ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");				
-				//ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-				Clientes cl = new Clientes(); //(Clientes)appContext.getBean("ClienteBean");
+				Clientes cl = (Clientes) appContext.getBean("ClienteBean");
 				
 				System.out.println("Se creo el CLIENTE usando Bean desde el XML");
 				System.out.println("Recibí el id: "+IdCliente);
 				System.out.println("Nacionalidad : "+txtNacionalidad);
-				Nacionalidad nacionalidad = new Nacionalidad();
+				
+				Nacionalidad nacionalidad = (Nacionalidad) appContext.getBean("NacionalidadBean");
 				
 				String NameCliente= txtNombre+" "+txtApellido;
 
