@@ -31,14 +31,7 @@ public class ControladorInicio {
 	NegocioUsuario busu = (NegocioUsuario) appContext.getBean("NegocioUsuarioBean");
 	NegocioPrestamos pneg = (NegocioPrestamos) appContext.getBean("NegocioPrestamosBean");
 	
-	/*@RequestMapping("Redireccionar_index.html")
-	public ModelAndView eventoRedireccionarPag1()
-	{
-		ModelAndView MV = new ModelAndView();
-		MV.setViewName("index");
-		return MV;
-	}*/
-	
+
 	@RequestMapping("Redireccionar_Login.html")
 	public ModelAndView eventoRedireccionarLogin()
 	{
@@ -47,11 +40,6 @@ public class ControladorInicio {
 		return MV;
 	}	
 
-	/*ModelAndView MV = new ModelAndView();
-	MV.addObject("usuario", txtUsuario);
-	MV.addObject("contrasenia", txtContrasenia);
-		MV.setViewName("PostLogin");
-		return MV;*/
 	@RequestMapping("Home.html")
 	public ModelAndView eventoRedireccionarPrincipal()
 	{

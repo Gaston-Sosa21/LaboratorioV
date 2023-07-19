@@ -23,21 +23,6 @@ import biblioteca.dao.daoBiblioteca;
 import biblioteca.dao.daoPrestamos;
 import biblioteca.dao.daoCliente;
 
-/**  *********************************************************************************** 
-SE DEBE USAR ESTE ARCHIVO Ó EL OTRO, INTENTAR NO USAR AMBOS
-
-Comentario importante. Hay dos formas de usar los BEANS:
-
-Si se declara previamente el 
-ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-se debe usar el BEAN del "Beans.xml"
-
-Si se declara previamente el 
-ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-se debe usar el BEAN del Config.java
-
-*************************************************************************************/
-
 @Configuration
 public class Config {
 	

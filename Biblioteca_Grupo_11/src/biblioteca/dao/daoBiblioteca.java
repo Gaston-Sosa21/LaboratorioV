@@ -198,8 +198,6 @@ public class daoBiblioteca {
 	     Object[] obj = BuscarBiblioteca(idBiblioteca);
 	     Biblioteca bbta = (Biblioteca)obj[1];	
 	     
-	     //bbta.setFecha_alta(java.sql.Date.valueOf(  ));
-	     
 	     bbta.setEstado(estado);
 	     session.update(bbta);
 	     session.getTransaction().commit();	     

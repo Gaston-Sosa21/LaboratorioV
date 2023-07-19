@@ -4,25 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!--  *********************************************************************************** 
-	    SE DEBE USAR ESTE ARCHIVO Ó EL OTRO, INTENTAR NO USAR AMBOS
-	    
-		Comentario importante. Hay dos formas de usar los BEANS:
-
-		Si se declara previamente el 
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("resources/Beans.xml");
-		se debe usar el BEAN del "Beans.xml"
-		
-		Si se declara previamente el 
-		ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
-		se debe usar el BEAN del Config.java
-	 
-	  ************************************************************************************* -->
 	
     <!-- BEANS DE ENTIDADES -->
-    <!--
-      
-      
+    <!--      
     <bean id="BibliotecaBean" class="biblioteca.entidad.Biblioteca" init-method="initBiblioteca" 
 		destroy-method="destroyBiblioteca" scope="prototype"/> 
 	 
@@ -37,11 +21,8 @@
 		<property name="descripcion" value="Argentino"></property> 
 	</bean>  
 	-->
-	<!-- BEANS DE DAOS 
-	<bean id="daoSession" class="biblioteca.dao.DaoSession" scope="session"/> 
-			    
-	
-	 
+	 <!-- BEANS DE DAOS 
+	 <bean id="daoSession" class="biblioteca.dao.DaoSession" scope="session"/> 
 	 <bean id="daoUsuarioBean" class="biblioteca.dao.daoUsuario" scope="prototype"/> 
 	 <bean id="daoPrestamosBean" class="biblioteca.dao.daoPrestamos"/> 
 	 <bean id="daoBibliotecaBean" class="biblioteca.dao.daoBiblioteca"/>  	

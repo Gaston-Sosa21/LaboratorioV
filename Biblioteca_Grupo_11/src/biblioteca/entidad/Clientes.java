@@ -187,8 +187,6 @@ public class Clientes implements Serializable{
 					+ "]";
 		}
 		
-		
-		
 		//Desarrollo métodos init y destroy
 		public void initPersona() {
 			System.out.println("Se inicializa el bean Cliente");

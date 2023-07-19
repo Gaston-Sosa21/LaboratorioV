@@ -121,18 +121,12 @@ public class ControladorBiblioteca {
 		{
 			try {
 					ModelAndView MV = new ModelAndView();
-					String elimino= "no";
-						
-					//if(confirmarEliminar == "si") {
-						
+					String elimino= "no";						
 						if(bneg.EliminarBiblioteca(txtEliminar)) {
 
 							MV.addObject("Biblioteca", txtEliminar);
 							elimino = "si";							
 						}					
-						
-					//}
-				
 					MV.setViewName("ListaBiblioteca");
 					MV.addObject("mostrarMensaje", true);
 					MV.addObject("accion", "eliminar");

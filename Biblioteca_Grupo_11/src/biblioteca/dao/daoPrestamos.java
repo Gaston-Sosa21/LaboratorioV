@@ -94,13 +94,10 @@ public Boolean EliminarPrestamo(String idPrestamo) {
 
 	     return true;
 	}
-
 	catch(Exception e) {
 		System.out.println("Error: " + e.toString());
 		return false;
 	}
-
-
  }
 
 
