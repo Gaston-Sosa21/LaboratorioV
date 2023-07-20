@@ -90,7 +90,7 @@ public class Config {
     //Beans Negocios
     
     @Bean
-    public NegocioBiblioteca NegocioBibliotecaBean() {
+    public NegocioBiblioteca NegocioBibliotecaBean() {    	
         return new NegocioBiblioteca();
     }
     
@@ -108,6 +108,8 @@ public class Config {
     public NegocioPrestamos NegocioPrestamosBean() {
         return new NegocioPrestamos();    
     }
+    
+    
     
    
     
