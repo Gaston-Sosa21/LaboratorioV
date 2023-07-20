@@ -1,5 +1,7 @@
 package biblioteca.negocio;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,12 +139,38 @@ public class NegocioCliente {
  
 	}
 	
-	public String ValidarDatos(String txtFecha,String txtDni, String txtMail, String txtTelefono) {
+	public String ValidarDatos(String txtFecha, String txtMail) {
 		try {
 			  
 			  String Mensaje="";
 			  
-			  return "Ok";
+			  if(txtMail.contains("@") && txtMail.contains(".com") && 
+					  !(txtMail.contains("@.com")) && !(txtMail.contains(".com@"))){
+				  Mensaje = "Ok";
+					System.out.println("Es un mail valido"); 
+			  }else {
+				  Mensaje = "El mail es incorrecto. No olvides agregar '@' y '.com'";
+					System.out.println("Es un mail invalido");  
+			  }
+			/*  
+			  No pudo corroborarse porque no toma los cambios el proyecto 
+			  
+			  String[] Fecha = txtFecha.split("/");
+			  int AnioNacimiento = Integer.parseInt(Fecha[2].toString());
+		      LocalDate FechaActual = LocalDate.now();
+		      LocalDate FechaNacimiento = LocalDate.of(AnioNacimiento, 1, 1);
+		      Period Periodo = Period.between(FechaNacimiento, FechaActual);
+              int Edad = Periodo.getYears();
+				
+              if(Edad < 16) {
+            	  if(Mensaje != "Ok") {
+            		  Mensaje += ". No puede inscribirse un menor de 16 años";
+            	  }else {
+            		  Mensaje = "No puede inscribirse un menor de 16 años.";
+            	  }
+              }*/
+              
+			  return Mensaje;
 		}catch(Exception ex) {
 			System.out.println("Error: " + ex.toString());
 			return null;	

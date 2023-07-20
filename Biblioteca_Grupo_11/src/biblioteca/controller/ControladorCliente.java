@@ -61,14 +61,17 @@ public class ControladorCliente {
 	{
 		try {			    
 				String Mensaje="";
-			/*	String dato =  nc.ValidarDatos(txtFecha.toString(), txtDni.toString(),txtMail.toString(),txtTelefono.toString());
+				String dato =  nc.ValidarDatos(txtFecha.toString(),txtMail.toString());
 				
 				if(dato!="Ok") {
 					Mensaje="Error! "+ dato;
 					System.out.println(Mensaje);
 					return null;
-				}*/
-				
+				}else {
+					System.out.println("Validado correctamente");
+				}
+				System.out.println("No funciona el debug ni toma mis cambios :C");
+
 				Clientes cl = (Clientes) appContext.getBean("ClienteBean");
 				
 				System.out.println("Se creo el CLIENTE usando Bean desde el XML");
